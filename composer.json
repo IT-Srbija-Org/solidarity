@@ -1,0 +1,39 @@
+{
+  "name": "greenfriends/solidarity",
+  "description": "solidarity",
+  "license": "",
+  "type": "project",
+  "repositories": [
+    {
+      "type": "git",
+      "url" : "https://bitbucket.org/dj_avolak/skeletor"
+    }
+  ],
+  "require": {
+    "dj_avolak/skeletor": "5.x-dev",
+    "symfony/string": "^5",
+    "laminas/laminas-session": "^2.21.0",
+    "nesbot/carbon": "*",
+    "phpoffice/phpspreadsheet": "*",
+    "beberlei/doctrineextensions": "^1.5"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^10.0",
+    "phpmd/phpmd": "*",
+    "roave/security-advisories": "dev-master",
+    "rregeer/phpunit-coverage-check": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Solidarity\\Backend\\": "packages/Backend/src",
+      "Solidarity\\Frontend\\": "packages/Frontend/src",
+      "Solidarity\\Donor\\": "packages/Donor/src",
+      "Solidarity\\Educator\\": "packages/Educator/src",
+      "Solidarity\\Delegate\\": "packages/Delegate/src"
+    }
+  },
+  "config": {
+    "preferred-install": "dist",
+    "bin-dir": "vendor/bin/"
+  }
+}
