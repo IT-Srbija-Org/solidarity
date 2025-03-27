@@ -1,0 +1,39 @@
+#socialLinks {
+  display:grid;
+  grid-template-columns:repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap:4rem;
+  .socialLink {
+    display:flex;
+    flex-direction:column;
+    gap:1rem;
+    .top {
+      display:flex;
+      gap:1rem;
+      align-items:center;
+      border-bottom:1px solid var(--colorOnBorders);
+      padding-bottom:0.5rem;
+      label {
+        font-size:14px;
+      }
+      svg {
+        width:14px;
+        fill:var(--colorSurface-600);
+      }
+    }
+    &.facebook {
+      svg {
+        width:10px;
+      }
+    }
+    &.youtube {
+        svg {
+            width:18px;
+        }
+    }
+    &.tumblr {
+      svg {
+        width: 10px;
+      }
+    }
+  }
+}

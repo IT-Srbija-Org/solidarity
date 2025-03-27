@@ -1,0 +1,239 @@
+table {
+  margin-bottom:0 !important;
+    thead,
+    tbody,
+    tfoot {
+      &.lowOpacity {
+        opacity: 0.5;
+      }
+    }
+  &.tableControls {
+    margin-top:1.5rem;
+    td {
+      &:nth-of-type(1) {
+        width:45%;
+        border-left: 1px solid #e3e6f0;
+      }
+      &:nth-of-type(2) {
+        width:20%;
+        select {
+          width:100px;
+        }
+      }
+      &:nth-of-type(3) {
+        width:25%;
+      }
+      &:nth-of-type(4) {
+        border-right: 1px solid #e3e6f0;
+        width:10%;
+        input {
+          display:block;
+          margin-left:auto;
+          width:250px;
+        }
+      }
+    }
+  }
+  .tableHeader {
+    position:relative;
+    .sortControls {
+      position: absolute;
+      top:0;
+      right:10px;
+      display:flex;
+      transform: translateY(50%);
+      .sortColumn {
+        transition: 0.3s ease all;
+        cursor:pointer;
+        width: 20px;
+        svg {
+          pointer-events: none;
+        }
+        &.hidden {
+          display:none;
+        }
+        &.active {
+          svg {
+            stroke: var(--mainColor);
+          }
+        }
+      }
+    }
+  }
+  a {
+    color:var(--success);
+    &:hover {
+      color:var(--successDark)
+    }
+    &:visited {
+      color:var(--success)
+    }
+  }
+}
+
+
+.tablePagination {
+  display:flex;
+  gap:0.2rem;
+  .buttonContainer {
+    display:flex;
+    gap:0.2rem;
+  }
+  button {
+    &.prevButton,
+    &.nextButton {
+      svg {
+        pointer-events:none;
+        width: 16px;
+      }
+    }
+  }
+}
+
+.tableMessage {
+  font-weight:bold;
+}
+
+.ghostRow {
+  height:63px;
+}
+
+#filterContainer {
+  display:flex;
+  gap:2rem;
+  margin:2rem 0;
+  flex-wrap:wrap;
+  .filterWrapperLinks {
+    order:1;
+    flex-basis:100%;
+    display:flex;
+    gap:1rem;
+    a {
+      &.active {
+        color:black;
+      }
+      span {
+        color:gray;
+      }
+    }
+  }
+  .filterWrapper {
+    order:2;
+    display: flex;
+    flex-direction: column;
+    select {
+      width:max-content;
+    }
+  }
+}
+
+.resultCount {
+  display:flex;
+  align-items: center;
+  padding:0 1rem;
+  font-weight:bold;
+}
+
+.goToPage {
+  span {
+    margin:0 0.5rem;
+    font-weight:bold;
+  }
+  .goToPageInput {
+    width:90px;
+  }
+}
+
+td {
+  &.status {
+    span {
+      padding:0.5rem;
+      border-radius: 7px;
+      &.publish {
+        background:#36b9cc;
+        color:white;
+      }
+      &.draft {
+        background:#b7b9cc;
+        color:white;
+      }
+      &.private {
+        background:#f6c23e;
+        color:white;
+      }
+      &.removed {
+        background:#e74a3b;
+        color:white;
+      }
+    }
+  }
+  .editEntity {
+    background-color:unset;
+    border-color:transparent;
+    color:#858796;
+    box-shadow:unset;
+    text-decoration:underline;
+    &:hover,
+    &:active,
+    &:focus {
+      text-decoration:underline;
+      background-color:unset !important;
+      box-shadow:unset !important;
+      border-color:transparent !important;
+      color:#858796 !important;
+    }
+  }
+}
+
+.selectRow {
+  width:15px;
+  height:15px;
+}
+
+
+.bulkApplyButton,
+.bulkAction {
+  display:none !important;
+  &.show {
+    display:inline-block !important;
+  }
+}
+
+.bulkAction {
+  &.show {
+    width:155px !important;
+  }
+}
+.selectAllRows {
+  display:none;
+  &.show {
+    width:15px;
+    height:15px;
+    display:inline;
+    margin-top:0.5rem;
+  }
+}
+
+table[data-js-page="Product"] {
+  thead {
+    tr {
+      th {
+        &:nth-of-type(15) {
+          display:none;
+        }
+      }
+    }
+  }
+  #tableData {
+    tr {
+      td {
+        &:nth-of-type(15) {
+          display:none;
+        }
+      }
+    }
+  }
+}
+#crudTable td button {
+  word-break:break-word;
+}

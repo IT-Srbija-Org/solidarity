@@ -1,0 +1,217 @@
+#themeSettingsContainer {
+  order: 2;
+  display: flex;
+  padding: 0 1rem;
+}
+#themeSettingsContainer #themeSettingsNavigation {
+  background: var(--colorSurface-200);
+  width: 150px;
+  border-top-left-radius: 7px;
+  border-bottom-left-radius: 7px;
+  display: flex;
+  flex-direction: column;
+  height: max-content;
+  margin-top: 0.5rem;
+}
+#themeSettingsContainer #themeSettingsNavigation li {
+  cursor: pointer;
+  transition: 0.3s ease all;
+  color: var(--colorSurface-600);
+  border-bottom: 1px solid var(--colorSurface-300);
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+#themeSettingsContainer #themeSettingsNavigation li:first-of-type {
+  border-top-left-radius: 7px;
+}
+#themeSettingsContainer #themeSettingsNavigation li:last-of-type {
+  border-bottom: none;
+  border-bottom-left-radius: 7px;
+}
+#themeSettingsContainer #themeSettingsNavigation li.active {
+  background: var(--colorSurface-300);
+}
+@media (hover: hover) {
+  #themeSettingsContainer #themeSettingsNavigation li:hover {
+    background: var(--colorSurface-300);
+  }
+}
+#themeSettingsContainer #themeSettingsNavigation li svg {
+  width: 12px;
+  fill: var(--colorSurface-600);
+}
+#themeSettingsContainer #themeSettingsContent {
+  width: calc(100% - 150px);
+  border: 1px solid var(--colorSurface-200);
+  height: 800px;
+  overflow-y: auto;
+  border-radius: 7px;
+  padding: 1rem;
+  position: relative;
+}
+#themeSettingsContainer #themeSettingsContent #settingsContentTop {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  border-bottom: 1px solid var(--colorSurface-200);
+  padding-bottom: 1rem;
+}
+#themeSettingsContainer #themeSettingsContent #settingsContentTop h2 {
+  color: var(--colorSurface-600);
+}
+#themeSettingsContainer #themeSettingsContent #settingsContentTop .iconContainer {
+  border: 1px solid var(--colorSurface-600);
+  border-radius: 7px;
+  padding: 0.5rem;
+  display: flex;
+}
+#themeSettingsContainer #themeSettingsContent #settingsContentTop .iconContainer svg {
+  width: 14px;
+  fill: var(--colorSurface-600);
+}
+#themeSettingsContainer #themeSettingsContent #settingsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+#settingsContainer #chooseNavigation {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: flex-end;
+}
+#settingsContainer #chooseNavigation select {
+  padding: 0.39rem 0.7rem;
+}
+#settingsContainer #chooseNavigation button {
+  height: max-content;
+}
+#settingsContainer #chooseNavigation button.error {
+  display: none;
+}
+#settingsContainer #chooseNavigation button.error.active {
+  display: block;
+}
+#settingsContainer #navigationContent {
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--colorOnBorders);
+}
+
+#socialLinks {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 4rem;
+}
+#socialLinks .socialLink {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+#socialLinks .socialLink .top {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  border-bottom: 1px solid var(--colorOnBorders);
+  padding-bottom: 0.5rem;
+}
+#socialLinks .socialLink .top label {
+  font-size: 14px;
+}
+#socialLinks .socialLink .top svg {
+  width: 14px;
+  fill: var(--colorSurface-600);
+}
+#socialLinks .socialLink.facebook svg {
+  width: 10px;
+}
+#socialLinks .socialLink.youtube svg {
+  width: 18px;
+}
+#socialLinks .socialLink.tumblr svg {
+  width: 10px;
+}
+
+#selectedServices {
+  grid-column: 1/-1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+#selectedServices .selectedService {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  border-bottom: 1px solid var(--colorSurface-200);
+  padding-bottom: 1rem;
+  width: 1300px;
+}
+@media (max-width: 1345px) {
+  #selectedServices .selectedService {
+    width: 100%;
+  }
+}
+#selectedServices .selectedService .removeService {
+  margin-top: 16px;
+  cursor: pointer;
+}
+#selectedServices .selectedService .removeService svg {
+  height: 28px;
+  stroke: var(--colorError);
+  pointer-events: none;
+}
+#selectedServices .selectedService .serviceNameColumn {
+  width: 100%;
+}
+#selectedServices .selectedService .serviceNameColumn .serviceNameInput {
+  width: 800px;
+}
+@media (max-width: 850px) {
+  #selectedServices .selectedService .serviceNameColumn .serviceNameInput {
+    width: 100%;
+  }
+}
+#selectedServices input[name="selectedServices[qty][]"] {
+  width: 75px;
+}
+#selectedServices .column:has(.removeService) {
+  margin-left: auto;
+}
+
+.fullWidth:has(#totalWithoutVAT) {
+  width: 1300px;
+}
+@media (max-width: 1345px) {
+  .fullWidth:has(#totalWithoutVAT) {
+    width: 100%;
+  }
+}
+.fullWidth:has(#totalWithoutVAT) .inputContainer {
+  margin-right: auto;
+}
+.fullWidth:has(#totalWithoutVAT) .inputContainer input {
+  width: 292px;
+}
+
+form:has(.selectedService) .fullWidth:has(#totalWithoutVAT) .inputContainer {
+  margin-left: auto;
+  margin-right: unset;
+}
+@media (max-width: 1200px) {
+  form:has(.selectedService) .fullWidth:has(#totalWithoutVAT) .inputContainer {
+    margin-left: unset;
+    margin-right: auto;
+  }
+}
+
+.inputContainer:has(.input[name=deadlineDate]) {
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.inputContainer:has(.input[name=deadlineDate]) .input {
+  flex-basis: 100%;
+}
+
+/*# sourceMappingURL=style.css.map */

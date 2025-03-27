@@ -1,0 +1,9 @@
+{% extends 'email/layout/layout.twig' %}
+{% block content %}
+    <h1 style="margin: 0 0 20px; font-size: 20px;">Poštovani/a {{ data.name }}, </h1>
+    <p>Vaša objava na <a href="https://inmemoriam.blic.rs/">inmemoriam.blic.rs</a> sajtu je
+        odobrena i biće na navedenom sajtu prema Vašem željenom zahtevu. Možete je videti klikom
+        <a href="{{ data.memoUri }}">ovde</a>, ili iskopirajte URL ispod u Vaš pretraživač.</p>
+    <p>{{ data.memoUri }}</p>
+
+{% endblock %}

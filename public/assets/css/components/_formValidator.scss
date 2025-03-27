@@ -1,0 +1,13 @@
+.formFieldNotice {
+  display:block;
+  color: var(--error);
+  position:absolute;
+}
+
+.invalidFormField {
+  border:1px solid var(--error);
+  &:focus {
+    border-color: var(--error);
+    box-shadow: 0 0 0 0.2rem rgba(var(--errorShadow), 0.5);
+  }
+}

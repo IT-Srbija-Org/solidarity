@@ -1,0 +1,26 @@
+#settingsContainer {
+  #chooseNavigation {
+    display: flex;
+    flex-wrap:wrap;
+    gap: 1rem;
+    align-items: flex-end;
+    select {
+      padding:0.39rem 0.7rem;
+    }
+    button {
+      height: max-content;
+
+      &.error {
+        display: none;
+
+        &.active {
+          display: block;
+        }
+      }
+    }
+  }
+  #navigationContent {
+    padding-top:0.5rem;
+    border-top: 1px solid var(--colorOnBorders);
+  }
+}

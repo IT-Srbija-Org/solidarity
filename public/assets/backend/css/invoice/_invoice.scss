@@ -1,0 +1,86 @@
+#selectedServices {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  gap:1rem;
+  .selectedService {
+    display: flex;
+    flex-wrap:wrap;
+    gap: 2rem;
+    border-bottom: 1px solid var(--colorSurface-200);
+    padding-bottom: 1rem;
+    width: 1300px;
+    @media(max-width:1345px) {
+      width:100%;
+    }
+    .removeService {
+      margin-top:16px;
+      cursor:pointer;
+      svg {
+        height:28px;
+        stroke:var(--colorError);
+        pointer-events:none;
+      }
+    }
+    .serviceNameColumn {
+      width:100%;
+      .serviceNameInput {
+        width:800px;
+        @media (max-width:850px) {
+          width:100%;
+        }
+      }
+    }
+  }
+  input {
+    &[name="selectedServices[qty][]"] {
+      width: 75px;
+    }
+  }
+  .column {
+    &:has(.removeService) {
+      margin-left:auto;
+    }
+  }
+}
+.fullWidth {
+  &:has(#totalWithoutVAT) {
+    width:1300px;
+    @media(max-width:1345px) {
+      width:100%;
+    }
+    .inputContainer {
+      margin-right:auto;
+      input {
+        width:292px;
+      }
+    }
+  }
+}
+
+form {
+  &:has(.selectedService) {
+    .fullWidth {
+      &:has(#totalWithoutVAT) {
+        .inputContainer {
+          margin-left:auto;
+          margin-right:unset;
+          @media(max-width:1200px) {
+            margin-left:unset;
+            margin-right:auto;
+          }
+        }
+      }
+    }
+  }
+}
+
+.inputContainer {
+  &:has(.input[name="deadlineDate"]) {
+    flex-direction:row;
+    flex-wrap:wrap;
+    .input {
+      flex-basis:100%;
+    }
+  }
+}

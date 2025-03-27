@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="rs">
+<head>
+    <title>InMemoriam</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+<body style="font-family: Arial, Helvetica, sans-serif; padding: 0; margin: 0;">
+<table style="margin:0 auto;">
+    <tbody>
+    <tr>
+        <td>
+            <table>
+                <tbody>
+                <tr style="background-color:#000;">
+                    <td>
+                        <a href="https://inmemoriam.blic.rs/" target="_blank"
+                           style="text-decoration: none; color: #222;">
+                    {# TODO: add path site/assets/front/images/emailHeaderImg #}
+                            <img src="https://inmemoriam.greenfriends.systems/assets/front/images/emailHeaderImg.png"
+                                 width="220" alt="" style="display: block; width: 220px; margin: 10px auto;">
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="text" style="padding: 20px; border-left: 1px solid #eee; border-right: 1px solid #eee;">
+                            {% block content %} {% endblock %}
+                        </div>
+                    </td>
+                </tr>
+                <tr style="background-color:#eee;">
+                    <td>
+                        <p class="footer" style="text-align: center; font-size: 14px; color: #888; padding: 10px;">© <a
+                                    style="color:black;"
+                                    href="http://inmemoriam.blic.rs/">InMemoriam.blic.rs</a>. Sva prava zadržana.</p>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
