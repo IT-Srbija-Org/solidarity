@@ -18,31 +18,29 @@ $form = new TabbedForm($data['formAction'], $data['dataAction'], $this->formToke
 
 $action = $data['dataAction'] === 'create' ? 'Create' : 'Edit';
 
-$statuses = [1 => 'Active', 0 => 'Inactive'];
-$statusCollection = (new OptionCollection(new Option('1', 'Status')))->fromArray($statuses, $data['model']?->status);
+$statuses = \Solidarity\Transaction\Entity\Transaction::getHrStatuses();
+$statusCollection = (new OptionCollection(new Option('1', 'New')))->fromArray($statuses, $data['model']?->status);
 $statusSelect = (new Select('status', $statusCollection, 'Status'))
     ->required('Status is required', '');
-$name = (new Text('name', $data['model']?->name, 'Name'));
-$amount = (new \Skeletor\Form\InputTypes\Input\Number('amount', $data['model']?->amount, 'Amount'))
+$name = (new Text(name: 'name', value: $data['model']?->name, label:'Name', readOnly: true));
+$amount = (new \Skeletor\Form\InputTypes\Input\Number(name: 'amount', value: $data['model']?->amount, label:'Amount', readOnly: true))
     ->required('amount is required');
-$accountNumber = (new \Skeletor\Form\InputTypes\Input\Number('accountNumber', $data['model']?->accountNumber, 'Account number'));
-$slipLink = (new Text('slipLink', $data['model']?->slipLink, 'Slip link'));
-$schoolName = (new Text('schoolName', $data['model']?->schoolName, 'School name'));
-$comment = (new \Skeletor\Form\InputTypes\TextArea\TextArea('comment', $data['model']?->comment, 'Comment'));
+$accountNumber = (new \Skeletor\Form\InputTypes\Input\Text(name: 'accountNumber', value: $data['model']?->accountNumber, label:'Account number', readOnly: true));
+$comment = (new \Skeletor\Form\InputTypes\TextArea\TextArea(name:'comment', value:$data['model']?->comment, label:'Comment'));
 
 $inputGroup1 = (new InputGroup())
     ->addInput($name)
-    ->addInput($accountNumber)
-    ->addInput($amount)
-    ->addInput($schoolName);
-$inputGroup2 = (new InputGroup())
-    ->addInput($slipLink)
-    ->addInput($statusSelect)
     ->addInput($comment);
+$inputGroup2 = (new InputGroup())
+    ->addInput($accountNumber);
 
 $form->addTab((new Tab('Basic Info'))
     ->addInputGroup($inputGroup1)
     ->addInputGroup($inputGroup2)
+    ->addInputGroup((new InputGroup())
+        ->addInput($amount))
+    ->addInputGroup((new InputGroup())
+        ->addInput($statusSelect))
 );
 
 $formRenderer = new TabbedFormRenderer($form, $data['formTitle']);
