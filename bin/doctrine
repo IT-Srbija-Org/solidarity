@@ -1,0 +1,13 @@
+#!/usr/bin/env php
+<?php
+
+use Doctrine\ORM\Tools\Console\ConsoleRunner;
+use Doctrine\ORM\Tools\Console\EntityManagerProvider\SingleManagerProvider;
+
+include(__DIR__ . "/../config/constants.php");
+include(APP_PATH . "/vendor/autoload.php");
+$container = require APP_PATH . '/config/bootstrap.php';
+
+ConsoleRunner::run(
+    new SingleManagerProvider($container->get(\Doctrine\ORM\EntityManagerInterface::class))
+);

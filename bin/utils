@@ -1,0 +1,41 @@
+#!/bin/bash
+if [ $# -eq 0 ]; then
+  echo -e "Please provide a command: \n<ormUpdate>\n<ormClearMetaData>\n<dockerShell>"
+  exit 1
+fi
+case "$1" in
+"ormUpdate")
+  php bin/doctrine orm:schema-tool:update --complete --force --dump-sql
+  ;;
+"ormClearMetaData")
+  php bin/doctrine orm:clear-cache:metadata
+  ;;
+"dockerShell")
+  if [ $# -eq 1 ]; then
+    echo -e "Please provide an argument: \n<php>\n<python>\n<mysql>\n<nginx>"
+    exit 1
+  fi
+  case "$2" in
+  "php")
+    docker exec -it feeder-php-1 bash
+    ;;
+  "python")
+    docker exec -it feeder-python-1 bash
+    ;;
+  "mysql")
+    docker exec -it feeder-mysql-1 bash
+    ;;
+  "nginx")
+    docker exec -it feeder-nginx-1 bash
+    ;;
+  *)
+    echo "Unknown argument: $2"
+    exit 1
+    ;;
+  esac
+  ;;
+*)
+  echo "Unknown command: $1"
+  exit 1
+  ;;
+esac
