@@ -28,7 +28,7 @@
 
 <!--  Include project scripts -->
 <!--<script src="assets/dist/js/main.js"></script>-->
-<script src="assets/js/main-default.js"></script>
+<script src="assets/js/main.js"></script>
 <?php if (isset($jsPath) && $jsPath != ""): ?>
     <script src="<?=$jsPath?>" type="module"></script>
 <?php endif; ?>
