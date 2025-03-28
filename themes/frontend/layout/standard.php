@@ -24,7 +24,7 @@
 </div>
 
 <!--  Include 3rd party scripts -->
-<script src="https://cdn-script.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="assets/dist/js/jquery.min.js"></script>
 
 <!--  Include project scripts -->
 <!--<script src="assets/dist/js/main.js"></script>-->
