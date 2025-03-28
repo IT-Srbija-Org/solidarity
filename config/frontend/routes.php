@@ -19,6 +19,9 @@
 return [
     // backend
     [['GET'], '/', \Solidarity\Frontend\Action\Index::class],
+    [['GET'], '/donorThankYou', \Solidarity\Frontend\Action\ThankYouDonor::class],
+    [['GET'], '/delegateThankYou', \Solidarity\Frontend\Action\ThankYouDelegate::class],
+    [['GET'], '/educatorThankYou', \Solidarity\Frontend\Action\ThankYouEducator::class],
     [['GET', 'POST'], '/donorForm', \Solidarity\Frontend\Action\Donor::class],
     [['GET', 'POST'], '/delegateForm', \Solidarity\Frontend\Action\Delegate::class],
     [['GET', 'POST'], '/educatorForm', \Solidarity\Frontend\Action\Educator::class],

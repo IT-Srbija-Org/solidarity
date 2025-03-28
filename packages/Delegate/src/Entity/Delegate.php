@@ -41,12 +41,12 @@ class Delegate
     #[ORM\Column(type: Types::STRING, length: 128)]
     public string $verifiedBy;
 
-    #[ORM\Column(type: 'datetime', insertable: true, updatable: true, options: ['default' => "CURRENT_TIMESTAMP"])]
-    public \DateTime $createdAt;
-
-    #[ORM\Column(type: 'datetime', insertable: true, updatable: true, columnDefinition: "DATETIME DEFAULT CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP")]
-    public \DateTime $updatedAt;
-
+//    #[ORM\Column(type: 'datetime', insertable: true, updatable: true, options: ['default' => "CURRENT_TIMESTAMP"])]
+//    public \DateTime $createdAt;
+//
+//    #[ORM\Column(type: 'datetime', insertable: true, updatable: true, columnDefinition: "DATETIME DEFAULT CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP")]
+//    public \DateTime $updatedAt;
+//
     public static function getHrStatuses(): array
     {
         return array(

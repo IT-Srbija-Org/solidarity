@@ -2,23 +2,28 @@
 <main class="it-grid">
     <h2>Obrazac za delegate</h2>
 
-    <form method="post" id="it-delegati-form" class="it-form" aria-label="Delegati forma" data-type="delegati">
+    <form method="post" action="delegateForm" id="it-delegati-form" class="it-form" aria-label="Delegati forma" data-type="delegati">
+        <?=$this->formToken(); ?>
         <div class="it-form-field">
             <label for="email">Email *</label>
             <input type="email" name="email" id="email" size="40" maxlength="200" autocomplete="email" aria-required="true" aria-invalid="false" value="" required />
+        </div>
+        <div class="it-form-field">
+            <label for="email">Broj telefona *</label>
+            <input type="text" name="phone" id="phone" size="40" maxlength="200" aria-required="true" aria-invalid="false" value="" required />
         </div>
         <div class="it-row-section it-col-num--2 it-responsive--predefined">
             <div class="it-row">
                 <div class="it-column">
                     <div class="it-form-field">
                         <label for="full-name">Ime i Prezime *</label>
-                        <input type="text" name="full_name" id="full-name" aria-required="true" value="" required />
+                        <input type="text" name="name" id="full-name" aria-required="true" value="" required />
                     </div>
                 </div>
                 <div class="it-column">
                     <div class="it-form-field">
                         <label for="school-type">Tip obrazovne ustanove *</label>
-                        <select name="school_type" id="school-type" aria-required="true" required>
+                        <select name="schoolType" id="school-type" aria-required="true" required>
                             <option value="OŠ">Osnovna škola</option>
                             <option value="SŠ">Srednja stručna škola</option>
                             <option value="G">Gimnazija</option>
@@ -226,7 +231,7 @@
                 <div class="it-column">
                     <div class="it-form-field">
                         <label for="school-name">Naziv škole *</label>
-                        <select name="school_name" id="school-name" class="it-school-name" aria-required="true" required>
+                        <select name="schoolName" id="school-name" class="it-school-name" aria-required="true" required>
                             <option value="">Izaberite školu</option>
                             <optgroup label="Ada">
                                 <option value="Osnovna škola 'Novak Radonić' Mol">Osnovna škola 'Novak Radonić' Mol</option>
@@ -2437,14 +2442,14 @@
                     <div class="it-form-field">
                         <label for="suspended-number">Broj u obustavi *</label>
                         <small id="suspended-number-desc">Broj nastavnog i nenastavnog osoblja Vaše škole, koji su u obustavi</small>
-                        <input type="number" name="suspended_number" id="suspended-number" min="0" max="200" aria-required="true" aria-describedby="suspended-number-desc" value="0" required />
+                        <input type="number" name="countBlocking" id="suspended-number" min="0" max="300" aria-required="true" aria-describedby="suspended-number-desc" value="0" required />
                     </div>
                 </div>
                 <div class="it-column">
                     <div class="it-form-field">
                         <label for="total-number">Ukupan broj *</label>
                         <small id="total-number-desc">Ukupan broj nastavnog i nenastavnog osoblja u Vašoj školi (dovoljano je uneti približan broj)</small>
-                        <input type="number" name="total_number" id="total-number" min="1" max="200" aria-required="true" aria-describedby="total-number-desc" value="1" required />
+                        <input type="number" name="count" id="total-number" min="1" max="300" aria-required="true" aria-describedby="total-number-desc" value="1" required />
                     </div>
                 </div>
             </div>
@@ -2452,7 +2457,7 @@
         <div class="it-form-field">
             <label for="message">Komentar (opciono)</label>
             <small id="message-desc">Unesi dodatni komentar ili sugestiju</small>
-            <textarea name="message" id="message" cols="40" rows="6" maxlength="600" aria-describedby="message-desc"></textarea>
+            <textarea name="comment" id="message" cols="40" rows="6" maxlength="600" aria-describedby="message-desc"></textarea>
         </div>
         <button type="submit" class="it-form-button it-button it-size--normal it-layout--filled it-m">
             <span class="it-m-text">Pošalji</span>

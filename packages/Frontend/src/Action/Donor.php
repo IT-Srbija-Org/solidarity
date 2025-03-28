@@ -21,17 +21,17 @@ class Donor extends BaseAction
         \Psr\Http\Message\ResponseInterface $response
     ) {
         $this->setGlobalVariable('title', 'Forma za donatore');
-//        if($this->visitorSession->getLoggedInUserId()) {
-//            return $response->withStatus(302)->withHeader('Location', '/profil/');
-//        }
         $data = $request->getParsedBody();
         if (!empty($data)) {
             try {
                 $this->donor->create($data);
                 // @TODO send mail
-                $this->redirect('donorThankyou');
+                return $this->redirect('/donorThankYou');
             } catch (\Exception $e) {
                 // handle
+                echo $e->getMessage();
+                die();
+                return $this->redirect('/donorForm');
             }
 
         }

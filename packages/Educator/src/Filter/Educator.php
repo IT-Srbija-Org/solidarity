@@ -31,11 +31,11 @@ class Educator implements FilterInterface
             'amount' => $int->filter($postData['amount']),
             'name' => $postData['name'],
             'schoolName' => $postData['schoolName'],
-            'slipLink' => $postData['slipLink'],
+            'slipLink' => (isset($postData['slipLink'])) ? $postData['slipLink'] : '',
             'city' => $postData['city'],
             'accountNumber' => $postData['accountNumber'],
-            'comment' => $postData['comment'],
-            'status' => $postData['status'],
+            'comment' => (isset($postData['comment'])) ? $postData['comment'] : '',
+            'status' => (isset($postData['status'])) ? $postData['status'] : 1,
 //            CSRF::TOKEN_NAME => $postData[CSRF::TOKEN_NAME],
         ];
         if (!$this->validator->isValid($data)) {

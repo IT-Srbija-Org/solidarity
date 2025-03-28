@@ -27,7 +27,8 @@
 <script src="https://cdn-script.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
 <!--  Include project scripts -->
-<script src="assets/dist/js/main.js"></script>
+<!--<script src="assets/dist/js/main.js"></script>-->
+<script src="assets/js/main-default.js"></script>
 <?php if (isset($jsPath) && $jsPath != ""): ?>
     <script src="<?=$jsPath?>" type="module"></script>
 <?php endif; ?>

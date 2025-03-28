@@ -2,10 +2,11 @@
 <main class="it-grid">
     <h2>Obrazac za ostecene</h2>
 
-    <form method="post" id="it-osteceni-form" class="it-form" aria-label="Osteceni forma" data-type="osteceni">
+    <form method="post" action="/educatorForm" id="it-osteceni-form" class="it-form" aria-label="Osteceni forma" data-type="osteceni">
+        <?=$this->formToken(); ?>
         <div class="it-form-field">
             <label for="full-name">Ime i Prezime *</label>
-            <input type="text" name="full_name" id="full-name" aria-required="true" value="" required />
+            <input type="text" name="name" id="full-name" aria-required="true" value="" required />
         </div>
         <div class="it-row-section it-col-num--2 it-responsive--predefined">
             <div class="it-row">
@@ -206,7 +207,7 @@
                 <div class="it-column">
                     <div class="it-form-field">
                         <label for="school-name">Naziv škole *</label>
-                        <select name="school_name" id="school-name" class="it-school-name" aria-required="true" required>
+                        <select name="schoolName" id="school-name" class="it-school-name" aria-required="true" required>
                             <option value="">Izaberite školu</option>
                             <optgroup label="Ada">
                                 <option value="Osnovna škola 'Novak Radonić' Mol">Osnovna škola 'Novak Radonić' Mol</option>
@@ -2417,7 +2418,7 @@
                     <div class="it-form-field">
                         <label for="bank-account">Broj žiro računa *</label>
                         <small id="bank-account-desc">Broj žiro računa kolege kojeg prijavljujete (Molimo Vas da ovaj podatak unesete s najvećom pažnjom)</small>
-                        <input type="text" name="bank_account" id="bank-account" aria-required="true" aria-describedby="bank-account-desc" value="" required />
+                        <input type="text" name="accountNumber" id="bank-account" aria-required="true" aria-describedby="bank-account-desc" value="" required />
                     </div>
                 </div>
                 <div class="it-column">

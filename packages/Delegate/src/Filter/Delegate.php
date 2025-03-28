@@ -9,6 +9,7 @@ use Skeletor\User\Service\Session;
 use Volnix\CSRF\CSRF;
 use Laminas\I18n\Filter\Alnum;
 use Skeletor\Core\Validator\ValidatorException;
+
 class Delegate implements FilterInterface
 {
 
@@ -32,19 +33,22 @@ class Delegate implements FilterInterface
             'email' => $postData['email'],
             'city' => $postData['city'],
             'phone' => $postData['phone'],
-            'verifiedBy' => $postData['verifiedBy'],
+            'verifiedBy' => (isset($postData['verifiedBy'])) ? $postData['verifiedBy'] : '',
             'count' => $postData['count'],
-            'formLinkSent' => $postData['formLinkSent'],
+            'formLinkSent' => (isset($postData['formLinkSent'])) ? $postData['formLinkSent'] : 0,
             'countBlocking' => $postData['countBlocking'],
             'schoolType' => $postData['schoolType'],
             'schoolName' => $postData['schoolName'],
             'comment' => $postData['comment'],
-            'status' => $postData['status'],
-            'createdAt' => $postData['createdAt'],
-            'updatedAt' => $postData['updatedAt'],
+            'status' => (isset($postData['status'])) ? $postData['status'] : 1,
+//            'createdAt' => $postData['createdAt'],
+//            'updatedAt' => $postData['updatedAt'],
             CSRF::TOKEN_NAME => $postData[CSRF::TOKEN_NAME],
         ];
         if (!$this->validator->isValid($data)) {
+            var_dump($this->validator->getMessages());
+            die();
+
             throw new ValidatorException();
         }
         unset($data[CSRF::TOKEN_NAME]);

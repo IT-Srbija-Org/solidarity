@@ -7,7 +7,7 @@ use League\Plates\Engine;
 use Solidarity\Frontend\Action\BaseAction;
 use Psr\Log\LoggerInterface as Logger;
 
-class Delegate extends BaseAction
+class ThankYouDonor extends BaseAction
 {
     public function __construct(
         Logger $logger, Config $config, Engine $template, private \Solidarity\Delegate\Service\Delegate $delegate
@@ -20,21 +20,8 @@ class Delegate extends BaseAction
         \Psr\Http\Message\ServerRequestInterface $request,
         \Psr\Http\Message\ResponseInterface $response
     ) {
-        $this->setGlobalVariable('title', 'Forma za delegate');
-        $data = $request->getParsedBody();
-        if (!empty($data)) {
-            try {
-                $this->delegate->create($data);
-                // @TODO send mail
-                return $this->redirect('/delegateThankYou');
-            } catch (\Exception $e) {
-                // handle
-                echo $e->getMessage();
-                die();
-                return $this->redirect('/delegateForm');
-            }
-        }
+        $this->setGlobalVariable('title', 'Hvala!');
 
-        return $this->respond('delegate/signup', []);
+        return $this->respond('donor/thankyou', []);
     }
 }

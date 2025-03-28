@@ -20,18 +20,18 @@ class Educator extends BaseAction
         \Psr\Http\Message\ServerRequestInterface $request,
         \Psr\Http\Message\ResponseInterface $response
     ) {
-        $this->setGlobalVariable('title', 'Forma za delegate');
-//        if($this->visitorSession->getLoggedInUserId()) {
-//            return $response->withStatus(302)->withHeader('Location', '/profil/');
-//        }
+        $this->setGlobalVariable('title', 'Forma za edukatore');
         $data = $request->getParsedBody();
         if (!empty($data)) {
             try {
                 $this->educator->create($data);
                 // @TODO send mail
-                $this->redirect('donorThankyou');
+                return $this->redirect('/educatorThankYou');
             } catch (\Exception $e) {
                 // handle
+                echo $e->getMessage();
+                die();
+                return $this->redirect('/educatorForm');
             }
 
         }

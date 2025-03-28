@@ -12,6 +12,10 @@ class Educator
 {
     use Timestampable;
 
+    const STATUS_NEW = 1;
+    const STATUS_VERIFIED = 2;
+    const STATUS_PROBLEM = 3;
+
     #[ORM\Column(type: Types::INTEGER)]
     public string $amount;
     #[ORM\Column(type: Types::STRING, length: 255)]
