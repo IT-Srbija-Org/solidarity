@@ -1,0 +1,58 @@
+/* ==========================================================================
+   Import core files
+   ========================================================================== */
+@use '../variables' as *;
+@use '../mixins' as *;
+@use '../grid-variables' as *;
+@use 'sass:map';
+@use 'sass:list';
+
+/* ==========================================================================
+   Grid mixins
+   ========================================================================== */
+
+.it-row-section {
+
+    &.it-responsive--predefined {
+
+        @each $key, $values in $grid-columns-layout-responsive-map {
+
+            @each $column in map-deep-get($grid-columns-layout-responsive-map, $key, 'columns-label') {
+
+                &.it-col-num--#{$column} {
+                    $responsive-break: map-deep-get($grid-columns-layout-responsive-map, $key, 'responsive-break');
+                    $column-size: map-deep-get($grid-columns-layout-responsive-map, $key, 'columns-size');
+                    $custom-columns-responsive: map-deep-get($grid-columns-layout-responsive-map, $key, 'custom-columns-responsive');
+
+                    @if ($custom-columns-responsive != null and list.index(map.get($custom-columns-responsive, 'custom-columns-label'), $column) != null) {
+                        $column-size: map.get($custom-columns-responsive, 'custom-columns-size');
+                    }
+
+                    @media (max-width: map-deep-get($grid-columns-layout-responsive-map, $key, 'responsive-stage')) {
+                        --it-columns: #{$column-size};
+                    }
+                }
+            }
+        }
+    }
+
+    &.it-responsive--custom {
+
+        @each $key, $values in $grid-columns-layout-custom-responsive-map {
+
+            @for $j from 0 to $grid-columns-layout-size {
+                $step: $j + 1;
+
+                $responsive-break: map-deep-get($grid-columns-layout-custom-responsive-map, $key, 'responsive-break');
+                $columns-label: map-deep-get($grid-columns-layout-custom-responsive-map, $key, 'columns-label');
+
+                &.it-col-num--#{$columns-label}--#{$step} {
+
+                    @media (max-width: map-deep-get($grid-columns-layout-custom-responsive-map, $key, 'responsive-stage')) {
+                        --it-columns: #{$step};
+                    }
+                }
+            }
+        }
+    }
+}

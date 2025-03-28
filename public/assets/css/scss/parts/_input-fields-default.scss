@@ -1,0 +1,122 @@
+/* ==========================================================================
+   Import core files
+   ========================================================================== */
+@use '../variables' as *;
+@use '../mixins' as *;
+@use "sass:map";
+
+/* ==========================================================================
+   Global styles
+   ========================================================================== */
+
+$input-fields-map: (
+	input-fields-height: 56,
+	input-fields-side-padding: 20,
+	input-fields-text-size: 16,
+	input-fields-text-line-height: 28,
+	input-fields-text-color: $additional-text-color,
+	input-fields-focus-text-color: $text-color,
+	input-fields-background-color: transparent,
+	input-fields-focus-background-color: transparent,
+	input-fields-border-color: $border-color,
+	input-fields-focus-border-color: $heading-color,
+);
+
+label {
+	display: block;
+	width: 100%;
+	margin-bottom: 9px;
+}
+
+input[type="date"],
+input[type="email"],
+input[type="number"],
+input[type="password"],
+input[type="search"],
+input[type="tel"],
+input[type="text"],
+input[type="url"],
+textarea,
+select {
+	@include itRelativeLayout();
+	height: auto;
+	max-width: 100%;
+	min-height: auto;
+	margin: 0;
+	padding: #{calc((map.get($input-fields-map, 'input-fields-height') - map.get($input-fields-map, 'input-fields-text-line-height')) / 2)}px #{map.get($input-fields-map, 'input-fields-side-padding')}px;
+	font-family: inherit;
+	font-size: #{map.get($input-fields-map, 'input-fields-text-size')}px;
+	line-height: #{map.get($input-fields-map, 'input-fields-text-line-height')}px;
+	font-weight: inherit;
+	color: map.get($input-fields-map, 'input-fields-text-color');
+	background-color: map.get($input-fields-map, 'input-fields-background-color');
+	border: 1px solid map.get($input-fields-map, 'input-fields-border-color');
+	border-radius: 0;
+	outline: 0;
+	box-shadow: none;
+	cursor: pointer;
+	transition: $color-transition, $background-color-transition, $border-color-transition;
+
+	&:focus {
+		color: map.get($input-fields-map, 'input-fields-focus-text-color');
+		background-color: map.get($input-fields-map, 'input-fields-focus-background-color');
+		border-color: map.get($input-fields-map, 'input-fields-focus-border-color');
+	}
+
+	&::placeholder {
+		color: inherit;
+		opacity: 1;
+	}
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+	margin: 0;
+	width: 1em;
+	height: 1em;
+	vertical-align: middle;
+}
+
+select {
+	display: block;
+	background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHhtbG5zOnhsaW5rPSdodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rJyB4PScwcHgnIHk9JzBweCcgd2lkdGg9JzEwLjhweCcgaGVpZ2h0PSc2LjJweCcgdmlld0JveD0nMCAwIDEwLjggNi4yJyBzdHlsZT0nZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCAxMC44IDYuMjsnIHhtbDpzcGFjZT0ncHJlc2VydmUnPjxwYXRoIHN0eWxlPSdmaWxsOiAjQThBN0E3JyBkPSdNMTAuNiwwLjNjMC4zLDAuMywwLjMsMC43LDAsMUw1LjksNS45QzUuOCw2LjEsNS42LDYuMiw1LjQsNi4yQzUuMiw2LjIsNSw2LjEsNC45LDUuOUwwLjIsMS4zIGMtMC4zLTAuMy0wLjMtMC43LDAtMWMwLjMtMC4zLDAuNy0wLjMsMSwwbDQuMiw0LjFsNC4yLTQuMUM5LjktMC4xLDEwLjItMC4xLDEwLjYsMC4zeicvPjwvc3ZnPg==);
+	background-repeat: no-repeat;
+	background-position: calc(100% - 20px) center;
+	background-size: auto;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	-webkit-appearance: none;
+
+	option {
+		color: $additional-text-color;
+	}
+
+	&.it-arrow--light {
+		background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHhtbG5zOnhsaW5rPSdodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rJyB4PScwcHgnIHk9JzBweCcgd2lkdGg9JzEwLjhweCcgaGVpZ2h0PSc2LjJweCcgdmlld0JveD0nMCAwIDEwLjggNi4yJyBzdHlsZT0nZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCAxMC44IDYuMjsnIHhtbDpzcGFjZT0ncHJlc2VydmUnPjxwYXRoIHN0eWxlPSdmaWxsOiAjZmZmJyBkPSdNMTAuNiwwLjNjMC4zLDAuMywwLjMsMC43LDAsMUw1LjksNS45QzUuOCw2LjEsNS42LDYuMiw1LjQsNi4yQzUuMiw2LjIsNSw2LjEsNC45LDUuOUwwLjIsMS4zIGMtMC4zLTAuMy0wLjMtMC43LDAtMWMwLjMtMC4zLDAuNy0wLjMsMSwwbDQuMiw0LjFsNC4yLTQuMUM5LjktMC4xLDEwLjItMC4xLDEwLjYsMC4zeicvPjwvc3ZnPg==)
+	}
+}
+
+input[type="submit"],
+button[type="submit"] {
+	@include itButtonDefaultStyle();
+	@include itButtonSize();
+	@include itButtonFilledColor();
+	cursor: pointer;
+	text-decoration: none;
+
+	span {
+		display: block;
+		line-height: inherit;
+
+		&:before {
+			display: block;
+			line-height: inherit;
+		}
+	}
+
+	&:focus,
+	&:hover {
+		@include itButtonFilledHoverColor();
+	}
+}

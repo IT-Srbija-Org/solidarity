@@ -1,0 +1,24 @@
+/* ==========================================================================
+   Import core files
+   ========================================================================== */
+@use '../variables' as *;
+@use '../mixins' as *;
+@use './input-fields-default' as *;
+
+/* ==========================================================================
+   Global styles
+   ========================================================================== */
+
+.it-grid {
+	position: relative;
+	width: 1100px;
+	max-width: 90vw;
+	margin: 0 auto;
+}
+
+.it-form {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	row-gap: 20px;
+}

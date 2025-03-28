@@ -1,0 +1,59 @@
+/* ==========================================================================
+   Import core files
+   ========================================================================== */
+@use '../variables' as *;
+@use '../mixins' as *;
+@use '../grid-variables' as *;
+@use 'sass:list';
+
+/* ==========================================================================
+   Grid mixins
+   ========================================================================== */
+
+.it-row-section {
+    --it-columns: 1;
+    --it-columns-gap: #{$default-grid-gutter-size}px;
+    @include itRelativeLayout();
+
+    @for $i from 0 to $grid-columns-layout-size {
+        $step: $i + 1;
+
+        &.it-col-num--#{$step} {
+            --it-columns: #{$step};
+        }
+    }
+
+    > .it-row {
+        position: relative;
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        gap: var(--it-columns-gap);
+
+        > .it-column {
+            @include itCalcColumnsWidth();
+        }
+    }
+
+    .it-column {
+        position: relative;
+        display: flex;
+        min-height: 1px;
+    }
+
+    @for $i from 0 to list.length($grid-columns-gutter-label) {
+        &.it-gutter--#{list.nth($grid-columns-gutter-label,$i+1)} {
+            $gutter-size: list.nth($grid-columns-gutter-size, $i+1);
+            $gutter-double-size: $gutter-size * 2;
+
+            --it-columns-gap: #{$gutter-double-size}px;
+        }
+    }
+
+    &.it-row--no-bottom-space {
+
+        > .it-row {
+            row-gap: 0 !important;
+        }
+    }
+}

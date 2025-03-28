@@ -1,0 +1,48 @@
+/* ==========================================================================
+   Typography variables
+   ========================================================================== */
+$text-color: #888;
+$heading-color: #111111;
+$main-color: #3c3c3c;
+$additional-text-color: #9c9c9c;
+
+$transition-timing: .2s ease-out;
+$color-transition: color $transition-timing;
+$background-color-transition: background-color $transition-timing;
+$border-color-transition: border-color $transition-timing;
+$opacity-transition: opacity $transition-timing;
+$button-transition: color .25s ease-in-out,background-color .25s ease-in-out,border-color .25s ease-in-out;
+
+/* ==========================================================================
+   Box variables
+   ========================================================================== */
+$background-color: #fff;
+$additional-background-color: #f4f4f4;
+$border-color: #ebebeb;
+$border-darker-color: #ccc;
+$border-radius: 4px;
+$box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.08);
+
+/* ==========================================================================
+   Devices screen size variables
+   ========================================================================== */
+$screen-size-1681: 1681px;
+$screen-size-1680: 1680px;
+$screen-size-1601: 1601px;
+$screen-size-1600: 1600px;
+$screen-size-1441: 1441px;
+$screen-size-1440: 1440px;
+$screen-size-1367: 1367px;
+$screen-size-1366: 1366px;
+$screen-size-1281: 1281px;
+$screen-size-1280: 1280px;
+$screen-size-1201: 1201px;
+$screen-size-1200: 1200px;
+$screen-size-1025: 1025px;
+$screen-size-1024: 1024px;
+$screen-size-769: 769px;
+$screen-size-768: 768px;
+$screen-size-681: 681px;
+$screen-size-680: 680px;
+$screen-size-481: 481px;
+$screen-size-480: 480px;
