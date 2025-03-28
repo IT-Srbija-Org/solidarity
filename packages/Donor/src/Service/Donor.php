@@ -27,6 +27,17 @@ class Donor extends TableView
         return $this->repo->fetchForMapping();
     }
 
+    public function create(array $data)
+    {
+        $entity = $this->getEntities(['email' => $data['email']]);
+        if (count($entity)) {
+            $data['id'] = $entity[0]->id;
+            return parent::update($data);
+        } else {
+            return parent::create($data);
+        }
+    }
+
     public function prepareEntities($entities)
     {
         $items = [];

@@ -49,9 +49,9 @@ class TransactionController extends AjaxCrudController
         $donorsList = $this->donor->getForMapping();
         $receiversList = $this->educator->getForMapping();
 
-        var_dump($donorsList);
-        var_dump($receiversList);
-        die();
+//        var_dump($donorsList);
+//        var_dump($receiversList);
+//        die();
 
         $result = [];
         $receiversIncomplete = [];

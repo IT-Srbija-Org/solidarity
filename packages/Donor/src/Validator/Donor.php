@@ -2,6 +2,7 @@
 
 namespace Solidarity\Donor\Validator;
 
+use Laminas\Validator\EmailAddress;
 use Skeletor\Core\Validator\ValidatorInterface;
 use Volnix\CSRF\CSRF;
 
@@ -41,9 +42,14 @@ class Donor implements ValidatorInterface
     public function isValid(array $data): bool
     {
         $valid = true;
+        $emailValidator = new EmailAddress();
+        if ($emailValidator->isValid($data['email'])) {
+            $this->messages['general'][] = 'Uneta email adresa nije ispravna.';
+            $valid = false;
+        }
 
         if (!$this->csrf->validate($data)) {
-            $this->messages['general'][] = 'Invalid form key.';
+            $this->messages['general'][] = 'Stranice je istekla, probajte ponovo.';
             $valid = false;
         }
 

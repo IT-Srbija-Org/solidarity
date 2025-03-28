@@ -2,7 +2,7 @@
 <main class="it-grid">
     <h2>Obrazac za donatore</h2>
 
-    <form method="post" action="donorForm" id="it-donatori-form" aria-label="Donatori forma" data-type="donatori">
+    <form method="post" action="donorForm" class="it-form" id="it-donatori-form" aria-label="Donatori forma" data-type="donatori">
         <?=$this->formToken(); ?>
         <div class="it-form-field">
             <label for="email">Email *</label>
