@@ -44,7 +44,7 @@ ff02::3 ip6-allhosts
 sudo bash -c "echo 'server {
     listen 80;
     sendfile off;
-    root /vagrant/backend/public;
+    root /vagrant/public;
     index index.php;
     server_name solid.local;
     location / {
