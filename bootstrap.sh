@@ -46,7 +46,7 @@ sudo bash -c "echo 'server {
     sendfile off;
     root /vagrant/public;
     index index.php;
-    server_name solid.local;
+    server_name solidarity.local;
     location / {
          try_files \$uri \$uri/ /index.php?\$args;
     }
@@ -72,8 +72,43 @@ sudo bash -c "echo 'server {
         fastcgi_param APPLICATION_ENV development;
         fastcgi_param APPLICATION backend;
     }
-}' > /etc/nginx/sites-available/solid.local"
+}' > /etc/nginx/sites-available/solidarity.local"
 
-sudo ln -s /etc/nginx/sites-available/solid.local /etc/nginx/sites-enabled/solid.local
+sudo ln -s /etc/nginx/sites-available/solidarity.local /etc/nginx/sites-enabled/solidarity.local
+
+sudo bash -c "echo 'server {
+    listen 80;
+    sendfile off;
+    root /vagrant/public;
+    index index.php;
+    server_name solidforms.local;
+    location / {
+         try_files \$uri \$uri/ /index.php?\$args;
+    }
+    client_max_body_size 16M;
+    client_body_buffer_size 2M;
+    proxy_connect_timeout       300;
+    proxy_send_timeout          300;
+    proxy_read_timeout          300;
+    fastcgi_connect_timeout 300;
+    fastcgi_send_timeout 300;
+    fastcgi_read_timeout 300;
+
+    fastcgi_buffers 16 16k;
+    fastcgi_buffer_size 32k;
+
+    location ~ \.php$ {
+        try_files \$uri =404;
+        fastcgi_split_path_info ^(.+\.php)(/.+)$;
+        fastcgi_pass unix:/var/run/php/php-fpm.sock;
+        fastcgi_index index.php;
+        fastcgi_param SCRIPT_FILENAME \$document_root\$fastcgi_script_name;
+        include fastcgi_params;
+        fastcgi_param APPLICATION_ENV development;
+        fastcgi_param APPLICATION frontend;
+    }
+}' > /etc/nginx/sites-available/solidforms.local"
+
+sudo ln -s /etc/nginx/sites-available/solidforms.local /etc/nginx/sites-enabled/solidforms.local
 
 sudo service nginx restart

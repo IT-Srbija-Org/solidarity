@@ -53,7 +53,7 @@ Thumbs.db
 /composer.phar
 *.log
 /vendor/
-/backend/config/config-local.php
+/config/config-local.php
 /backend/public/images*
 /backend/public/coverage*
 /backend/docs
