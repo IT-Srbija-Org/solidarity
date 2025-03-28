@@ -21,7 +21,7 @@ $action = $data['dataAction'] === 'create' ? 'Create' : 'Edit';
 
 //@todo some roles can't change some settings, for example staff cant change their role or other user roles
 $statuses = [1 => 'Active', 0 => 'Inactive'];
-$roles = User::hrLevels();
+$roles = User::getHrRoles();
 if ($data['loggedInTenantId']) {
     unset($roles[User::ROLE_ADMIN]);
 }

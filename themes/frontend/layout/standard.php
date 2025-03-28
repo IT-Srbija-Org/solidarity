@@ -5,12 +5,13 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0, maximum-scale=2.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,400;0,6..12,500;0,6..12,600;0,6..12,700;0,6..12,800;1,6..12,400;1,6..12,500;1,6..12,600;1,6..12,700;1,6..12,800&display=swap" rel="stylesheet">
-        <title><?=$title?></title>
-        <link rel="stylesheet" href="/assets/frontend/css/style.css" type="text/css"/>
- /head>
+    <title><?=$title?></title>
+    <link rel="stylesheet" href="/assets/dist/css/main.css">
+
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="icon.png">
+</head>
 <body>
 <div id="mainContainer">
     <!-- output flash messages -->
@@ -22,7 +23,11 @@
     <?=$this->section('content')?>
 </div>
 
-<script src="/assets/frontend/js/global.js?v=0.0.4" type="module"></script>
+<!--  Include 3rd party scripts -->
+<script src="https://cdn-script.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<!--  Include project scripts -->
+<script src="assets/dist/js/main.js"></script>
 <?php if (isset($jsPath) && $jsPath != ""): ?>
     <script src="<?=$jsPath?>" type="module"></script>
 <?php endif; ?>
