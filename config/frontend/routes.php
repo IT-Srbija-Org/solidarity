@@ -20,8 +20,8 @@ return [
     // backend
     [['GET'], '/', \Solidarity\Frontend\Action\Index::class],
     [['GET', 'POST'], '/donorForm', \Solidarity\Frontend\Action\Donor::class],
-    [['GET', 'POST'], '/delegate/{action}[/{id}]', \Solidarity\Backend\Controller\DelegateController::class],
-    [['GET', 'POST'], '/educator/{action}[/{id}]', \Solidarity\Backend\Controller\EducatorController::class],
+    [['GET', 'POST'], '/delegateForm', \Solidarity\Frontend\Action\Delegate::class],
+    [['GET', 'POST'], '/educatorForm', \Solidarity\Frontend\Action\Educator::class],
 
 
 ];
