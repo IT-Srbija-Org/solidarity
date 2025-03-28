@@ -1,3 +1,4 @@
+<?php $this->layout('layout::standard') ?>
 <main class="it-grid">
     <h2>Obrazac za donatore</h2>
 
