@@ -12,7 +12,7 @@ use Skeletor\Core\Validator\ValidatorException;
 class Educator implements FilterInterface
 {
 
-    public function __construct(private \Solidarity\Donor\Validator\Donor $validator)
+    public function __construct(private \Solidarity\Educator\Validator\Educator $validator)
     {
     }
 
@@ -32,10 +32,11 @@ class Educator implements FilterInterface
             'name' => $postData['name'],
             'schoolName' => $postData['schoolName'],
             'slipLink' => $postData['slipLink'],
+            'city' => $postData['city'],
             'accountNumber' => $postData['accountNumber'],
             'comment' => $postData['comment'],
             'status' => $postData['status'],
-            CSRF::TOKEN_NAME => $postData[CSRF::TOKEN_NAME],
+//            CSRF::TOKEN_NAME => $postData[CSRF::TOKEN_NAME],
         ];
         if (!$this->validator->isValid($data)) {
             throw new ValidatorException();

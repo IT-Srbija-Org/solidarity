@@ -22,6 +22,11 @@ class Educator extends TableView
         parent::__construct($repo, $user, $logger, $filter);
     }
 
+    public function getForMapping()
+    {
+        return $this->repo->fetchForMapping();
+    }
+
     public function prepareEntities($entities)
     {
         $items = [];
@@ -36,10 +41,9 @@ class Educator extends TableView
                 'amount' => number_format($educator->amount, 0, '.', ','),
                 'status' => ($educator->status) ? 'Yes ': 'Ne',
                 'schoolName' => $educator->schoolName,
-                'slipLink' => $educator->slipLink,
+//                'slipLink' => $educator->slipLink,
                 'accountNumber' => $educator->accountNumber,
                 'createdAt' => $educator->getCreatedAt()->format('d.m.Y'),
-                'updatedAt' => $educator->getUpdatedAt()->format('d.m.Y'),
             ];
             $items[] = [
                 'columns' => $itemData,
@@ -55,11 +59,10 @@ class Educator extends TableView
         $columnDefinitions = [
             ['name' => 'name', 'label' => 'Name'],
             ['name' => 'schoolName', 'label' => 'School name'],
-            ['name' => 'amount', 'label' => 'Amount', 'priority' => 3, 'rangeFilter' => ['type' => 'number']],
+            ['name' => 'amount', 'label' => 'Amount', 'rangeFilter' => ['type' => 'number']],
             ['name' => 'accountNumber', 'label' => 'Account Number'],
             ['name' => 'status', 'label' => 'Status', 'filterData' => [0 => 'New', 1 => 'Ready']],
-            ['name' => 'slipLink', 'label' => 'slipLink'],
-            ['name' => 'updatedAt', 'label' => 'Updated at'],
+//            ['name' => 'slipLink', 'label' => 'slipLink'],
             ['name' => 'createdAt', 'label' => 'Created at'],
         ];
 

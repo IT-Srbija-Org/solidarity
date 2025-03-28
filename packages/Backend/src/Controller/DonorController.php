@@ -38,6 +38,10 @@ class DonorController extends AjaxCrudController
         return parent::form();
     }
 
+    public function create(): Response
+    {
+        die('disabled');
+    }
 
     public function getEntityData()
     {

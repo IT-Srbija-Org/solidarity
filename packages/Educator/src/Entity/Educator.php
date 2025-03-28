@@ -18,12 +18,14 @@ class Educator
     public string $name;
     #[ORM\Column(type: Types::STRING)]
     public string $schoolName;
+    #[ORM\Column(type: Types::STRING, nullable: true)]
+    public ?string $slipLink;
     #[ORM\Column(type: Types::STRING)]
-    public string $slipLink;
+    public string $city;
 
     #[ORM\Column(type: Types::INTEGER)]
     public int $status;
-    #[ORM\Column(type: Types::STRING, length: 16)]
+    #[ORM\Column(type: Types::STRING, length: 32)]
     public string $accountNumber;
     #[ORM\Column(type: Types::STRING, length: 1024, nullable: true)]
     public ?string $comment;

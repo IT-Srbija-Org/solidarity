@@ -42,10 +42,10 @@ class Educator implements ValidatorInterface
     {
         $valid = true;
 
-        if (!$this->csrf->validate($data)) {
-            $this->messages['general'][] = 'Invalid form key.';
-            $valid = false;
-        }
+//        if (!$this->csrf->validate($data)) {
+//            $this->messages['general'][] = 'Invalid form key.';
+//            $valid = false;
+//        }
 
         return $valid;
     }

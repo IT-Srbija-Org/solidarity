@@ -34,13 +34,16 @@ $monthlySelect = (new Select('monthly', $monthlyCollection, 'Monthly'))
 
 $inputGroup1 = (new InputGroup())
     ->addInput($email)
-    ->addInput($amount)
-    ->addInput($monthlySelect)
-    ->addInput($comment)
-    ->addInput($statusSelect);
+    ->addInput($comment);
 
 $form->addTab((new Tab('Basic Info'))
     ->addInputGroup($inputGroup1)
+    ->addInputGroup((new InputGroup())
+        ->addInput($amount))
+    ->addInputGroup((new InputGroup())
+        ->addInput($monthlySelect))
+    ->addInputGroup((new InputGroup())
+        ->addInput($statusSelect))
 );
 
 $formRenderer = new TabbedFormRenderer($form, $data['formTitle']);

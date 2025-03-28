@@ -18,15 +18,14 @@ $form = new TabbedForm($data['formAction'], $data['dataAction'], $this->formToke
 
 $action = $data['dataAction'] === 'create' ? 'Create' : 'Edit';
 
-$statuses = [1 => 'Active', 0 => 'Inactive'];
+$statuses = \Solidarity\Delegate\Entity\Delegate::getHrStatuses();
 $formLinkSent = [1 => 'Yes', 0 => 'No'];
-$statusCollection = (new OptionCollection(new Option('1', 'Status')))->fromArray($statuses, $data['model']?->status);
+$statusCollection = (new OptionCollection(new Option('1', 'New')))->fromArray($statuses, $data['model']?->status);
 $linkSentCollection = (new OptionCollection(new Option('0', 'No')))->fromArray($formLinkSent, $data['model']?->formLinkSent);
-$statusSelect = (new Select('status', $statusCollection, 'Status'))
-    ->required('Status is required', '');
-$formLinkSentSelect = (new Select('formLinkSent', $linkSentCollection, 'Form link sent?'))
-    ->required('Status is required', '');
+$statusSelect = (new Select('status', $statusCollection, 'Status'));
+$formLinkSentSelect = (new Select('formLinkSent', $linkSentCollection, 'Form link sent?'));
 $name = (new Text('name', $data['model']?->name, 'Name'));
+$phone = (new Text('phone', $data['model']?->phone, 'Phone'));
 $verifiedBy = (new Text('verifiedBy', $data['model']?->verifiedBy, 'Verified by'));
 $schoolType = (new Text('schoolType', $data['model']?->schoolType, 'School type'));
 $schoolName = (new Text('schoolName', $data['model']?->schoolName, 'School name'));
@@ -39,21 +38,26 @@ $comment = (new \Skeletor\Form\InputTypes\TextArea\TextArea('comment', $data['mo
 
 $inputGroup1 = (new InputGroup())
     ->addInput($email)
-    ->addInput($name)
     ->addInput($schoolType)
-    ->addInput($city)
-    ->addInput($schoolName);
+    ->addInput($verifiedBy);
 $inputGroup2 = (new InputGroup())
+    ->addInput($name)
+    ->addInput($schoolName)
+    ->addInput($count);
+$inputGroup3 = (new InputGroup())
+    ->addInput($phone)
+    ->addInput($city)
+    ->addInput($countBlocking);
+$inputGroup4 = (new InputGroup())
     ->addInput($formLinkSentSelect)
-    ->addInput($verifiedBy)
-    ->addInput($count)
-    ->addInput($countBlocking)
     ->addInput($statusSelect)
     ->addInput($comment);
 
 $form->addTab((new Tab('Basic Info'))
     ->addInputGroup($inputGroup1)
     ->addInputGroup($inputGroup2)
+    ->addInputGroup($inputGroup3)
+    ->addInputGroup($inputGroup4)
 );
 
 $formRenderer = new TabbedFormRenderer($form, $data['formTitle']);

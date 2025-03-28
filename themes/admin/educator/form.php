@@ -18,31 +18,28 @@ $form = new TabbedForm($data['formAction'], $data['dataAction'], $this->formToke
 
 $action = $data['dataAction'] === 'create' ? 'Create' : 'Edit';
 
-$statuses = [1 => 'Active', 0 => 'Inactive'];
-$statusCollection = (new OptionCollection(new Option('1', 'Status')))->fromArray($statuses, $data['model']?->status);
-$statusSelect = (new Select('status', $statusCollection, 'Status'))
-    ->required('Status is required', '');
+$statuses = \Solidarity\Transaction\Entity\Transaction::getHrStatuses();
+$statusCollection = (new OptionCollection(new Option('1', 'New')))->fromArray($statuses, $data['model']?->status);
+$statusSelect = (new Select('status', $statusCollection, 'Status'));
 $name = (new Text('name', $data['model']?->name, 'Name'));
-$amount = (new \Skeletor\Form\InputTypes\Input\Number('amount', $data['model']?->amount, 'Amount'))
-    ->required('amount is required');
+$amount = (new \Skeletor\Form\InputTypes\Input\Number('amount', $data['model']?->amount, 'Amount'));
 $accountNumber = (new \Skeletor\Form\InputTypes\Input\Number('accountNumber', $data['model']?->accountNumber, 'Account number'));
-$slipLink = (new Text('slipLink', $data['model']?->slipLink, 'Slip link'));
-$schoolName = (new Text('schoolName', $data['model']?->schoolName, 'School name'));
+$email = (new Text('email', $data['model']?->email, 'Email'));
+$city = (new Text('city', $data['model']?->city, 'City'));
 $comment = (new \Skeletor\Form\InputTypes\TextArea\TextArea('comment', $data['model']?->comment, 'Comment'));
 
-$inputGroup1 = (new InputGroup())
-    ->addInput($name)
-    ->addInput($accountNumber)
-    ->addInput($amount)
-    ->addInput($schoolName);
-$inputGroup2 = (new InputGroup())
-    ->addInput($slipLink)
-    ->addInput($statusSelect)
-    ->addInput($comment);
-
 $form->addTab((new Tab('Basic Info'))
-    ->addInputGroup($inputGroup1)
-    ->addInputGroup($inputGroup2)
+    ->addInputGroup((new InputGroup())
+        ->addInput($email)
+        ->addInput($comment))
+    ->addInputGroup((new InputGroup())
+        ->addInput($name)
+        ->addInput($statusSelect))
+    ->addInputGroup((new InputGroup())
+        ->addInput($accountNumber)
+        ->addInput($city))
+    ->addInputGroup((new InputGroup())
+        ->addInput($amount))
 );
 
 $formRenderer = new TabbedFormRenderer($form, $data['formTitle']);

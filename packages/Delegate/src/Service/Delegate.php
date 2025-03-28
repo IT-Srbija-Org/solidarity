@@ -36,11 +36,12 @@ class Delegate extends TableView
                 'schoolType' => $delegate->schoolType,
                 'schoolName' => $delegate->schoolName,
                 'city' => $delegate->city,
+                'phone' => $delegate->phone,
 //                'comment' => $delegate->comment,
                 'count' => $delegate->count,
                 'countBlocking' => $delegate->countBlocking,
                 'createdAt' => $delegate->getCreatedAt()->format('d.m.Y'),
-                'updatedAt' => $delegate->getUpdatedAt()->format('d.m.Y'),
+//                'updatedAt' => $delegate->getUpdatedAt()->format('d.m.Y'),
             ];
             $items[] = [
                 'columns' => $itemData,
@@ -54,14 +55,15 @@ class Delegate extends TableView
     {
 
         $columnDefinitions = [
-            ['name' => 'email', 'label' => 'Email', 'priority' => 0],
+            ['name' => 'email', 'label' => 'Email'],
+            ['name' => 'phone', 'label' => 'Phone'],
             ['name' => 'status', 'label' => 'Status', 'filterData' => [0 => 'New', 1 => 'Ready']],
-            ['name' => 'schoolType', 'label' => 'School type'],
-            ['name' => 'schoolName', 'label' => 'School name'],
-            ['name' => 'city', 'label' => 'Status', 'filterData' => [0 => 'New', 1 => 'Ready']],
-            ['name' => 'count', 'label' => 'Status', 'filterData' => [0 => 'New', 1 => 'Ready']],
-            ['name' => 'countBlocking', 'label' => 'Status', 'filterData' => [0 => 'New', 1 => 'Ready']],
-            ['name' => 'updatedAt', 'label' => 'Updated at', 'priority' => 8],
+            ['name' => 'schoolType', 'label' => 'Type'],
+            ['name' => 'schoolName', 'label' => 'School'],
+            ['name' => 'city', 'label' => 'City'],
+            ['name' => 'count', 'label' => 'Count'],
+            ['name' => 'countBlocking', 'label' => 'Blocking'],
+//            ['name' => 'updatedAt', 'label' => 'Updated at', 'priority' => 8],
             ['name' => 'createdAt', 'label' => 'Created at', 'priority' => 9],
         ];
 

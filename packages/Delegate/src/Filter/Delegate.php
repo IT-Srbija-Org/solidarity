@@ -31,6 +31,7 @@ class Delegate implements FilterInterface
             'name' => $postData['name'],
             'email' => $postData['email'],
             'city' => $postData['city'],
+            'phone' => $postData['phone'],
             'verifiedBy' => $postData['verifiedBy'],
             'count' => $postData['count'],
             'formLinkSent' => $postData['formLinkSent'],
@@ -39,6 +40,8 @@ class Delegate implements FilterInterface
             'schoolName' => $postData['schoolName'],
             'comment' => $postData['comment'],
             'status' => $postData['status'],
+            'createdAt' => $postData['createdAt'],
+            'updatedAt' => $postData['updatedAt'],
             CSRF::TOKEN_NAME => $postData[CSRF::TOKEN_NAME],
         ];
         if (!$this->validator->isValid($data)) {

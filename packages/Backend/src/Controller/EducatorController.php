@@ -38,6 +38,10 @@ class EducatorController extends AjaxCrudController
         return parent::form();
     }
 
+    public function create(): Response
+    {
+        die('disabled');
+    }
 
     public function getEntityData()
     {
@@ -47,5 +51,50 @@ class EducatorController extends AjaxCrudController
         $this->getResponse()->getBody()->rewind();
 
         return $this->getResponse()->withHeader('Content-Type', 'application/json');
+    }
+
+    public function import()
+    {
+        ini_set('max_input_time', 600);
+        $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+        $reader->setReadDataOnly(true);
+        $excel = $reader->load(APP_PATH . '/osteceni.xlsx');
+
+        foreach ($excel->getSheet($excel->getFirstSheetIndex())->toArray() as $key => $trxInfo) {
+            if ($key === 0) {
+                continue;
+            }
+            $status = 1;
+            switch ($trxInfo[9]) {
+                case 'Poslato':
+                    $status = 1;
+                    break;
+                case 'Nije poslato':
+                    $status = 3;
+                    break;
+                case 'Za slanje':
+                    $status = 2;
+                    break;
+            }
+
+            $data = [
+                'amount' => $trxInfo[4],
+                'name' => $trxInfo[2],
+                'schoolName' => $trxInfo[1],
+                'slipLink' => $trxInfo[6],
+                'accountNumber' => $trxInfo[3],
+                'city' => $trxInfo[5],
+                'status' => $status,
+                'comment' => ''
+            ];
+            var_dump($trxInfo[3]);
+            try {
+                $this->service->create($data);
+            } catch (\Exception $e) {
+                var_dump($e->getMessage());
+            }
+
+        }
+        die('done');
     }
 }

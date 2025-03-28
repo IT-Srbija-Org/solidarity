@@ -22,6 +22,11 @@ class Donor extends TableView
         parent::__construct($repo, $user, $logger, $filter);
     }
 
+    public function getForMapping()
+    {
+        return $this->repo->fetchForMapping();
+    }
+
     public function prepareEntities($entities)
     {
         $items = [];
