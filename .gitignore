@@ -63,4 +63,4 @@ Thumbs.db
 /data/phinx/phinx-local.php
 /backend/public/constants.php
 
-
+/public/assets/package-lock.json

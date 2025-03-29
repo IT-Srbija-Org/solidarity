@@ -12,48 +12,47 @@
 
 .it-row-section {
     --it-columns: 1;
-    --it-columns-gap: #{$default-grid-gutter-size}px;
+    --it-columns-col-gap: #{$default-grid-gutter-size}px;
+    --it-columns-row-gap: #{$default-grid-gutter-size}px;
     @include itRelativeLayout();
+
+    > .it-row {
+        position: relative;
+        display: grid;
+        grid-template-columns: repeat(#{var(--it-columns)}, minmax(0, 1fr));
+        row-gap: #{var(--it-columns-row-gap)};
+        column-gap: #{var(--it-columns-col-gap)};
+    }
+
+    .it-column {
+        @include itRelativeLayout();
+        min-height: 1px;
+    }
 
     @for $i from 0 to $grid-columns-layout-size {
         $step: $i + 1;
 
         &.it-col-num--#{$step} {
-            --it-columns: #{$step};
+
+            > .it-row {
+                --it-columns: #{$step};
+            }
         }
     }
 
-    > .it-row {
-        position: relative;
-        display: flex;
-        flex-wrap: wrap;
-        width: 100%;
-        gap: var(--it-columns-gap);
+    @for $i from 0 to list.length($grid-columns-gutter-label) {
+        &.it-vertical-gutter--#{list.nth($grid-columns-gutter-label,$i+1)} {
+            $gutter-size: list.nth($grid-columns-gutter-size, $i+1);
 
-        > .it-column {
-            @include itCalcColumnsWidth();
+            --it-columns-row-gap: #{$gutter-size}px;
         }
-    }
-
-    .it-column {
-        position: relative;
-        display: flex;
-        min-height: 1px;
     }
 
     @for $i from 0 to list.length($grid-columns-gutter-label) {
         &.it-gutter--#{list.nth($grid-columns-gutter-label,$i+1)} {
             $gutter-size: list.nth($grid-columns-gutter-size, $i+1);
-            $gutter-double-size: $gutter-size * 2;
 
-            --it-columns-gap: #{$gutter-double-size}px;
-        }
-    }
-
-    &.it-row--no-bottom-space {
-
-        > .it-row {
-            row-gap: 0 !important;
+            --it-columns-col-gap: #{$gutter-size}px;
         }
     }
 }
