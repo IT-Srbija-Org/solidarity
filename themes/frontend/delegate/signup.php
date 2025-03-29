@@ -4,26 +4,33 @@
 
     <form method="post" action="delegateForm" id="it-delegati-form" class="it-form" aria-label="Delegati forma" data-type="delegati">
         <?=$this->formToken(); ?>
-        <div class="it-form-field">
-            <label for="email">Email *</label>
-            <input type="email" name="email" id="email" size="40" maxlength="200" autocomplete="email" aria-required="true" aria-invalid="false" value="" required />
-        </div>
-        <div class="it-form-field">
-            <label for="email">Broj telefona *</label>
-            <input type="text" name="phone" id="phone" size="40" maxlength="200" aria-required="true" aria-invalid="false" value="" required />
+        <div class="it-row-section it-col-num--2 it-responsive--predefined">
+            <div class="it-row">
+                <div class="it-column">
+                    <div class="it-form-field">
+                        <label for="email">Email </label>
+                        <input type="email" name="email" id="email" size="40" maxlength="200" autocomplete="email" aria-required="true" aria-invalid="false" value="" required="">
+                    </div>
+                </div><div class="it-column">
+                    <div class="it-form-field">
+                        <label for="full-name">Ime i Prezime</label>
+                        <input type="text" name="name" id="full-name" aria-required="true" value="" required="">
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="it-row-section it-col-num--2 it-responsive--predefined">
             <div class="it-row">
                 <div class="it-column">
                     <div class="it-form-field">
-                        <label for="full-name">Ime i Prezime *</label>
-                        <input type="text" name="name" id="full-name" aria-required="true" value="" required />
+                        <label for="email">Broj telefona </label>
+                        <input type="text" name="phone" id="phone" size="40" maxlength="200" aria-required="true" aria-invalid="false" value="" required="">
                     </div>
                 </div>
                 <div class="it-column">
                     <div class="it-form-field">
-                        <label for="school-type">Tip obrazovne ustanove *</label>
-                        <select name="schoolType" id="school-type" aria-required="true" required>
+                        <label for="school-type">Tip obrazovne ustanove</label>
+                        <select name="schoolType" id="school-type" aria-required="true" required="">
                             <option value="OŠ">Osnovna škola</option>
                             <option value="SŠ">Srednja stručna škola</option>
                             <option value="G">Gimnazija</option>
