@@ -4,6 +4,7 @@ namespace Solidarity\Frontend\Action;
 use Laminas\Config\Config;
 use Laminas\Session\SessionManager as Session;
 use League\Plates\Engine;
+use Skeletor\Core\Validator\ValidatorException;
 use Solidarity\Frontend\Action\BaseAction;
 use Psr\Log\LoggerInterface as Logger;
 
@@ -26,14 +27,15 @@ class Donor extends BaseAction
             try {
                 $this->donor->create($data);
                 // @TODO send mail
-                return $this->redirect('/donorThankYou');
-            } catch (\Exception $e) {
-                // handle
-                echo $e->getMessage();
-                die();
-                return $this->redirect('/donorForm');
+                return $this->redirect('/hvalaDonatoru');
+            } catch (ValidatorException $e) {
+                $errors = [];
+                foreach ($this->donor->parseErrors() as $key => $error) {
+                    unset($data[$key]);
+                    $errors[] = $error['message'];
+                }
+                return $this->respond('donor/signup', ['errors' => $errors, 'data' => $data]);
             }
-
         }
 
         return $this->respond('donor/signup', []);

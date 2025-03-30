@@ -21,6 +21,12 @@
 	<p>Takođe, možete se detaljnije informisati putem naših društvenih mreža.</p>
 	<p><a href="https://itsrbija.org/">IT Srbija</a> – Neformalna grupa IT Stručnjaka</p>
 
+    <?php if (isset($data['errors'])):
+        foreach ($data['errors'] as $key => $error) {
+            echo '<p style="color:red">'.$error.'</p>';
+        }
+    endif; ?>
+
     <form method="post" action="obrazacDonatori" class="it-form" id="it-donatori-form" aria-label="Donatori forma" data-type="donatori">
         <?=$this->formToken(); ?>
 	    <div class="it-form-field">
@@ -42,7 +48,7 @@
 			    <div class="it-column">
 				    <div class="it-form-field">
 					    <label for="amount">Iznos *</label>
-					    <input type="number" name="amount" id="amount" min="500" max="600000" aria-required="true" aria-describedby="amount-desc" value="" placeholder="500" required />
+					    <input type="number" name="amount" id="amount" min="500" max="600000" aria-required="true" aria-describedby="amount-desc" value="<?php if (isset($data['data']['amount'])) { echo $data['data']['amount']; } ?>" placeholder="500" required />
 					    <small id="amount-desc">Iznos sa kojim sam spreman/a da pomognem u dinarima (RSD). Minimalni iznos je 500</small>
 				    </div>
 			    </div>
@@ -50,7 +56,7 @@
 	    </div>
 	    <div class="it-form-field">
 		    <label for="message">Komentar (opciono)</label>
-		    <textarea name="comment" id="message" cols="40" rows="6" maxlength="600" aria-describedby="message-desc"></textarea>
+		    <textarea name="comment" id="message" cols="40" rows="6" maxlength="600" aria-describedby="message-desc"><?php if (isset($data['data']['comment'])) { echo $data['data']['comment']; } ?></textarea>
 		    <small id="message-desc">Unesi dodatni komentar ili sugestiju</small>
 	    </div>
 	    <button type="submit" class="it-form-button it-button it-size--normal it-layout--filled it-m">

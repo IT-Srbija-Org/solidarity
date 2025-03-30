@@ -26,12 +26,12 @@ class Delegate extends BaseAction
             try {
                 $this->delegate->create($data);
                 // @TODO send mail
-                return $this->redirect('/delegateThankYou');
+                return $this->redirect('/hvalaDelegatu');
             } catch (\Exception $e) {
                 // handle
                 echo $e->getMessage();
                 die();
-                return $this->redirect('/delegateForm');
+                return $this->redirect('/obrazacDelegati');
             }
         }
 

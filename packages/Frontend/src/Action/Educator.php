@@ -27,14 +27,14 @@ class Educator extends BaseAction
             try {
                 $this->educator->create($data);
                 // @TODO send mail
-                return $this->redirect('/educatorThankYou');
+                return $this->redirect('/hvalaZaOstecenog');
             } catch (ValidatorException $e) {
                 $errors = [];
                 foreach ($this->educator->parseErrors() as $key => $error) {
                     unset($data[$key]);
                     $errors[] = $error['message'];
                 }
-//                return $this->redirect('/educatorForm');
+//                return $this->redirect('/obrazacOsteceni');
                 return $this->respond('educator/signup', ['errors' => $errors, 'data' => $data]);
             }
         }
