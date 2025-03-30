@@ -10,24 +10,26 @@
    ========================================================================== */
 
 $input-fields-map: (
-	input-fields-height: 56,
-	input-fields-side-padding: 20,
+	input-fields-height: 44,
+	input-fields-side-padding: 16,
 	input-fields-text-size: 16,
 	input-fields-text-line-height: 28,
-	input-fields-text-color: $additional-text-color,
-	input-fields-focus-text-color: $text-color,
+	input-fields-text-color: $text-color,
+	input-fields-focus-text-color: $heading-color,
 	input-fields-background-color: transparent,
 	input-fields-focus-background-color: transparent,
 	input-fields-border-color: $border-color,
-	input-fields-focus-border-color: $heading-color,
+	input-fields-focus-border-color: $border-color,
+	input-fields-border-radius: $border-radius,
 );
 
 label {
 	display: block;
 	width: 100%;
-	margin-bottom: 9px;
+	margin-bottom: 0.5em;
 }
 
+input:not(:has(type)),
 input[type="date"],
 input[type="email"],
 input[type="number"],
@@ -51,9 +53,15 @@ select {
 	color: map.get($input-fields-map, 'input-fields-text-color');
 	background-color: map.get($input-fields-map, 'input-fields-background-color');
 	border: 1px solid map.get($input-fields-map, 'input-fields-border-color');
-	border-radius: 0;
+	border-radius: map.get($input-fields-map, 'input-fields-border-radius');
 	outline: 0;
-	box-shadow: none;
+	box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+				rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+				rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+				rgba(60, 66, 87, 0.16) 0px 0px 0px 1px,
+				rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+				rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+				rgba(0, 0, 0, 0) 0px 0px 0px 0px;
 	cursor: pointer;
 	transition: $color-transition, $background-color-transition, $border-color-transition;
 
@@ -89,7 +97,7 @@ select {
 	-webkit-appearance: none;
 
 	option {
-		color: $additional-text-color;
+		color: $text-color;
 	}
 
 	&.it-arrow--light {
@@ -100,10 +108,7 @@ select {
 input[type="submit"],
 button[type="submit"] {
 	@include itButtonDefaultStyle();
-	@include itButtonSize();
-	@include itButtonFilledColor();
 	cursor: pointer;
-	text-decoration: none;
 
 	span {
 		display: block;
@@ -113,10 +118,5 @@ button[type="submit"] {
 			display: block;
 			line-height: inherit;
 		}
-	}
-
-	&:focus,
-	&:hover {
-		@include itButtonFilledHoverColor();
 	}
 }

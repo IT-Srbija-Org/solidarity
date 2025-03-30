@@ -6,79 +6,107 @@
 /* ==========================================================================
    Grid size and responsive grid size variables
    ========================================================================== */
-$grid-columns-layout-size: 6;
+$grid-columns-layout-size: 8;
 
 $grid-columns-layout-responsive-map: (
-	1440 : (
-		responsive-stage: $screen-size-1440,
-		responsive-break: $screen-size-1367,
+	1512 : (
+		responsive-stage: $screen-size-1512,
+		responsive-break: $screen-size-1369,
 		columns-label: (6),
 		columns-size: 5,
-		custom-columns-responsive: null,
+		custom-columns-responsive: null
 	),
-	1366 : (
-		responsive-stage: $screen-size-1366,
-		responsive-break: $screen-size-1025,
+	1368 : (
+		responsive-stage: $screen-size-1368,
+		responsive-break: $screen-size-1201,
 		columns-label: (5, 6, 7, 8),
 		columns-size: 4,
-		custom-columns-responsive: null,
+		custom-columns-responsive: null
+	),
+	1200 : (
+		responsive-stage: $screen-size-1200,
+		responsive-break: $screen-size-1025,
+		columns-label: (4, 5, 6, 7, 8),
+		columns-size: 3,
+		shop-columns-size: 3,
+		custom-columns-responsive: (
+				custom-columns-label: (7, 8),
+				custom-columns-size: 4
+		)
 	),
 	1024 : (
 		responsive-stage: $screen-size-1024,
-		responsive-break: $screen-size-769,
-		columns-label: (4, 5, 6, 7, 8),
-		columns-size: 3,
-		custom-columns-responsive: null,
-	),
-	768 : (
-		responsive-stage: $screen-size-768,
-		responsive-break: $screen-size-681,
-		columns-label: (3, 4, 5, 6),
+		responsive-break: $screen-size-881,
+		columns-label: (3, 4, 5, 6, 7, 8),
 		columns-size: 2,
-		custom-columns-responsive: null,
+		shop-columns-size: 2,
+		custom-columns-responsive: (
+				custom-columns-label: (7, 8),
+				custom-columns-size: 4
+		)
 	),
-	680 : (
-		responsive-stage: $screen-size-680,
+	880 : (
+		responsive-stage: $screen-size-880,
 		responsive-break: 0,
-		columns-label: (2, 3, 4, 5, 6),
+		columns-label: (2, 3, 4, 5, 6, 7, 8),
 		columns-size: 1,
-		custom-columns-responsive: null,
+		shop-columns-size: 1,
+		custom-columns-responsive: (
+				custom-columns-label: (7, 8),
+				custom-columns-size: 2
+		)
 	)
 );
 
 $grid-columns-layout-custom-responsive-map: (
+	8 : (
+		responsive-stage: $screen-size-1368,
+		responsive-break: $screen-size-1201,
+		columns-label: '1368'
+	),
+	7 : (
+		responsive-stage: $screen-size-1368,
+		responsive-break: $screen-size-1201,
+		columns-label: '1368'
+	),
 	6 : (
-		responsive-stage: $screen-size-1440,
-		responsive-break: $screen-size-1367,
-		columns-label: '1440'
+		responsive-stage: $screen-size-1512,
+		responsive-break: $screen-size-1369,
+		columns-label: '1512'
 	),
 	5 : (
-		responsive-stage: $screen-size-1366,
-		responsive-break: $screen-size-1025,
-		columns-label: '1366'
+		responsive-stage: $screen-size-1368,
+		responsive-break: $screen-size-1201,
+		columns-label: '1368'
 	),
 	4 : (
-		responsive-stage: $screen-size-1024,
-		responsive-break: $screen-size-769,
-		columns-label: '1024'
+		responsive-stage: $screen-size-1200,
+		responsive-break: $screen-size-1025,
+		columns-label: '1200'
 	),
 	3 : (
-		responsive-stage: $screen-size-768,
-		responsive-break: $screen-size-681,
-		columns-label: '768'
+		responsive-stage: $screen-size-1024,
+		responsive-break: $screen-size-881,
+		columns-label: '1024'
 	),
 	2 : (
-		responsive-stage: $screen-size-680,
-		responsive-break: $screen-size-481,
-		columns-label: '680'
+		responsive-stage: $screen-size-880,
+		responsive-break: $screen-size-681,
+		columns-label: '880'
 	),
 	1 : (
-		responsive-stage: $screen-size-480,
+		responsive-stage: $screen-size-680,
 		responsive-break: 0,
-		columns-label: '480'
+		columns-label: '680'
 	)
 );
 
-$grid-columns-gutter-label: ( 'custom', 'no', 'tiny', 'small', 'normal', 'medium', 'large', 'huge');
-$grid-columns-gutter-size: (0, 0, 5, 10, 15, 20, 25, 35);
+$grid-columns-gutter-label: ('no', 'tiny', 'small', 'normal', 'medium', 'large', 'huge');
+$grid-columns-gutter-size: (0, 10, 20, 30, 40, 50, 80);
 $default-grid-gutter-size: 30;
+
+$grid-columns-vertical-gutter-responsive-label: ('normal', 'medium', 'large', 'huge');
+$grid-columns-vertical-gutter-responsive-size: (50, 60, 80, 80);
+
+$grid-columns-gutter-responsive-label: ('huge');
+$grid-columns-gutter-responsive-size: (60);

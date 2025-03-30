@@ -5,14 +5,14 @@
    Typography mixins
    ========================================================================== */
 @mixin itTypographyLayout($important: null) {
-    font-family: inherit $important;
-    font-size: inherit $important;
-    font-weight: inherit $important;
-    font-style: inherit $important;
-    line-height: inherit $important;
-    letter-spacing: inherit $important;
-    text-transform: inherit $important;
-    color: inherit $important;
+	font-family: inherit $important;
+	font-size: inherit $important;
+	font-weight: inherit $important;
+	font-style: inherit $important;
+	line-height: inherit $important;
+	letter-spacing: inherit $important;
+	text-transform: inherit $important;
+	color: inherit $important;
 }
 
 /* ==========================================================================
@@ -23,18 +23,18 @@
    Layout mixins - begin
    ========================================================================== */
 @mixin itRelativeLayout($vertical-align: top) {
-    position: relative;
-    display: inline-block;
-    width: 100%;
-    vertical-align: $vertical-align;
+	position: relative;
+	display: inline-block;
+	width: 100%;
+	vertical-align: $vertical-align;
 }
 
 @mixin itAbsoluteLayout() {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
 }
 
 /* ==========================================================================
@@ -45,56 +45,52 @@
    Grid size mixins - begin
    ========================================================================== */
 
-@mixin itCalcColumnsWidth() {
-    width: calc((100% - var(--it-columns-gap)) / var(--it-columns));
+@mixin itScreenSize1600() {
+	@media only screen and (max-width: $screen-size-1600) {
+		@content;
+	}
 }
 
-@mixin itScreenSize1600 {
-    @media (max-width: $screen-size-1600) {
-        @content;
-    }
+@mixin itScreenSize1512() {
+	@media only screen and (max-width: $screen-size-1512) {
+		@content;
+	}
 }
 
-@mixin itScreenSize1440 {
-    @media (max-width: $screen-size-1440) {
-        @content;
-    }
+@mixin itScreenSize1368() {
+	@media only screen and (max-width: $screen-size-1368) {
+		@content;
+	}
 }
 
-@mixin itScreenSize1366 {
-    @media (max-width: $screen-size-1366) {
-        @content;
-    }
+@mixin itScreenSize1200() {
+	@media only screen and (max-width: $screen-size-1200) {
+		@content;
+	}
 }
 
-@mixin itScreenSize1280 {
-    @media (max-width: $screen-size-1280) {
-        @content;
-    }
+@mixin itScreenSize1024() {
+	@media only screen and (max-width: $screen-size-1024) {
+		@content;
+	}
 }
 
-@mixin itScreenSize1024 {
-    @media (max-width: $screen-size-1024) {
-        @content;
-    }
+@mixin itScreenSize880() {
+	@media only screen and (max-width: $screen-size-880) {
+		@content;
+	}
 }
 
-@mixin itScreenSize768 {
-    @media (max-width: $screen-size-768) {
-        @content;
-    }
+@mixin itScreenSize680() {
+	@media only screen and (max-width: $screen-size-680) {
+		@content;
+	}
 }
 
-@mixin itScreenSize680 {
-    @media (max-width: $screen-size-680) {
-        @content;
-    }
-}
-
-@mixin itScreenSize480 {
-    @media (max-width: $screen-size-480) {
-        @content;
-    }
+@mixin itScreenSize480() {
+	@media only screen and (max-width: $screen-size-480) {
+		@content;
+	}
 }
 
 /* ==========================================================================
@@ -106,25 +102,25 @@
    ========================================================================== */
 
 @function map-deep-get($map, $keys...) {
-    @each $key in $keys {
-        $map: map.get($map, $key);
-    }
+	@each $key in $keys {
+		$map: map.get($map, $key);
+	}
 
-    @return $map;
+	@return $map;
 }
 
 @function non-destructive-map-merge($parent-map, $child-map) {
-    $result: $parent-map;
+	$result: $parent-map;
 
-    @each $key, $value in $child-map {
-        @if (not map-has-key($result, $key)) or (type-of(map.get($result, $key)) != type-of($value)) or (not (type-of(map.get($result, $key)) == map and type-of($value) == map)) {
-            $result: map-merge($result, ($key: $value));
-        } @else {
-            $result: map-merge($result, ($key: non-destructive-map-merge(map.get($result, $key), $value)));
-        }
-    }
+	@each $key, $value in $child-map {
+		@if (not map-has-key($result, $key)) or (type-of(map.get($result, $key)) != type-of($value)) or (not (type-of(map.get($result, $key)) == map and type-of($value) == map)) {
+			$result: map-merge($result, ($key: $value));
+		} @else {
+			$result: map-merge($result, ($key: non-destructive-map-merge(map.get($result, $key), $value)));
+		}
+	}
 
-    @return $result;
+	@return $result;
 }
 
 /* ==========================================================================
@@ -136,62 +132,33 @@
 ========================================================================== */
 
 @mixin itButtonDefaultStyle() {
-    position: relative;
-    display: inline-block;
-    vertical-align: middle;
-    width: auto;
-    margin: 0;
-    font-family: inherit;
-    font-size: 16px;
-    line-height: 2em;
-    font-weight: 500;
-    text-decoration: none;
-    text-transform: none;
-    border-radius: $border-radius;
-    outline: none;
-    transition: $button-transition;
- }
- 
- @mixin itButtonSize($size: normal) {
- 
-    @if ($size == 'small') {
-        padding: 6px 24px;
- 
-    } @else if ($size == 'normal') {
-        padding: 11px 28px;
- 
-    } @else if ($size == 'large') {
-        padding: 11px 36px;
-    } @else if ($size == 'full-width') {
-        width: 100%;
-        padding: 11px 20px;
-        text-align: center;
-    }
- }
- 
- @mixin itButtonFilledColor() {
-    color: $heading-color;
-    background-color: $additional-background-color;
-    border: 0;
- }
- 
- @mixin itButtonFilledHoverColor() {
-    color: #fff;
-    background-color: $heading-color;
- }
- 
-  @mixin itButtonOutlinedColor() {
-    color: $heading-color;
-    background-color: transparent;
-    border: 2px solid $heading-color;
- }
- 
- @mixin itButtonOutlinedHoverColor() {
-    color: $heading-color;
-    background-color: $additional-background-color;
-    border-color: $additional-background-color;
- }
- 
- /* ==========================================================================
-    Button mixins - end
- ========================================================================== */
+	position: relative;
+	display: inline-block;
+	vertical-align: middle;
+	width: auto;
+	margin: 0;
+	padding: 8px 16px;
+	font-family: inherit;
+	font-size: 16px;
+	line-height: 1.75em;
+	font-weight: 600;
+	text-decoration: none;
+	text-transform: none;
+	color: #fff;
+	background-color: $main-color;
+	border-radius: $border-radius;
+	outline: none;
+	border: 0;
+	opacity: 1;
+	box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.12) 0px 1px 1px 0px, rgb(84, 105, 212) 0px 0px 0px 1px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(60, 66, 87, 0.08) 0px 2px 5px 0px;
+	transition: $opacity-transition;
+
+	&:focus,
+	&:hover {
+		opacity: 0.9;
+	}
+}
+
+/* ==========================================================================
+   Button mixins - end
+========================================================================== */

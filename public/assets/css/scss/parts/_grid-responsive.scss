@@ -17,19 +17,25 @@
 
         @each $key, $values in $grid-columns-layout-responsive-map {
 
-            @each $column in map-deep-get($grid-columns-layout-responsive-map, $key, 'columns-label') {
+            @media (max-width: map-deep-get($grid-columns-layout-responsive-map, $key, 'responsive-stage')) {
 
-                &.it-col-num--#{$column} {
-                    $responsive-break: map-deep-get($grid-columns-layout-responsive-map, $key, 'responsive-break');
-                    $column-size: map-deep-get($grid-columns-layout-responsive-map, $key, 'columns-size');
-                    $custom-columns-responsive: map-deep-get($grid-columns-layout-responsive-map, $key, 'custom-columns-responsive');
+                @each $column in map-deep-get($grid-columns-layout-responsive-map, $key, 'columns-label') {
 
-                    @if ($custom-columns-responsive != null and list.index(map.get($custom-columns-responsive, 'custom-columns-label'), $column) != null) {
-                        $column-size: map.get($custom-columns-responsive, 'custom-columns-size');
-                    }
+                    &.it-col-num--#{$column} {
+                        $responsive-break: map-deep-get($grid-columns-layout-responsive-map, $key, 'responsive-break');
+                        $column-size: map-deep-get($grid-columns-layout-responsive-map, $key, 'columns-size');
+                        $custom-columns-responsive: map-deep-get($grid-columns-layout-responsive-map, $key, 'custom-columns-responsive');
 
-                    @media (max-width: map-deep-get($grid-columns-layout-responsive-map, $key, 'responsive-stage')) {
-                        --it-columns: #{$column-size};
+                        @if ($custom-columns-responsive != null) {
+
+                            @if (list.index(map.get($custom-columns-responsive, 'custom-columns-label'), $column) != null) {
+                                $column-size: map.get($custom-columns-responsive, 'custom-columns-size');
+                            }
+                        }
+
+                        > .it-row {
+                            --it-columns: #{$column-size};
+                        }
                     }
                 }
             }
@@ -40,18 +46,39 @@
 
         @each $key, $values in $grid-columns-layout-custom-responsive-map {
 
-            @for $j from 0 to $grid-columns-layout-size {
-                $step: $j + 1;
+            @media (max-width: map-deep-get($grid-columns-layout-custom-responsive-map, $key, 'responsive-stage')) {
 
-                $responsive-break: map-deep-get($grid-columns-layout-custom-responsive-map, $key, 'responsive-break');
-                $columns-label: map-deep-get($grid-columns-layout-custom-responsive-map, $key, 'columns-label');
+                @for $j from 0 to $grid-columns-layout-size {
+                    $step: $j + 1;
 
-                &.it-col-num--#{$columns-label}--#{$step} {
+                    $columns-label: map-deep-get($grid-columns-layout-custom-responsive-map, $key, 'columns-label');
 
-                    @media (max-width: map-deep-get($grid-columns-layout-custom-responsive-map, $key, 'responsive-stage')) {
-                        --it-columns: #{$step};
+                    &.it-col-num--#{$columns-label}--#{$step} {
+
+                        > .it-row {
+                            --it-columns: #{$step};
+                        }
                     }
                 }
+            }
+        }
+    }
+
+    @include itScreenSize1512() {
+
+        @for $i from 0 to list.length($grid-columns-gutter-responsive-label) {
+            &.it-vertical-gutter--#{list.nth($grid-columns-gutter-responsive-label,$i+1)} {
+                $gutter-size: list.nth($grid-columns-gutter-responsive-size, $i+1);
+
+                --it-columns-row-gap: #{$gutter-size}px;
+            }
+        }
+
+        @for $i from 0 to list.length($grid-columns-gutter-responsive-label) {
+            &.it-gutter--#{list.nth($grid-columns-gutter-responsive-label,$i+1)} {
+                $gutter-size: list.nth($grid-columns-gutter-responsive-size, $i+1);
+
+                --it-columns-col-gap: #{$gutter-size}px;
             }
         }
     }

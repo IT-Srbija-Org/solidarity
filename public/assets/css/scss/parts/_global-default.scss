@@ -9,11 +9,128 @@
    Global styles
    ========================================================================== */
 
+body {
+	padding: 0;
+	margin: 0;
+	font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Ubuntu, sans-serif;
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 1.4375em;
+	color: #1a1f36;
+	background-color: #fff;
+	overflow-x: hidden;
+	-webkit-font-smoothing: antialiased;
+}
+
+a {
+	color: #5469d4;
+	text-decoration: none;
+	transition: color .2s ease-out;
+	cursor: pointer;
+}
+
+#it-page-header {
+	position: relative;
+	display: inline-block;
+	width: 100%;
+	vertical-align: top;
+	height: 82px;
+	background-color: #fff;
+	z-index: 100;
+
+	.it-header-logo-link {
+		position: relative;
+		display: flex;
+		align-items: center;
+		flex-shrink: 0;
+		height: 82px;
+		max-height: 100%;
+
+		img {
+			display: block;
+			margin: auto 0;
+			width: auto;
+			max-height: 50%
+		}
+	}
+}
+
+#it-page-header-inner {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	height: 100%;
+	padding: 0 40px
+}
+
+.it-header-navigation {
+	height: 100%;
+
+	ul {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+
+		li {
+			position: relative;
+			margin: 0;
+			padding: 0;
+		}
+	}
+
+	> ul {
+		position: relative;
+		display: flex;
+		align-items: center;
+		height: 100%;
+		white-space: nowrap;
+
+		> li {
+			height: 100%;
+			margin: 0 24px;
+
+			&:first-child {
+				margin-left: 0;
+			}
+
+			&:last-child {
+				margin-right: 0;
+			}
+
+			> a {
+				position: relative;
+				display: flex;
+				align-items: center;
+				height: 100%;
+				font-size: 16px;
+				line-height: 1.625em;
+				font-weight: 500;
+				text-transform: none;
+				letter-spacing: normal;
+
+				.it-menu-item-text {
+					background-image: linear-gradient(currentColor,currentColor);
+					background-position: 0 var(--qode-underline-vertical-position,80%);
+					background-repeat: no-repeat;
+					transition: background-size .35s cubic-bezier(.61,1,.88,1);
+					background-size: 0 1px;
+				}
+
+				&:hover .it-menu-item-text {
+					background-size: calc(100% - 0em) 1px;
+				}
+			}
+		}
+	}
+}
+
 .it-grid {
 	position: relative;
 	width: 1100px;
 	max-width: 90vw;
 	margin: 0 auto;
+	padding: 40px 0 60px;
 }
 
 .it-form {
@@ -21,4 +138,37 @@
 	display: flex;
 	flex-direction: column;
 	row-gap: 20px;
+	margin-top: 40px;
+	width: 100%;
+
+	small {
+		display: block;
+		margin-bottom: 0.5em;
+	}
+
+	select {
+
+		optgroup,
+		option {
+			font-size: 13px;
+		}
+	}
+
+	.it-form-field {
+
+		&:has(small) {
+
+			label {
+				margin-bottom: 0;
+			}
+		}
+	}
+
+	.it-school-name {
+		display: none;
+
+		&[data-city*="Ada"] {
+			display: block;
+		}
+	}
 }
