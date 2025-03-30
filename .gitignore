@@ -50,7 +50,6 @@ Thumbs.db
 
 /.idea/
 /.vagrant/
-/composer.phar
 *.log
 /vendor/
 /config/config-local.php
