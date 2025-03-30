@@ -11,7 +11,7 @@
 	<meta name="keywords" content="Mreža solidarnosti, IT Srbija, prosveta, donacije, podrška nastavnicima, solidarnost, pomoć nastavnicima, obustava rada, direktna podrška">
 	<!-- Open Graph -->
 	<meta property="og:type" content="website">
-	<meta property="og:url" content="https://mrezasolidarnosti.org/donorForm">
+	<meta property="og:url" content="https://mrezasolidarnosti.org/">
 	<meta property="og:title" content="Mreža solidarnosti - IT Srbija">
 	<meta property="og:description" content="Direktna podrška nastavnicima čija je plata umanjena zbog obustave rada. Uključi se, doniraj, podrži solidarnost u prosveti!">
 	<meta property="og:image" content="/assets/img/social.webp">
@@ -51,7 +51,7 @@
 <div id="mainContainer">
 	<header id="it-page-header" role="banner">
 		<div id="it-page-header-inner" class="">
-			<a class="it-header-logo-link" href="https://mrezasolidarnosti.org/donorForm" rel="home">
+			<a class="it-header-logo-link" href="https://mrezasolidarnosti.org/" rel="home">
 				<img src="/assets/img/logo.webp" alt="Mreža Solidarnosti - IT Srbija">
 			</a>
 			<nav class="it-header-navigation" role="navigation" aria-label="Top Menu">
@@ -62,7 +62,7 @@
 						</a>
 					</li>
 					<li class="menu-item">
-						<a href="https://mrezasolidarnosti.org/donorForm">
+						<a href="https://mrezasolidarnosti.org/obrazacDonatori">
 							<span class="it-menu-item-text">Postani donator</span>
 						</a>
 					</li>
