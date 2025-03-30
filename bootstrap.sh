@@ -125,4 +125,4 @@ echo 'start db migration.'
 php bin/doctrine orm:schema-tool:update --complete --force --dump-sql
 echo 'db migration done.'
 
-mysql -u root -prootpass  -e "INSERT INTO solid.user (firstName, lastName, email, password, role, isActive, displayName, id) VALUES ('test', 'test', 'test@example.com', '$2y$10$GGArVO/7.xPDg6D5Kl6GHeELUg2Dnod68ynkFaZ7R2Vfx/K1oZ96O', '1', '1', 'test', '3');"
+mysql -u root -prootpass  -e "INSERT INTO solid.user (firstName, lastName, email, password, role, isActive, displayName, id) VALUES ('test', 'test', 'test@example.com', '\$2y\$10\$GGArVO/7.xPDg6D5Kl6GHeELUg2Dnod68ynkFaZ7R2Vfx/K1oZ96O', '1', '1', 'test', '3');"
