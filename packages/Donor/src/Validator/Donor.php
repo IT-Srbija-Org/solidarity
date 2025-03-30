@@ -43,7 +43,7 @@ class Donor implements ValidatorInterface
     {
         $valid = true;
         $emailValidator = new EmailAddress();
-        if ($emailValidator->isValid($data['email'])) {
+        if (!$emailValidator->isValid($data['email'])) {
             $this->messages['general'][] = 'Uneta email adresa nije ispravna.';
             $valid = false;
         }
