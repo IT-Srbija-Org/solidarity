@@ -2,6 +2,7 @@
 
 namespace Solidarity\Educator\Entity;
 
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Skeletor\Core\Entity\Timestampable;
@@ -33,6 +34,9 @@ class Educator
     public string $accountNumber;
     #[ORM\Column(type: Types::STRING, length: 1024, nullable: true)]
     public ?string $comment;
+
+//    #[ORM\OneToMany(targetEntity: Round::class, mappedBy: 'educator')]
+//    public Collection $rounds;
 
     public static function getHrStatuses(): array
     {

@@ -6,6 +6,8 @@ use Skeletor\Core\TableView\Service\TableView;
 use Psr\Log\LoggerInterface as Logger;
 use Skeletor\User\Service\Session;
 use Solidarity\Educator\Filter\Educator as EducatorFilter;
+use Solidarity\Educator\Repository\RoundRepository;
+use Solidarity\Transaction\Service\Round;
 use Tamtamchik\SimpleFlash\Flash;
 
 class Educator extends TableView
@@ -17,7 +19,8 @@ class Educator extends TableView
      * @param Logger $logger
      */
     public function __construct(
-        EducatorRepository $repo, Session $user, Logger $logger, EducatorFilter $filter, private \DateTime $dt
+        EducatorRepository $repo, Session $user, Logger $logger, EducatorFilter $filter, private \DateTime $dt,
+        private Round $round, private RoundRepository $roundRepository
     ) {
         parent::__construct($repo, $user, $logger, $filter);
     }
@@ -30,7 +33,9 @@ class Educator extends TableView
      */
     public function create(array $data)
     {
+//        $round = $this->round->getActiveRound();
         $entity = $this->getEntities(['accountNumber' => $data['accountNumber'], 'name' => $data['name']]);
+
         if (count($entity)) {
             $data['id'] = $entity[0]->id;
             $data['status'] = \Solidarity\Educator\Entity\Educator::STATUS_NEW;
@@ -38,10 +43,23 @@ class Educator extends TableView
             $data['city'] = $entity[0]->city;
             $data['comment'] = $entity[0]->comment;
             $data['slipLink'] = $entity[0]->slipLink;
-            return parent::update($data);
+            /* @var \Solidarity\Educator\Entity\Educator $entity */
+            $entity = parent::update($data);
         } else {
-            return parent::create($data);
+            $entity = parent::create($data);
+//            $educatorRounds = $this->roundRepository->fetchAll(['round' => $round->id, 'educator' => $entity->id]);
+//            if (count($educatorRounds)) {
+//
+//            }
+//            $data['round']['amount'] = $entity->amount;
+//            $data['round']['educator'] = $entity;
+//            $data['round']['round'] = $round;
+//            $entity = parent::update($data);
         }
+//        var_dump($entity->rounds);
+//        die();
+//        $educatorRound = new \Solidarity\Educator\Entity\Round();
+        return $entity;
     }
 
     public function startNewRound()

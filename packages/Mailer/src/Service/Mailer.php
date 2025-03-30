@@ -11,6 +11,23 @@ use Psr\Log\LoggerInterface as Logger;
 
 class Mailer extends \Skeletor\Core\Mailer\Service\Mailer
 {
+    public function sendDelegateRegisteredMail($email)
+    {
+        $body = $this->render('delegateRegistered', []);
+        $mimeMessage = new MimeMessage();
+        $text = new Part();
+        $text->type = Mime::TYPE_HTML;
+        $text->charset = 'utf-8';
+        $text->setContent($body);
+        $mimeMessage->addPart($text);
+
+        $message = (new Message())
+            ->addTo($email)
+            ->setFrom($this->config->offsetGet('mailer')->toArray()['from'])
+            ->setSubject('Potvrda registracije za delegata na Mrežu solidarnosti')
+            ->setBody($mimeMessage);
+        $this->send($message);
+    }
 
     public function sendDonorRegisteredMail($email)
     {
