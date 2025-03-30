@@ -29,6 +29,12 @@ a {
 	cursor: pointer;
 }
 
+img {
+	display: block;
+	height: auto;
+	max-width: 100%;
+}
+
 #it-page-header {
 	position: relative;
 	display: inline-block;
