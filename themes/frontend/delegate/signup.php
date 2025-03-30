@@ -2668,14 +2668,14 @@
 				<div class="it-column">
 					<div class="it-form-field">
 						<label for="suspended-number">Broj u obustavi *</label>
-						<input type="number" name="countBlocking" id="suspended-number" min="0" max="200" aria-required="true" aria-describedby="suspended-number-desc" value="0" required />
+						<input type="number" name="countBlocking" id="suspended-number" min="0" max="500" placeholder="0" aria-required="true" aria-describedby="suspended-number-desc" value="0" required />
 						<small id="suspended-number-desc">Broj nastavnog i nenastavnog osoblja Vaše škole, koji su u obustavi</small>
 					</div>
 				</div>
 				<div class="it-column">
 					<div class="it-form-field">
 						<label for="total-number">Ukupan broj *</label>
-						<input type="number" name="count" id="total-number" min="1" max="200" aria-required="true" aria-describedby="total-number-desc" value="1" required />
+						<input type="number" name="count" id="total-number" min="1" max="500" placeholder="0" aria-required="true" aria-describedby="total-number-desc" value="1" required />
 						<small id="total-number-desc">Ukupan broj nastavnog i nenastavnog osoblja u Vašoj školi (dovoljano je uneti približan broj)</small>
 					</div>
 				</div>

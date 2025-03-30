@@ -30,8 +30,8 @@ $verifiedBy = (new Text('verifiedBy', $data['model']?->verifiedBy, 'Verified by'
 $schoolType = (new Text('schoolType', $data['model']?->schoolType, 'School type'));
 $schoolName = (new Text('schoolName', $data['model']?->schoolName, 'School name'));
 $city = (new Text('city', $data['model']?->city, 'City'));
-$count = (new Text('count', $data['model']?->count, 'Count total'));
-$countBlocking = (new Text('countBlocking', $data['model']?->countBlocking, 'Count blocking'));
+$count = (new Text('count', $data['model']?->count, 'Count total', '0'));
+$countBlocking = (new Text('countBlocking', $data['model']?->countBlocking, 'Count blocking', '0'));
 $email = (new Email('email', $data['model']?->email, 'Email'));
 //    ->emailInvalidMessage('Email is invalid');
 $comment = (new \Skeletor\Form\InputTypes\TextArea\TextArea('comment', $data['model']?->comment, 'Comment'));
