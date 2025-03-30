@@ -45,7 +45,7 @@
 					</li>
 					<li class="menu-item">
 						<a href="https://msforms.djavolak.info/donorForm">
-							<span class="it-menu-item-text">Postani donor</span>
+							<span class="it-menu-item-text">Postani donator</span>
 						</a>
 					</li>
 				</ul>

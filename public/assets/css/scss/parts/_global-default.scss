@@ -133,6 +133,20 @@ a {
 	padding: 40px 0 60px;
 }
 
+.it-section {
+	padding: 44px 0;
+	background-color: #F0F0F0;
+
+	&.it--blue {
+		color: #fff;
+		background-color: $main-color;
+
+		h1, h2, h3, h4, h5, h6, p {
+			color: #fff;
+		}
+	}
+}
+
 .it-form {
 	position: relative;
 	display: flex;
@@ -143,7 +157,6 @@ a {
 
 	small {
 		display: block;
-		margin-bottom: 0.5em;
 	}
 
 	select {
@@ -151,16 +164,6 @@ a {
 		optgroup,
 		option {
 			font-size: 13px;
-		}
-	}
-
-	.it-form-field {
-
-		&:has(small) {
-
-			label {
-				margin-bottom: 0;
-			}
 		}
 	}
 

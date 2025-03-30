@@ -2668,23 +2668,23 @@
 				<div class="it-column">
 					<div class="it-form-field">
 						<label for="suspended-number">Broj u obustavi *</label>
-						<small id="suspended-number-desc">Broj nastavnog i nenastavnog osoblja Vaše škole, koji su u obustavi</small>
 						<input type="number" name="countBlocking" id="suspended-number" min="0" max="200" aria-required="true" aria-describedby="suspended-number-desc" value="0" required />
+						<small id="suspended-number-desc">Broj nastavnog i nenastavnog osoblja Vaše škole, koji su u obustavi</small>
 					</div>
 				</div>
 				<div class="it-column">
 					<div class="it-form-field">
 						<label for="total-number">Ukupan broj *</label>
-						<small id="total-number-desc">Ukupan broj nastavnog i nenastavnog osoblja u Vašoj školi (dovoljano je uneti približan broj)</small>
 						<input type="number" name="count" id="total-number" min="1" max="200" aria-required="true" aria-describedby="total-number-desc" value="1" required />
+						<small id="total-number-desc">Ukupan broj nastavnog i nenastavnog osoblja u Vašoj školi (dovoljano je uneti približan broj)</small>
 					</div>
 				</div>
 			</div>
 		</div>
 		<div class="it-form-field">
 			<label for="message">Komentar (opciono)</label>
-			<small id="message-desc">Unesi dodatni komentar ili sugestiju</small>
 			<textarea name="comment" id="message" cols="40" rows="6" maxlength="600" aria-describedby="message-desc"></textarea>
+			<small id="message-desc">Unesi dodatni komentar ili sugestiju</small>
 		</div>
 		<button type="submit" class="it-form-button it-button it-size--normal it-layout--filled it-m">
 			<span class="it-m-text">Pošalji</span>
