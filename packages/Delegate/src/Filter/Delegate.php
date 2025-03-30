@@ -46,9 +46,6 @@ class Delegate implements FilterInterface
             CSRF::TOKEN_NAME => $postData[CSRF::TOKEN_NAME],
         ];
         if (!$this->validator->isValid($data)) {
-            var_dump($this->validator->getMessages());
-            die();
-
             throw new ValidatorException();
         }
         unset($data[CSRF::TOKEN_NAME]);

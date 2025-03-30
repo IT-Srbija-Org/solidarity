@@ -1,5 +1,10 @@
 to set local env:
-vagrant up
+*) vagrant up
+*) add entries to etc/hosts:
+192.168.25.43	solidarity.local
+192.168.25.43	solidforms.local
+*) copy config/config-local.php.dist to /config/config-local.php
+
 
 to migrate db:
 php bin/doctrine orm:schema-tool:update --complete --force --dump-sql

@@ -61,6 +61,6 @@ Thumbs.db
 /data/articles
 /data/pdf
 /data/phinx/phinx-local.php
-/backend/public/constants.php
+/config/constants.php
 
 
