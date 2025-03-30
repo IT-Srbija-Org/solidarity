@@ -67,7 +67,11 @@ img {
 	align-items: center;
 	justify-content: space-between;
 	height: 100%;
-	padding: 0 40px
+	padding: 0 40px;
+
+	@include itScreenSize880 {
+		padding: 0 5vw;
+	}
 }
 
 .it-header-navigation {
@@ -89,20 +93,13 @@ img {
 		position: relative;
 		display: flex;
 		align-items: center;
+		column-gap: 40px;
 		height: 100%;
 		white-space: nowrap;
 
 		> li {
 			height: 100%;
-			margin: 0 24px;
-
-			&:first-child {
-				margin-left: 0;
-			}
-
-			&:last-child {
-				margin-right: 0;
-			}
+			margin: 0;
 
 			> a {
 				position: relative;
@@ -127,6 +124,17 @@ img {
 					background-size: calc(100% - 0em) 1px;
 				}
 			}
+		}
+
+		@include itScreenSize880 {
+			column-gap: 26px;
+
+			 > li {
+
+				 > a {
+					 font-size: 14px;
+				 }
+			 }
 		}
 	}
 }
