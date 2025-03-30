@@ -17,10 +17,20 @@ class EducatorRepository extends TableViewRepository
         parent::__construct($entityManager);
     }
 
+    public function startNewRound()
+    {
+        $stmt = $this->entityManager->getConnection()->prepare("UPDATE `educator` SET amount = 0");
+
+        return $stmt->executeQuery();
+    }
+
     public function fetchForMapping()
     {
-        $sql = "SELECT * FROM solid.educator e where e.amount - 
-         (SELECT IFNULL(SUM(amount), 0) FROM `transaction` where accountNumber = e.accountNumber and status NOT IN (3)) > 0
+//        $sql = sprintf("SELECT * FROM solid.educator e where e.status = %s AND e.amount -
+//         (SELECT IFNULL(SUM(amount), 0) FROM `transaction` where accountNumber = e.accountNumber and status NOT IN (3)) > 0
+//         ORDER BY e.amount DESC", Educator::STATUS_FOR_SENDING);
+        $sql = "SELECT * FROM `educator` e where e.status <> 1 AND e.amount - 
+         (SELECT IFNULL(SUM(amount), 0) FROM `transaction` where accountNumber = e.accountNumber and status NOT IN (3) and archived = 0) > 0
          ORDER BY e.amount DESC";
         $stmt = $this->entityManager->getConnection()->prepare($sql);
         /* @var \Doctrine\DBAL\Result $result */

@@ -17,6 +17,33 @@ class TransactionRepository extends TableViewRepository
         parent::__construct($entityManager);
     }
 
+    public function startNewRound()
+    {
+        $stmt = $this->entityManager->getConnection()->prepare("UPDATE `transaction` SET archived = 1 WHERE archived = 0");
+
+        return $stmt->executeQuery();
+    }
+
+    /**
+     * Returns if overall limit donated per educator is achieved.
+     *
+     * @param $donorEmail
+     * @param $receiverName
+     * @return bool
+     */
+    public function perPersonLimit($donorEmail, $receiverName)
+    {
+        $qb = $this->entityManager->createQueryBuilder();
+        $qb->select('SUM(a.amount)')
+            ->from(static::ENTITY, 'a')
+            ->where('a.email = :email')
+            ->andWhere('a.name = :name');
+        $qb->setParameter('email', $donorEmail);
+        $qb->setParameter('name', $receiverName);
+
+        return $qb->getQuery()->getSingleScalarResult() > Transaction::PER_PERSON_LIMIT;
+    }
+
     public function getSearchableColumns(): array
     {
         return ['a.amount', 'a.name', 'a.accountNumber', 'a.email'];

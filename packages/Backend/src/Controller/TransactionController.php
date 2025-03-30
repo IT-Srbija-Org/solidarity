@@ -3,6 +3,7 @@ namespace Solidarity\Backend\Controller;
 
 use Solidarity\Donor\Service\Donor;
 use Solidarity\Educator\Service\Educator;
+use Solidarity\Transaction\Service\Round;
 use Solidarity\Transaction\Service\Transaction;
 use Skeletor\Core\Controller\AjaxCrudController;
 use GuzzleHttp\Psr7\Response;
@@ -33,7 +34,7 @@ class TransactionController extends AjaxCrudController
      */
     public function __construct(
         Transaction $service, Session $session, Config $config, Flash $flash, Engine $template,
-        private Donor $donor, private Educator $educator, private Transaction $transaction
+        private Donor $donor, private Educator $educator, private Transaction $transaction, private Round $round
     ) {
         parent::__construct($service, $session, $config, $flash, $template);
         $this->tableViewConfig['createButton'] = false;
@@ -41,12 +42,7 @@ class TransactionController extends AjaxCrudController
 
     public function mapPayments()
     {
-        $donorsList = [];
-//        foreach ($this->donor->getForMapping() as $donor) {
-//            var_dump($donor);
-//            die();
-//        }
-
+        $round = $this->round->getActiveRound();
         $donorsList = $this->donor->getForMapping();
         $receiversList = $this->educator->getForMapping();
 
@@ -54,8 +50,6 @@ class TransactionController extends AjaxCrudController
 //        var_dump($receiversList);
 //        die();
 
-        $result = [];
-        $receiversIncomplete = [];
         $donorCount = array_fill(0, count($donorsList), 0);
         foreach ($receiversList as $receiver) {
             $remainingAmount = $receiver["amount"];
@@ -64,6 +58,10 @@ class TransactionController extends AjaxCrudController
             // @TODO add limit per transaction
             while ($remainingAmount > 0 && $i < count($donorsList)) {
                 if ($donorCount[$i] < static::MAX_DONATIONS && $donorsList[$i]["amountLeft"] > 0) {
+                    if ($this->transaction->perPersonLimit($donorsList[$i]["email"], $receiver['name'])) {
+                        continue;
+                    }
+
                     $donation = min($donorsList[$i]["amountLeft"], $remainingAmount);
                     // ensure max donation amount per transaction
                     $donation = min($donation, static::MAX_DONATION_AMOUNT);
@@ -85,26 +83,27 @@ class TransactionController extends AjaxCrudController
                         "email" => $donorsList[$i]['email'],
                         'comment' => '',
                         'status' => 1,
+                        'archived' => 0,
+                        'round' => $round->id,
                     ]);
                 }
                 $i++;
             }
-            // @TODO test this
-            if ($remainingAmount > 0) {
-                $receiver['amount'] = $remainingAmount;
-                $receiversIncomplete[] = $receiver;
-            }
-        }
-
-        $donorsIncomplete = [];
-        foreach ($donorsList as $donor) {
-            if ($donor['amount'] > 0) {
-                $donorsIncomplete[] = $donor;
-            }
+            // receiver nulled, set status to sent
+            $this->educator->updateField('status', \Solidarity\Educator\Entity\Educator::STATUS_SENT, $receiver['id']);
         }
 
         die('done');
+    }
 
+    public function startNewRound()
+    {
+        $this->educator->startNewRound();
+        $this->transaction->startNewRound();
+        $dt = new \DateTime();
+        $this->round->create(['name' => 'runda pocela: ' . $dt->format('d/m')]);
+
+        die('round prepared');
     }
 
     public function form(): Response

@@ -34,6 +34,8 @@ class Transaction implements FilterInterface
             'amount' => $postData['amount'],
             'comment' => $postData['comment'],
             'status' => $postData['status'],
+            'round' => $postData['round'],
+            'archived' => $postData['archived'] ?? 0,
 //            'createdAt' => $postData['createdAt'],
 //            'updatedAt' => $postData['updatedAt'],
 //            CSRF::TOKEN_NAME => $postData[CSRF::TOKEN_NAME],

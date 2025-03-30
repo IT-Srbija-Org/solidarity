@@ -9,7 +9,6 @@ use Solidarity\Transaction\Filter\Transaction as TransactionFilter;
 
 class Transaction extends TableView
 {
-
     /**
      * @param TransactionRepository $repo
      * @param Session $user
@@ -19,6 +18,16 @@ class Transaction extends TableView
         TransactionRepository $repo, Session $user, Logger $logger, TransactionFilter $filter, private \DateTime $dt
     ) {
         parent::__construct($repo, $user, $logger, $filter);
+    }
+
+    public function startNewRound()
+    {
+        return $this->repo->startNewRound();
+    }
+
+    public function perPersonLimit($donorEmail, $receiverName)
+    {
+        return $this->repo->perPersonLimit($donorEmail, $receiverName);
     }
 
     public function prepareEntities($entities)
@@ -32,11 +41,12 @@ class Transaction extends TableView
 //                    'value' => $delegate->email,
 //                    'editColumn' => true,
 //                ],
-                'status' => ($transaction->status) ? 'Yes ': 'Ne',
+                'status' => ($transaction->status) ? 'Yes ': 'No',
                 'amount' => $transaction->amount,
                 'email' => $transaction->email,
                 'name' => $transaction->name,
                 'accountNumber' => $transaction->accountNumber,
+                'archived' => ($transaction->archived) ? 'Yes ': 'No',
                 'createdAt' => $transaction->getCreatedAt()->format('d.m.Y'),
 //                'updatedAt' => $transaction->getUpdatedAt()->format('d.m.Y'),
             ];
@@ -57,6 +67,7 @@ class Transaction extends TableView
             ['name' => 'accountNumber', 'label' => 'Acc Number'],
             ['name' => 'amount', 'label' => 'Amount'],
             ['name' => 'status', 'label' => 'Status', 'filterData' => \Solidarity\Transaction\Entity\Transaction::getHrStatuses()],
+            ['name' => 'archived', 'label' => 'Archived'],
 //            ['name' => 'updatedAt', 'label' => 'Updated at', 'priority' => 8],
             ['name' => 'createdAt', 'label' => 'Created at', 'priority' => 9],
         ];

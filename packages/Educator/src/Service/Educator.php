@@ -22,6 +22,11 @@ class Educator extends TableView
         parent::__construct($repo, $user, $logger, $filter);
     }
 
+    public function startNewRound()
+    {
+        return $this->repo->startNewRound();
+    }
+
     public function getForMapping()
     {
         return $this->repo->fetchForMapping();

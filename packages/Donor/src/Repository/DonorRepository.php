@@ -25,9 +25,9 @@ class DonorRepository extends TableViewRepository
     public function fetchForMapping()
     {
         $sql = "SELECT *,
-(SELECT IFNULL(SUM(amount), 0) FROM `transaction` WHERE email = d.email) as sumPaid,
-amount - (SELECT IFNULL(SUM(amount), 0) FROM `transaction` WHERE email = d.email) as amountLeft
- FROM solid.donor d HAVING d.amount - sumPaid > 0
+(SELECT IFNULL(SUM(amount), 0) FROM `transaction` WHERE email = d.email AND archived = 0) as sumPaid,
+amount - (SELECT IFNULL(SUM(amount), 0) FROM `transaction` WHERE email = d.email AND archived = 0) as amountLeft
+ FROM solid.donor d HAVING amountLeft > 0
          ORDER BY amountLeft DESC";
         //@TODO add period
         $stmt = $this->entityManager->getConnection()->prepare($sql);
