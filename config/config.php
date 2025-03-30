@@ -12,16 +12,18 @@ return array(
     'imageBasePath' => IMAGES_PATH,
     'ignoreTrailingSlash' => true,
     'compileAssets' => false,
-    'mailRecipients' => [
-        'errorNotice' => [
-            'djavolak@mail.ru',
+    'mailer' => [
+        'from' => 'djavolak@mail.ru',
+        'fromName' => 'Mreža Solidarnosti',
+        'recipients' => [
+            'errorNotice' => [
+                'djavolak@mail.ru',
+            ],
+            'general' => [
+                'djavolak@mail.ru',
+            ],
         ],
-        'contactForm' => [
-            'djavolak@mail.ru',
-        ],
-        'general' => [
-            'djavolak@mail.ru',
-        ]
+        'server' => [],
     ],
     'captcha' => [
         'siteKey' => '',

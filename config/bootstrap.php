@@ -60,9 +60,11 @@ $container->set(Engine::class, function() use ($container) {
         $path = 'frontend';
     }
     $defaultTheme = APP_PATH . '/vendor/dj_avolak/skeletor/themes/' . $path;
+    $mailTheme = APP_PATH . '/themes/email';
     $theme = APP_PATH . '/themes/' . $path;
     $plates = new \League\Plates\Engine($theme);
     $plates->addFolder('defaultTheme', $defaultTheme, true);
+    $plates->addFolder('emailTheme', $mailTheme, true);
     $plates->addFolder('layout', APP_PATH . sprintf('/themes/%s/layout', $path));
     $plates->addFolder('partialsGlobal', APP_PATH . sprintf('/themes/%s/partials/global', $path));
     $plates->addFolder('partialsGlobalDefault', $defaultTheme . '/partials/global');
@@ -215,7 +217,7 @@ $container->set(Flash::class, function () use ($container) {
 
 $container->set(\Laminas\Mail\Transport\TransportInterface::class, function() use ($container) {
     $transport = new \Laminas\Mail\Transport\Smtp();
-    $options = new \Laminas\Mail\Transport\SmtpOptions($container->get(Config::class)->mailServer->toArray());
+    $options = new \Laminas\Mail\Transport\SmtpOptions($container->get(Config::class)->mailer->server->toArray());
     $transport->setOptions($options);
 
     return $transport;

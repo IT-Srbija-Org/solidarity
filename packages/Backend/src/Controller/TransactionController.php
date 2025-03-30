@@ -3,6 +3,7 @@ namespace Solidarity\Backend\Controller;
 
 use Solidarity\Donor\Service\Donor;
 use Solidarity\Educator\Service\Educator;
+use Solidarity\Mailer\Service\Mailer;
 use Solidarity\Transaction\Service\Round;
 use Solidarity\Transaction\Service\Transaction;
 use Skeletor\Core\Controller\AjaxCrudController;
@@ -34,10 +35,18 @@ class TransactionController extends AjaxCrudController
      */
     public function __construct(
         Transaction $service, Session $session, Config $config, Flash $flash, Engine $template,
-        private Donor $donor, private Educator $educator, private Transaction $transaction, private Round $round
+        private Donor $donor, private Educator $educator, private Transaction $transaction, private Round $round,
+        private Mailer $mailer
     ) {
         parent::__construct($service, $session, $config, $flash, $template);
         $this->tableViewConfig['createButton'] = false;
+    }
+
+    public function test ()
+    {
+        $this->mailer->sendDonorRegisteredMail('djavolak@mail.ru');
+
+        die('sent');
     }
 
     public function mapPayments()

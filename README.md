@@ -1,7 +1,7 @@
 to set local env:
 *) install vagrant
 *) install virtualbox
-*) from app root run: vagrant up
+*) from app root run: vagrant up (if stuck here try restarting guest system, usually windows)
 *) add entries to etc/hosts:
 192.168.25.43	solidarity.local
 192.168.25.43	solidforms.local

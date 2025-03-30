@@ -564,7 +564,7 @@
             "source": {
                 "type": "git",
                 "url": "https://bitbucket.org/dj_avolak/skeletor",
-                "reference": "874d8b289cc77e7abb984ee91e126dd08a052f56"
+                "reference": "49498cb8e764cd0aa4e2faa450a15134f60a12f6"
             },
             "require": {
                 "doctrine/dbal": "^4.0.3",
@@ -619,7 +619,7 @@
             "license": [
                 "MIT"
             ],
-            "time": "2025-03-30T09:00:52+00:00"
+            "time": "2025-03-30T16:30:15+00:00"
         },
         {
             "name": "doctrine/collections",
