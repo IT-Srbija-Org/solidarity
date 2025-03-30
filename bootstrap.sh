@@ -112,12 +112,8 @@ sudo bash -c "echo 'server {
 sudo ln -s /etc/nginx/sites-available/solidforms.local /etc/nginx/sites-enabled/solidforms.local
 sudo service nginx restart
 
-echo 'installing composer ...'
-php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-php -r "if (hash_file('sha384', 'composer-setup.php') === 'e5325b19b381bfd88ce90a5ddb7823406b2a38cff6bb704b0acc289a09c8128d4a8ce2bbafcd1fcbdc38666422fe2806') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
-php composer-setup.php
-php -r "unlink('composer-setup.php');"
-mv composer.phar /bin/composer
+echo 'run composer install ...'
+php composer.phar install
 echo 'composer installed.'
 echo 'setup configuration.'
 cp config/config-local.php.dist config/config-local.php
@@ -125,9 +121,8 @@ echo 'configuration set.'
 echo 'setup constants.'
 cp config/constants.php.dist config/constants.php
 echo 'constants set.'
-echo 'composer install.'
-composer install
-echo 'composer install done.'
 echo 'start db migration.'
 php bin/doctrine orm:schema-tool:update --complete --force --dump-sql
 echo 'db migration done.'
+
+mysql -u root -prootpass  -e "INSERT INTO solid.user (firstName, lastName, email, password, role, isActive, displayName, id) VALUES ('test', 'test', 'test@example.com', '$2y$10$GGArVO/7.xPDg6D5Kl6GHeELUg2Dnod68ynkFaZ7R2Vfx/K1oZ96O', '1', '1', 'test', '3');"
