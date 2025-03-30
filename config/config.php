@@ -6,7 +6,7 @@ return array(
     'baseUrl' => 'https://solid.djavolak.info',
     'siteName' => 'Solidarity tools',
     'appType' => '',
-    'redirectUri' => '/user/view/',
+    'redirectUri' => '/donor/view/',
     'timezone' => 'Europe/Belgrade',
     'adminPath' => '',
     'imageBasePath' => IMAGES_PATH,

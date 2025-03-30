@@ -10,11 +10,12 @@ export default class Donor extends CrudPage {
         height:'100%'
     }
 
-    onFormReady(data) {
-        if (data.action === 'edit') {
-            this.#data = data;
-            this.#formAction = data.action;
+    actionFilter = (action, entity) => {
+        const role = document.getElementById('navigation').dataset.role;
+        if (action.getName() === 'delete' && role != 1) {
+            return false;
         }
+        return action;
     }
 
 }

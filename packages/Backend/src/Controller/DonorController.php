@@ -30,6 +30,7 @@ class DonorController extends AjaxCrudController
         Donor $service, Session $session, Config $config, Flash $flash, Engine $template
     ) {
         parent::__construct($service, $session, $config, $flash, $template);
+        $this->tableViewConfig['createButton'] = false;
     }
 
     public function form(): Response

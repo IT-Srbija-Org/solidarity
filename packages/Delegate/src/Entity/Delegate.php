@@ -55,4 +55,9 @@ class Delegate
             self::STATUS_PROBLEM => 'Problem',
         );
     }
+
+    public static function getHrStatus($status): string
+    {
+        return static::getHrStatuses()[$status];
+    }
 }

@@ -1,5 +1,5 @@
 <!-- Navigation start -->
-<nav id="navigation" class="active">
+<nav id="navigation" class="active" data-role="<?=$loggedInRole?>">
     <div id="toggleNavigation" class="active">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
             <path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/>
@@ -59,7 +59,7 @@
                     <?=$this->t('Transactions')?>
             </span>
         </div>
-
+        <?php if($loggedInRole === \Skeletor\User\Entity\User::ROLE_ADMIN): ?>
         <div class="item" data-href="/user/view/">
             <span class="tooltip"><?=$this->t('Users')?></span>
             <span class="itemAnchor">
@@ -69,6 +69,7 @@
                 <?=$this->t('Users')?>
             </span>
         </div>
+        <?php endif; ?>
     </div>
     <div class="line"></div>
     <div id="navigationMiscellaneous">

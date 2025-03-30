@@ -50,8 +50,8 @@ class Donor extends TableView
                     'editColumn' => true,
                 ],
                 'amount' => number_format($donor->amount, 0, '.', ','),
-                'status' => ($donor->status) ? 'Yes ': 'Ne',
-                'monthly' => ($donor->monthly) ? 'Yes ': 'Ne',
+                'status' => \Solidarity\Donor\Entity\Donor::getHrStatus($donor->status),
+                'monthly' => ($donor->monthly) ? 'Yes ': 'No',
                 'createdAt' => $donor->getCreatedAt()->format('d.m.Y'),
                 'updatedAt' => $donor->getUpdatedAt()->format('d.m.Y'),
             ];
@@ -67,12 +67,12 @@ class Donor extends TableView
     {
 
         $columnDefinitions = [
-            ['name' => 'email', 'label' => 'Email', 'priority' => 0],
-            ['name' => 'status', 'label' => 'Status', 'filterData' => [0 => 'New', 1 => 'Ready'], 'priority' => 1],
-            ['name' => 'monthly', 'label' => 'Monthly', 'filterData' => [0 => 'No', 1 => 'Yes'], 'priority' => 2],
-            ['name' => 'amount', 'label' => 'Amount', 'priority' => 3, 'rangeFilter' => ['type' => 'number']],
-            ['name' => 'updatedAt', 'label' => 'Updated at', 'priority' => 8],
-            ['name' => 'createdAt', 'label' => 'Created at', 'priority' => 9],
+            ['name' => 'email', 'label' => 'Email'],
+            ['name' => 'status', 'label' => 'Status', 'filterData' => \Solidarity\Donor\Entity\Donor::getHrStatuses()],
+            ['name' => 'monthly', 'label' => 'Monthly', 'filterData' => [0 => 'No', 1 => 'Yes']],
+            ['name' => 'amount', 'label' => 'Amount', 'rangeFilter' => ['type' => 'number']],
+            ['name' => 'updatedAt', 'label' => 'Updated at'],
+            ['name' => 'createdAt', 'label' => 'Created at'],
         ];
 
         return $columnDefinitions;

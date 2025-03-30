@@ -18,7 +18,7 @@ $form = new TabbedForm($data['formAction'], $data['dataAction'], $this->formToke
 
 $action = $data['dataAction'] === 'create' ? 'Create' : 'Edit';
 
-$statuses = \Solidarity\Transaction\Entity\Transaction::getHrStatuses();
+$statuses = \Solidarity\Educator\Entity\Educator::getHrStatuses();
 $statusCollection = (new OptionCollection(new Option('1', 'New')))->fromArray($statuses, $data['model']?->status);
 $statusSelect = (new Select('status', $statusCollection, 'Status'));
 $name = (new Text('name', $data['model']?->name, 'Name'));

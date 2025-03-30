@@ -39,7 +39,7 @@ class Educator extends TableView
                     'editColumn' => true,
                 ],
                 'amount' => number_format($educator->amount, 0, '.', ','),
-                'status' => ($educator->status) ? 'Yes ': 'Ne',
+                'status' => \Solidarity\Educator\Entity\Educator::getHrStatus($educator->status),
                 'schoolName' => $educator->schoolName,
 //                'slipLink' => $educator->slipLink,
                 'accountNumber' => $educator->accountNumber,
@@ -61,7 +61,7 @@ class Educator extends TableView
             ['name' => 'schoolName', 'label' => 'School name'],
             ['name' => 'amount', 'label' => 'Amount', 'rangeFilter' => ['type' => 'number']],
             ['name' => 'accountNumber', 'label' => 'Account Number'],
-            ['name' => 'status', 'label' => 'Status', 'filterData' => [0 => 'New', 1 => 'Ready']],
+            ['name' => 'status', 'label' => 'Status', 'filterData' => \Solidarity\Educator\Entity\Educator::getHrStatuses()],
 //            ['name' => 'slipLink', 'label' => 'slipLink'],
             ['name' => 'createdAt', 'label' => 'Created at'],
         ];

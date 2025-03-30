@@ -32,7 +32,7 @@ class Delegate extends TableView
                     'value' => $delegate->email,
                     'editColumn' => true,
                 ],
-                'status' => ($delegate->status) ? 'Yes ': 'Ne',
+                'status' => \Solidarity\Delegate\Entity\Delegate::getHrStatus($delegate->status),
                 'schoolType' => $delegate->schoolType,
                 'schoolName' => $delegate->schoolName,
                 'city' => $delegate->city,
@@ -57,7 +57,7 @@ class Delegate extends TableView
         $columnDefinitions = [
             ['name' => 'email', 'label' => 'Email'],
             ['name' => 'phone', 'label' => 'Phone'],
-            ['name' => 'status', 'label' => 'Status', 'filterData' => [0 => 'New', 1 => 'Ready']],
+            ['name' => 'status', 'label' => 'Status', 'filterData' => \Solidarity\Delegate\Entity\Delegate::getHrStatuses()],
             ['name' => 'schoolType', 'label' => 'Type'],
             ['name' => 'schoolName', 'label' => 'School'],
             ['name' => 'city', 'label' => 'City'],

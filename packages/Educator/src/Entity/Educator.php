@@ -13,8 +13,8 @@ class Educator
     use Timestampable;
 
     const STATUS_NEW = 1;
-    const STATUS_VERIFIED = 2;
-    const STATUS_PROBLEM = 3;
+    const STATUS_SENDING = 2;
+    const STATUS_SENT = 3;
 
     #[ORM\Column(type: Types::INTEGER)]
     public string $amount;
@@ -34,4 +34,17 @@ class Educator
     #[ORM\Column(type: Types::STRING, length: 1024, nullable: true)]
     public ?string $comment;
 
+    public static function getHrStatuses(): array
+    {
+        return array(
+            self::STATUS_NEW => 'New',
+            self::STATUS_SENDING => 'For sending',
+            self::STATUS_SENT => 'Sent',
+        );
+    }
+
+    public static function getHrStatus($status): string
+    {
+        return static::getHrStatuses()[$status];
+    }
 }

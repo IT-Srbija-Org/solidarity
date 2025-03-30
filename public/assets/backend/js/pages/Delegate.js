@@ -10,5 +10,11 @@ export default class Delegate extends CrudPage {
         height:'100%'
     }
 
-
+    actionFilter = (action, entity) => {
+        const role = document.getElementById('navigation').dataset.role;
+        if (action.getName() === 'delete' && role != 1) {
+            return false;
+        }
+        return action;
+    }
 }

@@ -22,10 +22,7 @@ $action = $data['dataAction'] === 'create' ? 'Create' : 'Edit';
 //@todo some roles can't change some settings, for example staff cant change their role or other user roles
 $statuses = [1 => 'Active', 0 => 'Inactive'];
 $roles = User::getHrRoles();
-if ($data['loggedInTenantId']) {
-    unset($roles[User::ROLE_ADMIN]);
-}
-$rolesCollection = (new OptionCollection(new Option('3', 'Merchant admin')))->fromArray($roles, $data['model']?->role);
+$rolesCollection = (new OptionCollection(new Option('1', 'Admin')))->fromArray($roles, $data['model']?->role);
 $statusCollection = (new OptionCollection(new Option('1', 'Active')))->fromArray($statuses, $data['model']?->isActive);
 $email = (new Email('email', $data['model']?->email, 'Email'))
     ->required('Email is required')

@@ -36,6 +36,7 @@ class TransactionController extends AjaxCrudController
         private Donor $donor, private Educator $educator, private Transaction $transaction
     ) {
         parent::__construct($service, $session, $config, $flash, $template);
+        $this->tableViewConfig['createButton'] = false;
     }
 
     public function mapPayments()

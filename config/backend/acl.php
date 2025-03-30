@@ -10,9 +10,25 @@ $guest = [
     '/cron/*',
 ];
 
-// merchant staff
+// staff
 $level2 = [
-    '/user/view/*',
+    '/delegate/view/*',
+    '/delegate/tableHandler/*',
+    '/delegate/form/*',
+    '/delegate/update/*',
+    '/donor/update/*',
+    '/donor/view/*',
+    '/donor/tableHandler/*',
+    '/donor/form/*',
+    '/educator/update/*',
+    '/educator/view/*',
+    '/educator/tableHandler/*',
+    '/educator/form/*',
+    '/transaction/update/*',
+    '/transaction/view/*',
+    '/transaction/tableHandler/*',
+    '/transaction/form/*',
+
     '/user/update/*',
     '/login/logout/',
 ];

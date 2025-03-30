@@ -27,4 +27,18 @@ class Donor
     #[ORM\Column(type: Types::STRING, length: 1024, nullable: true)]
     public ?string $comment;
 
+    public static function getHrStatuses(): array
+    {
+        return array(
+            self::STATUS_NEW => 'New',
+            self::STATUS_VERIFIED => 'Verified',
+            self::STATUS_PROBLEM => 'Problem',
+        );
+    }
+
+    public static function getHrStatus($status): string
+    {
+        return static::getHrStatuses()[$status];
+    }
+
 }

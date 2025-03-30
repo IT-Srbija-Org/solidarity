@@ -18,8 +18,8 @@ $form = new TabbedForm($data['formAction'], $data['dataAction'], $this->formToke
 
 $action = $data['dataAction'] === 'create' ? 'Create' : 'Edit';
 
-$statuses = [1 => 'Active', 0 => 'Inactive'];
-$statusCollection = (new OptionCollection(new Option('1', 'Active')))->fromArray($statuses, $data['model']?->status);
+$statuses = \Solidarity\Donor\Entity\Donor::getHrStatuses();
+$statusCollection = (new OptionCollection(new Option('1', 'New')))->fromArray($statuses, $data['model']?->status);
 $statusSelect = (new Select('status', $statusCollection, 'Status'))
     ->required('Status is required', '');
 $email = (new Email('email', $data['model']?->email, 'Email'));
