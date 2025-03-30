@@ -9,7 +9,10 @@ ini_set('display_errors', 1);
 include("../config/constants.php");
 include(APP_PATH . "/vendor/autoload.php");
 $path = getenv('APPLICATION');
-\Tracy\Debugger::enable(false);
+if (getenv('APPLICATION_ENV') !== 'production') {
+    \Tracy\Debugger::enable(false);
+}
+
 
 try {
     /* @var \DI\Container $container */

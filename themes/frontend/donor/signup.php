@@ -21,7 +21,7 @@
 	<p>Takođe, možete se detaljnije informisati putem naših društvenih mreža.</p>
 	<p><a href="https://itsrbija.org/">IT Srbija</a> – Neformalna grupa IT Stručnjaka</p>
 
-    <form method="post" action="donorForm" class="it-form" id="it-donatori-form" aria-label="Donatori forma" data-type="donatori">
+    <form method="post" action="obrazacDonatori" class="it-form" id="it-donatori-form" aria-label="Donatori forma" data-type="donatori">
         <?=$this->formToken(); ?>
 	    <div class="it-form-field">
 		    <label for="email">Email *</label>

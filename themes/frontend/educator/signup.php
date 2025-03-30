@@ -8,11 +8,17 @@
 		<p>Molimo vas da podatke unosite pažljivo i tačno – to je ključ za pravičnu, efikasnu i transparentnu raspodelu pomoći. Posebnu pažnju obratite na tačnost broja računa i iznosa, jer greške mogu usporiti isplatu.</p>
 		<p>📌 Za dodatnu proveru ispravnosti unetog računa možete koristiti ovaj alat pre nego što podatke unesete u formu:</p>
 
-		<form method="post" action="/educatorForm" id="it-osteceni-form" class="it-form" aria-label="Osteceni forma" data-type="osteceni">
+        <?php if (isset($data['errors'])):
+            foreach ($data['errors'] as $key => $error) {
+                echo '<p style="color:red">'.$error.'</p>';
+            }
+        endif; ?>
+
+		<form method="post" action="/obrazacOsteceni" id="it-osteceni-form" class="it-form" aria-label="Osteceni forma" data-type="osteceni">
 			<?=$this->formToken(); ?>
 			<div class="it-form-field">
 				<label for="full-name">Ime i Prezime *</label>
-				<input type="text" name="name" id="full-name" aria-required="true" value="" required />
+				<input type="text" name="name" id="full-name" aria-required="true" value="<?php if (isset($data['data']['name'])) { echo $data['data']['name']; } ?>" required />
 			</div>
 			<div class="it-row-section it-col-num--2 it-responsive--predefined">
 				<div class="it-row">

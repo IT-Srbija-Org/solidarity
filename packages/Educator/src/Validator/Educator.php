@@ -43,7 +43,7 @@ class Educator implements ValidatorInterface
         $valid = true;
 
         if (!$this->validateAccountNumber($data['accountNumber'])) {
-            $this->messages['general'][] = 'Uneti broj žiro računa nije ispravan.';
+            $this->messages['accountNumber'][] = 'Uneti broj žiro računa nije ispravan.';
             $valid = false;
         }
 

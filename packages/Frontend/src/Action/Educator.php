@@ -4,6 +4,7 @@ namespace Solidarity\Frontend\Action;
 use Laminas\Config\Config;
 use Laminas\Session\SessionManager as Session;
 use League\Plates\Engine;
+use Skeletor\Core\Validator\ValidatorException;
 use Solidarity\Frontend\Action\BaseAction;
 use Psr\Log\LoggerInterface as Logger;
 
@@ -27,15 +28,17 @@ class Educator extends BaseAction
                 $this->educator->create($data);
                 // @TODO send mail
                 return $this->redirect('/educatorThankYou');
-            } catch (\Exception $e) {
-                // handle
-                echo $e->getMessage();
-                die();
-                return $this->redirect('/educatorForm');
+            } catch (ValidatorException $e) {
+                $errors = [];
+                foreach ($this->educator->parseErrors() as $key => $error) {
+                    unset($data[$key]);
+                    $errors[] = $error['message'];
+                }
+//                return $this->redirect('/educatorForm');
+                return $this->respond('educator/signup', ['errors' => $errors, 'data' => $data]);
             }
-
         }
 
-        return $this->respond('educator/signup', []);
+        return $this->respond('educator/signup', ['data' => []]);
     }
 }
