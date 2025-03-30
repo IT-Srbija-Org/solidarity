@@ -17,7 +17,7 @@ class EducatorController extends AjaxCrudController
     const TITLE_UPDATE_SUCCESS = "Educator updated successfully.";
     const TITLE_CREATE_SUCCESS = "Educator created successfully.";
     const TITLE_DELETE_SUCCESS = "Educator deleted successfully.";
-    const PATH = 'educator';
+    const PATH = 'Educator';
 
     /**
      * @param Educator $service

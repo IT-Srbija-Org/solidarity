@@ -19,7 +19,7 @@ class TransactionController extends AjaxCrudController
     const TITLE_UPDATE_SUCCESS = "Transaction updated successfully.";
     const TITLE_CREATE_SUCCESS = "Transaction created successfully.";
     const TITLE_DELETE_SUCCESS = "Transaction deleted successfully.";
-    const PATH = 'transaction';
+    const PATH = 'Transaction';
 
     const MAX_DONATIONS = 5;
     const MAX_DONATION_AMOUNT = 30000;

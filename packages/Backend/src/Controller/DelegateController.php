@@ -17,7 +17,7 @@ class DelegateController extends AjaxCrudController
     const TITLE_UPDATE_SUCCESS = "Delegate updated successfully.";
     const TITLE_CREATE_SUCCESS = "Delegate created successfully.";
     const TITLE_DELETE_SUCCESS = "Delegate deleted successfully.";
-    const PATH = 'delegate';
+    const PATH = 'Delegate';
 
     /**
      * @param Delegate $service

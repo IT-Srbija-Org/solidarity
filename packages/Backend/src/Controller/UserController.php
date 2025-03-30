@@ -25,7 +25,7 @@ class UserController extends \Skeletor\User\Controller\UserController
     const TITLE_UPDATE_SUCCESS = "User updated successfully.";
     const TITLE_CREATE_SUCCESS = "User created successfully.";
     const TITLE_DELETE_SUCCESS = "User deleted successfully.";
-    const PATH = 'user';
+    const PATH = 'User';
 
     public function __construct(
         UserService $userService, Session $session, Config $config, Flash $flash, Engine $template, private Tenant $tenant

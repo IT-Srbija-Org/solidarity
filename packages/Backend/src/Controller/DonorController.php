@@ -17,7 +17,7 @@ class DonorController extends AjaxCrudController
     const TITLE_UPDATE_SUCCESS = "Donor updated successfully.";
     const TITLE_CREATE_SUCCESS = "Donor created successfully.";
     const TITLE_DELETE_SUCCESS = "Donor deleted successfully.";
-    const PATH = 'donor';
+    const PATH = 'Donor';
 
     /**
      * @param Donor $service

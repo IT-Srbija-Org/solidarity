@@ -58,7 +58,6 @@ Thumbs.db
 /backend/public/coverage*
 /backend/docs
 /packages/*/tests/clover.xml
-/data/articles
 /data/pdf
 /data/phinx/phinx-local.php
 /config/constants.php
