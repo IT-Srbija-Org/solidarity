@@ -13,7 +13,7 @@ class Educator
     use Timestampable;
 
     const STATUS_NEW = 1;
-    const STATUS_SENDING = 2;
+    const STATUS_FOR_SENDING = 2;
     const STATUS_SENT = 3;
 
     #[ORM\Column(type: Types::INTEGER)]
@@ -38,7 +38,7 @@ class Educator
     {
         return array(
             self::STATUS_NEW => 'New',
-            self::STATUS_SENDING => 'For sending',
+            self::STATUS_FOR_SENDING => 'For sending',
             self::STATUS_SENT => 'Sent',
         );
     }

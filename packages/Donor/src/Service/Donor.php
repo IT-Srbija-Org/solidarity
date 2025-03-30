@@ -6,6 +6,7 @@ use Skeletor\Core\TableView\Service\TableView;
 use Psr\Log\LoggerInterface as Logger;
 use Skeletor\User\Service\Session;
 use Solidarity\Donor\Filter\Donor as DonorFilter;
+use Solidarity\Mailer\Service\Mailer;
 use Tamtamchik\SimpleFlash\Flash;
 
 class Donor extends TableView
@@ -17,7 +18,8 @@ class Donor extends TableView
      * @param Logger $logger
      */
     public function __construct(
-        DonorRepository $repo, Session $user, Logger $logger, DonorFilter $filter, private \DateTime $dt
+        DonorRepository $repo, Session $user, Logger $logger, DonorFilter $filter, private \DateTime $dt,
+        private Mailer $mailer
     ) {
         parent::__construct($repo, $user, $logger, $filter);
     }
@@ -32,10 +34,12 @@ class Donor extends TableView
         $entity = $this->getEntities(['email' => $data['email']]);
         if (count($entity)) {
             $data['id'] = $entity[0]->id;
-            return parent::update($data);
+            $entity = parent::update($data);
         } else {
-            return parent::create($data);
+            $entity = parent::create($data);
         }
+        $this->mailer->sendDonorRegisteredMail($entity->email);
+        return $entity;
     }
 
     public function prepareEntities($entities)

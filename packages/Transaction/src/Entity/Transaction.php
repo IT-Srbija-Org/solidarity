@@ -16,6 +16,8 @@ class Transaction
     const STATUS_VERIFIED = 2;
     const STATUS_CONFIRMED = 3;
 
+    const PER_PERSON_LIMIT = 30000;
+
     #[ORM\Column(type: Types::STRING, length: 128)]
     public string $name;
     #[ORM\Column(type: Types::STRING, length: 32)]
@@ -28,6 +30,12 @@ class Transaction
     public int $status;
     #[ORM\Column(type: Types::STRING, length: 1024, nullable: true)]
     public ?string $comment;
+    #[ORM\Column(type: Types::SMALLINT)]
+    public int $archived;
+
+    #[ORM\ManyToOne(targetEntity: Round::class, inversedBy: 'transaction')]
+    #[ORM\JoinColumn(name: 'roundId', referencedColumnName: 'id', unique: false)]
+    public Round $round;
 
     #[ORM\Column(type: 'datetime', insertable: false, updatable: true, options: ['default' => "CURRENT_TIMESTAMP"])]
     public \DateTime $createdAt;

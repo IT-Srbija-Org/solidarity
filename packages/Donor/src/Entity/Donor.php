@@ -18,7 +18,7 @@ class Donor
 
     #[ORM\Column(type: Types::INTEGER)]
     public string $amount;
-    #[ORM\Column(type: Types::STRING, length: 255)]
+    #[ORM\Column(type: Types::STRING, length: 255, unique: true)]
     public string $email;
     #[ORM\Column(type: Types::SMALLINT)]
     public string $status;

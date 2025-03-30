@@ -22,6 +22,33 @@ class Educator extends TableView
         parent::__construct($repo, $user, $logger, $filter);
     }
 
+    /**
+     * Make sure if existing accNumber/name combo is entered for creation, to just update amount, and reset status
+     *
+     * @param array $data
+     * @return mixed
+     */
+    public function create(array $data)
+    {
+        $entity = $this->getEntities(['accountNumber' => $data['accountNumber'], 'name' => $data['name']]);
+        if (count($entity)) {
+            $data['id'] = $entity[0]->id;
+            $data['status'] = \Solidarity\Educator\Entity\Educator::STATUS_NEW;
+            $data['schoolName'] = $entity[0]->schoolName;
+            $data['city'] = $entity[0]->city;
+            $data['comment'] = $entity[0]->comment;
+            $data['slipLink'] = $entity[0]->slipLink;
+            return parent::update($data);
+        } else {
+            return parent::create($data);
+        }
+    }
+
+    public function startNewRound()
+    {
+        return $this->repo->startNewRound();
+    }
+
     public function getForMapping()
     {
         return $this->repo->fetchForMapping();
