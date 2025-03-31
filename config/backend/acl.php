@@ -5,8 +5,9 @@ $guest = [
     '/fetchExchangeRate/',
     '/invoice-recurring/createInvoices/',
     '/login/loginForm/',
+    '/login/forgotPassword*',
     '/login/login/',
-    '/login/resetPassword',
+    '/login/resetPassword*',
     '/cron/*',
 ];
 

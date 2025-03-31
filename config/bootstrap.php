@@ -45,12 +45,12 @@ $container->set(\MailerSend\MailerSend::class, function() use ($container) {
 });
 
 $container->set(\Skeletor\Core\Mailer\Service\Mailer::class, function() use ($container) {
-    return new \Skeletor\Core\Mailer\Service\Mailer($container->get(\MailerSend\MailerSend::class), $container->get(Laminas\Config\Config::class), $container->get(Engine::class));
-});
-
-$container->set(\Solidarity\Mailer\Service\Mailer::class, function() use ($container) {
     return new \Solidarity\Mailer\Service\Mailer($container->get(\MailerSend\MailerSend::class), $container->get(Laminas\Config\Config::class), $container->get(Engine::class));
 });
+
+//$container->set(\Solidarity\Mailer\Service\Mailer::class, function() use ($container) {
+//    return new \Solidarity\Mailer\Service\Mailer($container->get(\MailerSend\MailerSend::class), $container->get(Laminas\Config\Config::class), $container->get(Engine::class));
+//});
 
 $container->set(\Skeletor\ContentEditor\Contracts\BlockViewInterface::class, function() use ($container) {
     return new \Skeletor\ContentEditor\View();
@@ -256,6 +256,7 @@ $container->set(EntityManagerInterface::class, function() use ($container) {
             APP_PATH . "/packages/Transaction/src/Entity",
             APP_PATH . "/vendor/dj_avolak/skeletor/src/Image",
             APP_PATH . '/vendor/dj_avolak/skeletor/src/User',
+            APP_PATH . "/vendor/dj_avolak/skeletor/src/Login",
             APP_PATH . '/vendor/dj_avolak/skeletor/src/ThemeSettings',
 
         ],

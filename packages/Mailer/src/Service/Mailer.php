@@ -31,7 +31,7 @@ class Mailer extends \Skeletor\Core\Mailer\Service\Mailer
             ->setRecipients($recipients)
             ->setSubject('Potvrda registracije za delegata na Mrežu solidarnosti')
             ->setHtml($body)
-            ->setReplyTo($this->config->offsetGet('mailer')->toArray()['from'])
+            ->setReplyTo('delegati@mrezasolidarnosti.org')
             ->setReplyToName('Mreža solidarnosti');
 
         $this->send($emailParams);
@@ -53,8 +53,32 @@ class Mailer extends \Skeletor\Core\Mailer\Service\Mailer
             ->setRecipients($recipients)
             ->setSubject('Potvrda registracije na Mrežu solidarnosti')
             ->setHtml($body)
-            ->setReplyTo($this->config->offsetGet('mailer')->toArray()['from'])
+            ->setReplyTo('donatori@mrezasolidarnosti.org')
             ->setReplyToName('Mreža solidarnosti');
+
+        $this->send($emailParams);
+    }
+
+    public function sendForgotPasswordMail($email, $token, $displayName, $userId)
+    {
+        $recipients = [
+            new Recipient($email, $email),
+        ];
+        $token = sprintf('$%s$%s', $userId, $token);
+        $resetUrl = sprintf('%s/login/resetPasswordForm/%s/', $this->config->offsetGet('adminUrl'), $token);
+        $body = $this->render('forgotPassword', [
+            'displayName' => $displayName,
+            'resetUrl' => $resetUrl,
+            'baseUrl' => $this->config->offsetGet('baseUrl')
+        ]);
+        $emailParams = (new \MailerSend\Helpers\Builder\EmailParams())
+            ->setFrom('info+no-reply@mrezasolidarnosti.org')
+            ->setFromName('Mreža solidarnosti')
+            ->setRecipients($recipients)
+            ->setSubject('Potvrda promene lozinke za Mrežu solidarnosti')
+            ->setHtml($body)
+            ->setReplyToName('Mreža solidarnosti');
+
 
         $this->send($emailParams);
     }
