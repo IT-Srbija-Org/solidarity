@@ -69,7 +69,6 @@ class Donor extends TableView
 
     public function compileTableColumns()
     {
-
         $columnDefinitions = [
             ['name' => 'email', 'label' => 'Email'],
             ['name' => 'status', 'label' => 'Status', 'filterData' => \Solidarity\Donor\Entity\Donor::getHrStatuses()],

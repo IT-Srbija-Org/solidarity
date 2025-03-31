@@ -62,12 +62,16 @@ class Delegate extends TableView
 
     public function compileTableColumns()
     {
-
+        $schoolTypeFilter = [
+            'Osnovna škola' => 'Osnovna škola',
+            'Gimnazija' => 'Gimnazija',
+            'Srednja stručna škola' => 'Srednja stručna škola',
+        ];
         $columnDefinitions = [
             ['name' => 'email', 'label' => 'Email'],
             ['name' => 'phone', 'label' => 'Phone'],
             ['name' => 'status', 'label' => 'Status', 'filterData' => \Solidarity\Delegate\Entity\Delegate::getHrStatuses()],
-            ['name' => 'schoolType', 'label' => 'Type'],
+            ['name' => 'schoolType', 'label' => 'Type', 'filterData' => $schoolTypeFilter],
             ['name' => 'schoolName', 'label' => 'School'],
             ['name' => 'city', 'label' => 'City'],
             ['name' => 'count', 'label' => 'Count'],
