@@ -773,9 +773,9 @@
 								<option value="Osnovna škola Svetozar Marković Bačko Gradište">Osnovna škola Svetozar Marković Bačko Gradište</option>
 								<option value="Osnovna škola Sever Đurkić">Osnovna škola Sever Đurkić</option>
 								<option value="Osnovna škola Šamu Mihalj">Osnovna škola Šamu Mihalj</option>
-								<option value="Gimnazija Zelena 13">Gimnazija Zelena 13</option>
+								<option value="Gimnazija">Gimnazija</option>
 								<option value="Ekonomsko-trgovinska škola">Ekonomsko-trgovinska škola</option>
-								<option value="Tehnička škola Uroša Predića 1">Tehnička škola Uroša Predića 1</option>
+								<option value="Tehnička škola">Tehnička škola</option>
 								<option value="Škola za osnovno i srednje obrazovanje Bratstvo">Škola za osnovno i srednje obrazovanje Bratstvo</option>
 								<option value="Škola za osnovno muzičko vaspitanje i obrazovanje Petar Konjović">Škola za osnovno muzičko vaspitanje i obrazovanje Petar Konjović</option>
 							</select>
@@ -1220,8 +1220,8 @@
 								<option value="Osnovna škola Prof. dr. Nedeljko Košanin Devići">Osnovna škola Prof. dr. Nedeljko Košanin Devići</option>
 								<option value="Osnovna škola Svetozar Marković Kovilje">Osnovna škola Svetozar Marković Kovilje</option>
 								<option value="Osnovna škola Sreten Lazarević Prilike">Osnovna škola Sreten Lazarević Prilike</option>
-								<option value="Gimnazija 13. Septembar 58">Gimnazija 13. Septembar 58</option>
-								<option value="Tehnička škola Miće Matovića 2">Tehnička škola Miće Matovića 2</option>
+								<option value="Gimnazija 58">Gimnazija 58</option>
+								<option value="Tehnička škola">Tehnička škola</option>
 							</select>
 							<select class="it-school-name" data-city="Inđija">
 								<option value="">Izaberite školu</option>
@@ -1885,7 +1885,7 @@
 								<option value="Gimnazija Svetozar Marković">Gimnazija Svetozar Marković</option>
 								<option value="Elektrotehnička škola Mihajlo Pupin">Elektrotehnička škola Mihajlo Pupin</option>
 								<option value="Elitna privatna ekonomska škola i gimnazija">Elitna privatna ekonomska škola i gimnazija</option>
-								<option value="Medicinska škola 7. april Vojvode Knićanina 1">Medicinska škola 7. april Vojvode Knićanina 1</option>
+								<option value="Medicinska škola 7. april ">Medicinska škola 7. april </option>
 								<option value="Muzička škola Isidor Bajić">Muzička škola Isidor Bajić</option>
 								<option value="Prva privatna srednja optičarska škola Pašćan">Prva privatna srednja optičarska škola Pašćan</option>
 								<option value="Prva privatna srednja frizerska škola Vojkan">Prva privatna srednja frizerska škola Vojkan</option>
@@ -1936,7 +1936,7 @@
 								<option value="Osnovna škola Nikola Tesla Bački Brestovac">Osnovna škola Nikola Tesla Bački Brestovac</option>
 								<option value="Osnovna škola Ratko Pavlović Ćićko Ratkovo">Osnovna škola Ratko Pavlović Ćićko Ratkovo</option>
 								<option value="Osnovna škola Branko Radičević">Osnovna škola Branko Radičević</option>
-								<option value="Gimnazija i ekonomska škola Jovan Jovanović Zmaj Somborska 18">Gimnazija i ekonomska škola Jovan Jovanović Zmaj Somborska 18</option>
+								<option value="Gimnazija i ekonomska škola Jovan Jovanović Zmaj">Gimnazija i ekonomska škola Jovan Jovanović Zmaj</option>
 								<option value="Srednja stručna škola">Srednja stručna škola</option>
 								<option value="Tehnička škola">Tehnička škola</option>
 							</select>

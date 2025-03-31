@@ -24,17 +24,11 @@ return array(
             '127.0.0.1' => 6379
         ]
     ],
-    'mailServer' => [
-        'name' => 'smtp.gmail.com',
-        'host' => 'smtp.gmail.com',
-        'port' => 587,
-        'connection_class' => 'plain',
-        'connection_config' => [
-            'username' => '',
-            'password' => '',
-            'ssl'      => 'tls',
+    'mailer' => [
+            'server' => [
+                'mailersend' => '123'
+            ]
         ],
-    ],
     'captcha' => [
         'siteKey' => ''
     ],
