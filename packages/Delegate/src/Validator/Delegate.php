@@ -20,6 +20,8 @@ class Delegate implements ValidatorInterface
      */
     private $csrf;
 
+    private $delegateRepository;
+
     private $messages = [];
 
     /**
@@ -27,9 +29,10 @@ class Delegate implements ValidatorInterface
      *
      * @param CSRF $csrf
      */
-    public function __construct(CSRF $csrf)
+    public function __construct(CSRF $csrf, \Solidarity\Delegate\Repository\DelegateRepository $delegateRepository)
     {
-        $this->csrf = $csrf;
+        $this->csrf               = $csrf;
+        $this->delegateRepository = $delegateRepository;
     }
 
     /**
@@ -45,6 +48,16 @@ class Delegate implements ValidatorInterface
         $emailValidator = new EmailAddress();
         if (!$emailValidator->isValid($data['email'])) {
             $this->messages['general'][] = 'Uneta email adresa nije ispravna.';
+            $valid = false;
+        }
+
+        $existingDelegates = $this->delegateRepository->fetchAll(['schoolName' => $data['schoolName']]);
+        if (count($existingDelegates) > 0) {
+            if ($existingDelegates[0]->email !== $data['email']) {
+                $this->messages['general'][] = 'Mesto delegata za vašu školu je zauzeto.';
+            } else {
+                $this->messages['general'][] = 'Već ste prijavljeni na mrežu solidarnosti.';
+            }
             $valid = false;
         }
 
