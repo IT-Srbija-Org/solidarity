@@ -1427,7 +1427,7 @@
 							<option value="Muzička škola dr Miloje Milojević">Muzička škola dr Miloje Milojević</option>
 							<option value="Prva kragujevačka gimnazija">Prva kragujevačka gimnazija</option>
 							<option value="Prva tehnička škola">Prva tehnička škola</option>
-							<option value="Srednja stručna škola">Srednja stručna škola</option>
+							<option value="Srednja škola Knez Aleksandar Karađorđević">Srednja škola Knez Aleksandar Karađorđević</option>
 							<option value="Srednja škola Dositej Obradović">Srednja škola Dositej Obradović</option>
 							<option value="Srednja škola Sveti Arhangel">Srednja škola Sveti Arhangel</option>
 							<option value="Trgovinsko-ugostiteljska škola Toza Dragović">Trgovinsko-ugostiteljska škola Toza Dragović</option>
