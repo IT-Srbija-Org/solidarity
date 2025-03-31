@@ -29,6 +29,7 @@
       "Solidarity\\Backend\\": "packages/Backend/src",
       "Solidarity\\Frontend\\": "packages/Frontend/src",
       "Solidarity\\Mailer\\": "packages/Mailer/src",
+      "Solidarity\\Transliterator\\": "packages/Transliterator/src",
       "Solidarity\\Donor\\": "packages/Donor/src",
       "Solidarity\\Transaction\\": "packages/Transaction/src",
       "Solidarity\\Educator\\": "packages/Educator/src",
