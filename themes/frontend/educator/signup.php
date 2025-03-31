@@ -1,12 +1,12 @@
 <?php $this->layout('layout::standard') ?>
 <main>
 	<div class="it-grid">
-		<h2>Prijava oštećenih</h2>
+		<h2>Prijavi oštećenog</h2>
 		<p><strong>Samo za drugi deo februarske plate</strong></p>
 		<p>Delegati treba da popune podatke za svakog pojedinačno kolegu koji se prijavljuje za program finansijske pomoći „Mreža solidarnosti“.</p>
 		<p><strong>Jedan formular = jedna prijava za jednog kolegu.</strong></p>
 		<p>Molimo vas da podatke unosite pažljivo i tačno – to je ključ za pravičnu, efikasnu i transparentnu raspodelu pomoći. Posebnu pažnju obratite na tačnost broja računa i iznosa, jer greške mogu usporiti isplatu.</p>
-		<p>📌 Za dodatnu proveru ispravnosti unetog računa možete koristiti ovaj alat pre nego što podatke unesete u formu:</p>
+		<p>📌 Za dodatnu proveru ispravnosti unetog računa možete koristiti ovaj alat pre nego što podatke unesete u formu: <a href="https://www.cekos.rs/kontrolni-broj-modul-97" target="_blank">Proveri broj računa</a></p>
 
         <?php if (isset($data['errors'])):
             foreach ($data['errors'] as $key => $error) {
@@ -2675,7 +2675,7 @@
 						<h2 style="margin-top: 0;">Slanje isplatnih listića</h2>
 						<p>Nakon što popunite formulare za svakog kolegu pojedinačno, u jednom mejlu nam pošaljite sve platne listiće prijavljenih kolega iz vaše škole, uz jasnu napomenu da se prijava odnosi isključivo na drugi deo februarske plate.</p>
 						<p style="margin-bottom: 0;">📩 Dokumentaciju šaljete na sledeći način:</p>
-						<small>Primalac: osteceni@mrezasolidarnosti.org</small>
+						<small>Primalac: listici@mrezasolidarnosti.org</small>
 						<br />
 						<small>Naslov mejla (subject): Platni listici < puno ime škole >, 2. deo februar</small>
 					</div>
