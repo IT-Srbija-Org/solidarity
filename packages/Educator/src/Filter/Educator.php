@@ -6,6 +6,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Laminas\Filter\ToInt;
 use Skeletor\Core\Filter\FilterInterface;
 use Skeletor\User\Service\Session;
+use Turanjanin\SerbianTransliterator\Transliterator;
 use Volnix\CSRF\CSRF;
 use Laminas\I18n\Filter\Alnum;
 use Skeletor\Core\Validator\ValidatorException;
@@ -28,10 +29,10 @@ class Educator implements FilterInterface
         $data = [
             'id' => (isset($postData['id'])) ? $int->filter($postData['id']) : null,
             'amount' => $int->filter($postData['amount']),
-            'name' => $postData['name'],
-            'schoolName' => $postData['schoolName'],
+            'name' => Transliterator::toLatin($postData['name']),
+            'schoolName' => Transliterator::toLatin($postData['schoolName']),
             'slipLink' => (isset($postData['slipLink'])) ? $postData['slipLink'] : '',
-            'city' => $postData['city'],
+            'city' => Transliterator::toLatin($postData['city']),
             'accountNumber' => $this->normalizeAccountNumber($postData['accountNumber']),
             'comment' => (isset($postData['comment'])) ? $postData['comment'] : '',
             'status' => (isset($postData['status'])) ? $postData['status'] : 1,

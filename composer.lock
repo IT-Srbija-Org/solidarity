@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7b877cd2f3d94bc63abc9a8ab09b76eb",
+    "content-hash": "c0dee74989aa86e41197741e5927c275",
     "packages": [
         {
             "name": "beberlei/assert",
@@ -7666,6 +7666,57 @@
                 "source": "https://github.com/nette/tracy/tree/v2.10.9"
             },
             "time": "2024-11-07T14:48:00+00:00"
+        },
+        {
+            "name": "turanjanin/serbian-transliterator",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/turanjanin/serbian-transliterator.git",
+                "reference": "d3c28e7ed31930fb9df10991bc635c1eff90126d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/turanjanin/serbian-transliterator/zipball/d3c28e7ed31930fb9df10991bc635c1eff90126d",
+                "reference": "d3c28e7ed31930fb9df10991bc635c1eff90126d",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.2|^8.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Turanjanin\\SerbianTransliterator\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jovan Turanjanin",
+                    "email": "jovan@turanjanin.net",
+                    "homepage": "https://www.turanjanin.net"
+                }
+            ],
+            "description": "Transliterate between Serbian Cyrillic and Latin scripts.",
+            "keywords": [
+                "Serbian",
+                "cyrillic",
+                "latin",
+                "latinisation",
+                "transliteration"
+            ],
+            "support": {
+                "issues": "https://github.com/turanjanin/serbian-transliterator/issues",
+                "source": "https://github.com/turanjanin/serbian-transliterator/tree/1.0.0"
+            },
+            "time": "2021-03-30T22:58:29+00:00"
         },
         {
             "name": "volnix/csrf",

@@ -16,6 +16,7 @@
     "nesbot/carbon": "*",
     "phpoffice/phpspreadsheet": "*",
     "mailersend/mailersend": "^0.30.0",
+    "turanjanin/serbian-transliterator": "*",
     "beberlei/doctrineextensions": "^1.5"
   },
   "require-dev": {
