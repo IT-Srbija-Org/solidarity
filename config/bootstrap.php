@@ -44,6 +44,14 @@ $container->set(\MailerSend\MailerSend::class, function() use ($container) {
     return new \MailerSend\MailerSend(['api_key' => $container->get(Config::class)->mailer->server->mailersend]);
 });
 
+$container->set(\Skeletor\Core\Mailer\Service\Mailer::class, function() use ($container) {
+    return new \Skeletor\Core\Mailer\Service\Mailer($container->get(\MailerSend\MailerSend::class), $container->get(Laminas\Config\Config::class), $container->get(Engine::class));
+});
+
+$container->set(\Solidarity\Mailer\Service\Mailer::class, function() use ($container) {
+    return new \Solidarity\Mailer\Service\Mailer($container->get(\MailerSend\MailerSend::class), $container->get(Laminas\Config\Config::class), $container->get(Engine::class));
+});
+
 $container->set(\Skeletor\ContentEditor\Contracts\BlockViewInterface::class, function() use ($container) {
     return new \Skeletor\ContentEditor\View();
 });
