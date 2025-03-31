@@ -161,6 +161,23 @@ img {
 	}
 }
 
+.it-form-error {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	row-gap: 8px;
+	margin-top: 20px;
+
+	p {
+		margin: 0;
+		color: red;
+	}
+
+	+ .it-form {
+		margin-top: 20px;
+	}
+}
+
 .it-form {
 	position: relative;
 	display: flex;

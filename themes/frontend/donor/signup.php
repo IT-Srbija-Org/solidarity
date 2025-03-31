@@ -21,11 +21,15 @@
 	<p>Takođe, možete se detaljnije informisati putem naših društvenih mreža.</p>
 	<p><a href="https://itsrbija.org/">IT Srbija</a> – Neformalna grupa IT Stručnjaka</p>
 
-    <?php if (isset($data['errors'])):
-        foreach ($data['errors'] as $key => $error) {
-            echo '<p style="color:red">'.$error.'</p>';
-        }
-    endif; ?>
+	<?php if ( isset( $data['errors'] ) ) { ?>
+		<div class="it-form-error">
+			<?php
+			foreach ( $data['errors'] as $key => $error ) {
+				echo '<p>' . $error . '</p>';
+			}
+			?>
+		</div>
+	<?php }	?>
 
     <form method="post" action="obrazacDonatori" class="it-form" id="it-donatori-form" aria-label="Donatori forma" data-type="donatori">
         <?=$this->formToken(); ?>

@@ -3,6 +3,16 @@
 	<h2>Obrazac za delegate u obustavi</h2>
 	<p>Molimo Vas da, kao delegat Vaše škole, u ime svog kolektiva popunite ovaj formular kako bismo Vas mogli kontaktirati u vezi sa finansijskom podrškom za prosvetne radnike u obustavi, uključujući i nastavno i nenastavno osoblje.</p>
 
+	<?php if ( isset( $data['errors'] ) ) { ?>
+		<div class="it-form-error">
+			<?php
+			foreach ( $data['errors'] as $key => $error ) {
+				echo '<p>' . $error . '</p>';
+			}
+			?>
+		</div>
+	<?php }	?>
+
 	<form method="post" action="obrazacDelegati" id="it-delegati-form" class="it-form" aria-label="Delegati forma" data-type="delegati">
         <?=$this->formToken(); ?>
 		<div class="it-row-section it-col-num--2 it-responsive--predefined">

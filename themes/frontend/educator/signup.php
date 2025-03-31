@@ -8,11 +8,15 @@
 		<p>Molimo vas da podatke unosite pažljivo i tačno – to je ključ za pravičnu, efikasnu i transparentnu raspodelu pomoći. Posebnu pažnju obratite na tačnost broja računa i iznosa, jer greške mogu usporiti isplatu.</p>
 		<p>📌 Za dodatnu proveru ispravnosti unetog računa možete koristiti ovaj alat pre nego što podatke unesete u formu: <a href="https://www.cekos.rs/kontrolni-broj-modul-97" target="_blank">Proveri broj računa</a></p>
 
-        <?php if (isset($data['errors'])):
-            foreach ($data['errors'] as $key => $error) {
-                echo '<p style="color:red">'.$error.'</p>';
-            }
-        endif; ?>
+		<?php if ( isset( $data['errors'] ) ) { ?>
+			<div class="it-form-error">
+				<?php
+				foreach ( $data['errors'] as $key => $error ) {
+					echo '<p>' . $error . '</p>';
+				}
+				?>
+			</div>
+		<?php }	?>
 
 		<form method="post" action="/obrazacOsteceni" id="it-osteceni-form" class="it-form" aria-label="Osteceni forma" data-type="osteceni">
 			<?=$this->formToken(); ?>
