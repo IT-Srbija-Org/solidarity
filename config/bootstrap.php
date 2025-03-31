@@ -40,6 +40,10 @@ $container->set(\Skeletor\ContentEditor\Contracts\ContentEditorParserInterface::
     return $parser;
 });
 
+$container->set(\MailerSend\MailerSend::class, function() use ($container) {
+    return new \MailerSend\MailerSend(['api_key' => $container->get(Config::class)->mailer->server->mailersend]);
+});
+
 $container->set(\Skeletor\ContentEditor\Contracts\BlockViewInterface::class, function() use ($container) {
     return new \Skeletor\ContentEditor\View();
 });

@@ -15,6 +15,7 @@
     "laminas/laminas-session": "^2.21.0",
     "nesbot/carbon": "*",
     "phpoffice/phpspreadsheet": "*",
+    "mailersend/mailersend": "^0.30.0",
     "beberlei/doctrineextensions": "^1.5"
   },
   "require-dev": {
@@ -36,6 +37,9 @@
   },
   "config": {
     "preferred-install": "dist",
-    "bin-dir": "vendor/bin/"
+    "bin-dir": "vendor/bin/",
+    "allow-plugins": {
+      "php-http/discovery": true
+    }
   }
 }

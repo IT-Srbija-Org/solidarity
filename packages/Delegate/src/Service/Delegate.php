@@ -6,6 +6,7 @@ use Skeletor\Core\TableView\Service\TableView;
 use Psr\Log\LoggerInterface as Logger;
 use Skeletor\User\Service\Session;
 use Solidarity\Delegate\Filter\Delegate as DelegateFilter;
+use Solidarity\Mailer\Service\Mailer;
 
 class Delegate extends TableView
 {
@@ -16,9 +17,17 @@ class Delegate extends TableView
      * @param Logger $logger
      */
     public function __construct(
-        DelegateRepository $repo, Session $user, Logger $logger, DelegateFilter $filter, private \DateTime $dt
+        DelegateRepository $repo, Session $user, Logger $logger, DelegateFilter $filter, private \DateTime $dt,
+        private Mailer $mailer
     ) {
         parent::__construct($repo, $user, $logger, $filter);
+    }
+
+    public function create(array $data)
+    {
+        $entity = parent::create($data);
+        $this->mailer->sendDelegateRegisteredMail($entity->email);
+        return $entity;
     }
 
     public function prepareEntities($entities)
