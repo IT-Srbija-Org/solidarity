@@ -41,7 +41,7 @@ class EducatorRepository extends TableViewRepository
 
     public function getSearchableColumns(): array
     {
-        return ['name', 'amount', 'status', 'schoolName'];
+        return ['a.name', 'a.amount', 'a.status', 'a.schoolName', 'a.accountNumber'];
     }
 
 }

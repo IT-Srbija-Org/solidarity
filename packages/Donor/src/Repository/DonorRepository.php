@@ -19,7 +19,7 @@ class DonorRepository extends TableViewRepository
 
     public function getSearchableColumns(): array
     {
-        return ['email', 'amount', 'status'];
+        return ['a.email', 'a.amount', 'a.status'];
     }
 
     public function fetchForMapping()
