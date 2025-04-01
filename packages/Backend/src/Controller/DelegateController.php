@@ -67,8 +67,6 @@ class DelegateController extends AjaxCrudController
     public function sendRoundStartMailToDelegates()
     {
         ini_set('max_input_time', 600);
-        ini_set('display_errors', '1');
-        error_reporting(E_ALL);
         $verifiedDelegates = $this->service->getEntities(['status' => \Solidarity\Delegate\Entity\Delegate::STATUS_VERIFIED]);
         /* @var \Solidarity\Delegate\Entity\Delegate $delegate */
         foreach ($verifiedDelegates as $delegate) {
