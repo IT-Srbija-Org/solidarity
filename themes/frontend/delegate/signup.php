@@ -43,9 +43,9 @@
 					<div class="it-form-field">
 						<label for="school-type">Tip obrazovne ustanove *</label>
 						<select name="schoolType" id="school-type" aria-required="true" required>
-							<option value="OŠ">Osnovna škola</option>
-							<option value="SŠ">Srednja stručna škola</option>
-							<option value="G">Gimnazija</option>
+							<option value="Osnovna škola">Osnovna škola</option>
+							<option value="Srednja stručna škola">Srednja stručna škola</option>
+							<option value="Gimnazija">Gimnazija</option>
 						</select>
 					</div>
 				</div>
