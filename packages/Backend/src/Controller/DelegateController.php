@@ -1,12 +1,14 @@
 <?php
 namespace Solidarity\Backend\Controller;
 
+use Skeletor\User\Entity\User;
 use Solidarity\Delegate\Service\Delegate;
 use Skeletor\Core\Controller\AjaxCrudController;
 use GuzzleHttp\Psr7\Response;
 use Laminas\Config\Config;
 use Laminas\Session\SessionManager as Session;
 use League\Plates\Engine;
+use Solidarity\Mailer\Service\Mailer;
 use Tamtamchik\SimpleFlash\Flash;
 
 class DelegateController extends AjaxCrudController
@@ -27,10 +29,13 @@ class DelegateController extends AjaxCrudController
      * @param Engine $template
      */
     public function __construct(
-        Delegate $service, Session $session, Config $config, Flash $flash, Engine $template
+        Delegate $service, Session $session, Config $config, Flash $flash, Engine $template, private Mailer $mailer
     ) {
         parent::__construct($service, $session, $config, $flash, $template);
-        $this->tableViewConfig['createButton'] = false;
+        if ($this->getSession()->getStorage()->offsetGet('loggedInRole') !== User::ROLE_ADMIN) {
+            $this->tableViewConfig['createButton'] = false;
+        }
+
     }
 
     public function form(): Response
@@ -54,6 +59,11 @@ class DelegateController extends AjaxCrudController
         return $this->getResponse()->withHeader('Content-Type', 'application/json');
     }
 
+    public function sendRoundStartMailToDelegate()
+    {
+        $this->mailer->sendRoundStartMailToDelegate();
+    }
+
     public function import()
     {
         ini_set('max_input_time', 600);
@@ -71,7 +81,7 @@ class DelegateController extends AjaxCrudController
 
             $status = 1;
             switch ($trxInfo[0]) {
-                case 'Verified':
+                case 'Verifikovano':
                     $status = 2;
                     break;
                 case 'Novo':

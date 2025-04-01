@@ -26,7 +26,6 @@ class Delegate extends TableView
     public function create(array $data)
     {
         $entity = parent::create($data);
-        $this->mailer->sendDelegateRegisteredMail($entity->email);
         return $entity;
     }
 
