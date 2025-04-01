@@ -758,7 +758,7 @@
 							<option value="Osnovna škola Josif Pančić">Osnovna škola Josif Pančić</option>
 							<option value="Privatna osnovna škola Plavi krug">Privatna osnovna škola Plavi krug</option>
 							<option value="Specijalna škola Miloje Pavlović">Specijalna škola Miloje Pavlović</option>
-							<option value="Škola za osnovno i srednje obrazovanje sa domom Sveti Sava">Škola za osnovno i srednje obrazovanje sa domom Sveti Sava</option>
+							<option value="Škola za osnovno i srednje obrazovanje Sveti Sava">Škola za osnovno i srednje obrazovanje Sveti Sava</option>
 							<option value="Gimnazija Ruđer Bošković">Gimnazija Ruđer Bošković</option>
 							<option value="Gimnazija Crnjanski">Gimnazija Crnjanski</option>
 							<option value="Muzička škola Vatroslav Lisinski">Muzička škola Vatroslav Lisinski</option>
@@ -1161,7 +1161,6 @@
 							<option value="Ekonomsko-trgovinska škola">Ekonomsko-trgovačka škola</option>
 							<option value="Medicinska škola">Medicinska škola</option>
 							<option value="Tehnička škola">Tehnička škola</option>
-							<option value="Škola za osnovno i srednje obrazovanje Jelena Majstorović">Škola za osnovno i srednje obrazovanje Jelena Majstorović</option>
 						</select>
 						<select class="it-school-name" data-city="Zvečan">
 							<option value="">Izaberite školu</option>
@@ -1260,7 +1259,6 @@
 							<option value="Osnovna škola Rada Miljković">Osnovna škola Rada Miljković</option>
 							<option value="Osnovna škola Radislav Nikčević Majur">Osnovna škola Radislav Nikčević Majur</option>
 							<option value="Privatna osnovna škola Crnjanski">Privatna osnovna škola Crnjanski</option>
-							<option value="Škola za učenike oštećenog sluha i govora 11. maj">Škola za učenike oštećenog sluha i govora 11. maj</option>
 							<option value="Gimnazija Svetozar Marković">Gimnazija Svetozar Marković</option>
 							<option value="Ekonomsko-trgovinska škola Slavka Đurđević">Ekonomsko-trgovinska škola Slavka Đurđević</option>
 							<option value="Elektrotehnička i građevinska škola Nikola Tesla">Elektrotehnička i građevinska škola Nikola Tesla</option>
@@ -1407,8 +1405,6 @@
 							<option value="Osnovna škola Sreten Mladenović Desimirovac">Osnovna škola Sreten Mladenović Desimirovac</option>
 							<option value="Osnovna škola Stanislav Sremčević">Osnovna škola Stanislav Sremčević</option>
 							<option value="Osnovna škola Treći kragujevački bataljon">Osnovna škola Treći kragujevački bataljon</option>
-							<option value="Škola za osnovno obrazovanje Vukašin Marković">Škola za osnovno obrazovanje Vukašin Marković</option>
-							<option value="Škola sa domom za učenike oštećenog sluha">Škola sa domom za učenike oštećenog sluha</option>
 							<option value="Druga kragujevačka gimnazija Liceja">Druga kragujevačka gimnazija Liceja</option>
 							<option value="Ekonomska škola">Ekonomska škola</option>
 							<option value="Medicinska škola Sestre Ninković">Medicinska škola Sestre Ninković</option>
@@ -1420,7 +1416,7 @@
 							<option value="Srednja škola Sveti Arhangel">Srednja škola Sveti Arhangel</option>
 							<option value="Trgovinsko-ugostiteljska škola Toza Dragović">Trgovinsko-ugostiteljska škola Toza Dragović</option>
 							<option value="Škola za osnovno i srednje obrazovanje Vukašin Marković">Škola za osnovno i srednje obrazovanje Vukašin Marković</option>
-							<option value="Škola sa domom za učenike oštećenog sluha">Škola sa domom za učenike oštećenog sluha</option>
+							<option value="Škola za učenike oštećenog sluha">Škola za učenike oštećenog sluha</option>
 						</select>
 						<select class="it-school-name" data-city="Kraljevo">
 							<option value="">Izaberite školu</option>
@@ -1445,7 +1441,6 @@
 							<option value="Osnovna škola Svetozar Marković">Osnovna škola Svetozar Marković</option>
 							<option value="Osnovna škola Branko Radičević Vitkovac">Osnovna škola Branko Radičević Vitkovac</option>
 							<option value="Osnovna škola Petar Nikolić Samaila">Osnovna škola Petar Nikolić Samaila</option>
-							<option value="Škola za osnovno i srednje obrazovanje Ivo Lola Ribar">Škola za osnovno i srednje obrazovanje Ivo Lola Ribar</option>
 							<option value="Gimnazija">Gimnazija</option>
 							<option value="Ekonomsko-trgovinska škola">Ekonomsko-trgovinska škola</option>
 							<option value="Elektro-saobraćajna tehnička škola Nikola Tesla">Elektro-saobraćajna tehnička škola Nikola Tesla</option>
@@ -1491,7 +1486,6 @@
 							<option value="Prva tehnička škola">Prva tehnička škola</option>
 							<option value="Srednja poslovno menadžerska škola">Srednja poslovno menadžerska škola</option>
 							<option value="Hemijsko-tehnološka škola">Hemijsko-tehnološka škola</option>
-							<option value="Škola za osnovno i srednje obrazovanje Veselin Nikolić">Škola za osnovno i srednje obrazovanje Veselin Nikolić</option>
 						</select>
 						<select class="it-school-name" data-city="Kula">
 							<option value="">Izaberite školu</option>
@@ -1762,8 +1756,6 @@
 							<option value="Osnovna škola Kralj Petar I">Osnovna škola Kralj Petar I</option>
 							<option value="Osnovna škola Sreten Mladenović Mika">Osnovna škola Sreten Mladenović Mika</option>
 							<option value="Osnovna škola 14. oktobar">Osnovna škola 14. oktobar</option>
-							<option value="Specijalna škola Bubanj">Specijalna škola Bubanj</option>
-							<option value="Škola za osnovno i srednje obrazovanje Carica Jelena">Škola za osnovno i srednje obrazovanje Carica Jelena</option>
 							<option value="Gimnazija Svetozar Marković">Gimnazija Svetozar Marković</option>
 							<option value="Mašinska škola">Mašinska škola</option>
 							<option value="Specijalna škola Bubanj">Specijalna škola Bubanj</option>
@@ -1931,7 +1923,6 @@
 						<select class="it-school-name" data-city="Osečina">
 							<option value="">Izaberite školu</option>
 							<option value="Obrazovno-vaspitni centar">Obrazovno-vaspitni centar</option>
-							<option value="Obrazovno-vaspitni centar">Obrazovno-vaspitni centar</option>
 							<option value="Osnovna škola Vojvoda Mišić Pecka">Osnovna škola Vojvoda Mišić Pecka</option>
 						</select>
 						<select class="it-school-name" data-city="Odžaci">
@@ -1983,7 +1974,6 @@
 							<option value="Poljoprivredna škola Josif Pančić">Poljoprivredna škola Josif Pančić</option>
 							<option value="Srednja stručna škola Vizija">Srednja stručna škola Vizija</option>
 							<option value="Tehnička škola 23. maj">Tehnička škola 23. maj</option>
-							<option value="Škola za osnovno i srednje obrazovanje Mara Mandić">Škola za osnovno i srednje obrazovanje Mara Mandić</option>
 						</select>
 						<select class="it-school-name" data-city="Paraćin">
 							<option value="">Izaberite školu</option>
@@ -2118,6 +2108,11 @@
 							<option value="Prijepoljska gimnazija">Prijepoljska gimnazija</option>
 							<option value="Tehnička škola">Tehnička škola</option>
 						</select>
+						<select class="it-school-name" data-city="Prilužje">
+							<option value="">Izaberite školu</option>
+							<option value="Osnovna škola Vuk Karadžić">Osnovna škola Vuk Karadžić</option>
+							<option value="Srednja škola Prilužje">Srednja škola Prilužje</option>
+						</select>
 						<select class="it-school-name" data-city="Prokuplje">
 							<option value="">Izaberite školu</option>
 							<option value="Muzička škola Kornelije Stanković">Muzička škola Kornelije Stanković</option>
@@ -2137,6 +2132,11 @@
 							<option value="">Izaberite školu</option>
 							<option value="Osnovna škola Vuk Karadžić Vitoševac">Osnovna škola Vuk Karadžić Vitoševac</option>
 							<option value="Osnovna škola Ivan Vušović">Osnovna škola Ivan Vušović</option>
+						</select>
+						<select class="it-school-name" data-city="Ranilug">
+							<option value="">Izaberite školu</option>
+							<option value="Osnovna škola Trajko Perić">Osnovna škola Trajko Perić</option>
+							<option value="Srednja škola Ranilug">Srednja škola Ranilug</option>
 						</select>
 						<select class="it-school-name" data-city="Rača">
 							<option value="">Izaberite školu</option>
@@ -2303,7 +2303,7 @@
 							<option value="Osnovna škola Ognjena Price Kolut">Osnovna škola Ognjena Price Kolut</option>
 							<option value="Osnovna škola Petefi Šandor Doroslovo">Osnovna škola Petefi Šandor Doroslovo</option>
 							<option value="Osnovna škola Petar Kočić Riđica">Osnovna škola Petar Kočić Riđica</option>
-							<option value="Škola za osnovno i srednje obrazovanje sa domom Vuk Karadžić">Škola za osnovno i srednje obrazovanje sa domom Vuk Karadžić</option>
+							<option value="Škola za osnovno i srednje obrazovanje Vuk Karadžić">Škola za osnovno i srednje obrazovanje Vuk Karadžić</option>
 							<option value="Gimnazija Veljko Petrović">Gimnazija Veljko Petrović</option>
 							<option value="Muzička škola Petar Konjović">Muzička škola Petar Konjović</option>
 							<option value="Srednja ekonomska škola">Srednja ekonomska škola</option>
@@ -2311,7 +2311,6 @@
 							<option value="Srednja poljoprivredno-prehrambena škola">Srednja poljoprivredno-prehrambena škola</option>
 							<option value="Srednja tehnička škola">Srednja tehnička škola</option>
 							<option value="Srednja škola Sveti Sava">Srednja škola Sveti Sava</option>
-							<option value="Škola za osnovno i srednje obrazovanje sa domom Vuk Karadžić">Škola za osnovno i srednje obrazovanje sa domom Vuk Karadžić</option>
 						</select>
 						<select class="it-school-name" data-city="Sopot">
 							<option value="">Izaberite školu</option>
@@ -2344,7 +2343,6 @@
 							<option value="Muzička škola Petar Krančević">Muzička škola Petar Krančević</option>
 							<option value="Prehrambeno-šumarska i hemijska škola">Prehrambeno-šumarska i hemijska škola</option>
 							<option value="Srednja tehnička škola Nikola Tesla">Srednja tehnička škola Nikola Tesla</option>
-							<option value="Škola za osnovno i srednje obrazovanje Radivoj Popović">Škola za osnovno i srednje obrazovanje Radivoj Popović</option>
 						</select>
 						<select class="it-school-name" data-city="Sremski Karlovci">
 							<option value="">Izaberite školu</option>
@@ -2380,7 +2378,6 @@
 						<select class="it-school-name" data-city="Subotica">
 							<option value="">Izaberite školu</option>
 							<option value="Osnovna škola Sonja Marinković">Osnovna škola Sonja Marinković</option>
-							<option value="Osnovna i srednja škola Žarko Zrenjanin">Osnovna i srednja škola Žarko Zrenjanin</option>
 							<option value="Osnovna škola 10. oktobar">Osnovna škola 10. oktobar</option>
 							<option value="Osnovna škola Bosa Milićević Novi Žednik">Osnovna škola Bosa Milićević Novi Žednik</option>
 							<option value="Osnovna škola Vladimir Nazor Đurđin">Osnovna škola Vladimir Nazor Đurđin</option>
@@ -2400,7 +2397,6 @@
 							<option value="Osnovna škola Sveti Sava">Osnovna škola Sveti Sava</option>
 							<option value="Osnovna škola Sečenji Ištvan">Osnovna škola Sečenji Ištvan</option>
 							<option value="Osnovna škola Hunjadi Janoš Čantavir">Osnovna škola Hunjadi Janoš Čantavir</option>
-							<option value="Školski centar Dositej Obradović">Školski centar Dositej Obradović</option>
 							<option value="Gimnazija za talentovane učenike Deže Kostolanji">Gimnazija za talentovane učenike Deže Kostolanji</option>
 							<option value="Gimnazija Svetozar Marković">Gimnazija Svetozar Marković</option>
 							<option value="Ekonomska srednja škola Bosa Milićević">Ekonomska srednja škola Bosa Milićević</option>
@@ -2506,7 +2502,6 @@
 							<option value="Medicinska škola">Medicinska škola</option>
 							<option value="Tehnička škola">Tehnička škola</option>
 							<option value="Škola za muzičke talente">Škola za muzičke talente</option>
-							<option value="Škola za muzičke talente">Škola za muzičke talente</option>
 						</select>
 						<select class="it-school-name" data-city="Ub">
 							<option value="">Izaberite školu</option>
@@ -2540,7 +2535,7 @@
 						</select>
 						<select class="it-school-name" data-city="Umka">
 							<option value="">Izaberite školu</option>
-							<option value="Škola za osnovno i srednje obrazovanje sa domom Sveti Sava">Škola za osnovno i srednje obrazovanje sa domom Sveti Sava</option>
+							<option value="Škola za osnovno i srednje obrazovanje Sveti Sava">Škola za osnovno i srednje obrazovanje Sveti Sava</option>
 						</select>
 						<select class="it-school-name" data-city="Futog">
 							<option value="">Izaberite školu</option>
