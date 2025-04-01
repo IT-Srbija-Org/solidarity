@@ -2,6 +2,7 @@
 namespace Solidarity\Delegate\Service;
 
 use Solidarity\Delegate\Repository\DelegateRepository;
+use Solidarity\Delegate\Entity\Delegate as DelegateEntity;
 use Skeletor\Core\TableView\Service\TableView;
 use Psr\Log\LoggerInterface as Logger;
 use Skeletor\User\Service\Session;
@@ -26,6 +27,20 @@ class Delegate extends TableView
     public function create(array $data)
     {
         $entity = parent::create($data);
+        if ($entity->status === DelegateEntity::STATUS_VERIFIED) {
+            $this->mailer->sendRoundStartMailToDelegate($entity->email);
+        }
+
+        return $entity;
+    }
+
+    public function update(array $data)
+    {
+        $entity = parent::update($data);
+        if ($data['sendRoundStartMail']) {
+            $this->mailer->sendRoundStartMailToDelegate($entity->email);
+        }
+
         return $entity;
     }
 

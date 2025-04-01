@@ -4,6 +4,7 @@ use Skeletor\Form\InputGroup\InputGroup;
 use Skeletor\Form\InputGroup\InputGroupWidth;
 use Skeletor\Form\InputTypes\ContentEditor\ContentEditor;
 use Skeletor\Form\InputTypes\Input\Email;
+use Skeletor\Form\InputTypes\Input\Checkbox;
 use Skeletor\Form\InputTypes\Input\Hidden;
 use Skeletor\Form\InputTypes\Input\Password;
 use Skeletor\Form\InputTypes\Input\Text;
@@ -35,6 +36,7 @@ $countBlocking = (new Text('countBlocking', $data['model']?->countBlocking, 'Cou
 $email = (new Email('email', $data['model']?->email, 'Email'));
 //    ->emailInvalidMessage('Email is invalid');
 $comment = (new \Skeletor\Form\InputTypes\TextArea\TextArea('comment', $data['model']?->comment, 'Comment'));
+$sendRoundStartMail = (new Checkbox('sendRoundStartMail', false, 'Pošalji email za prijavu oštećenih'));
 
 $inputGroup1 = (new InputGroup())
     ->addInput($email)
@@ -51,7 +53,8 @@ $inputGroup3 = (new InputGroup())
 $inputGroup4 = (new InputGroup())
     ->addInput($formLinkSentSelect)
     ->addInput($statusSelect)
-    ->addInput($comment);
+    ->addInput($comment)
+    ->addInput($sendRoundStartMail);
 
 $form->addTab((new Tab('Basic Info'))
     ->addInputGroup($inputGroup1)
