@@ -19,7 +19,7 @@ class DelegateRepository extends TableViewRepository
 
     public function getSearchableColumns(): array
     {
-        return ['a.email', 'a.name', 'a.schoolName', 'a.comment', 'a.verifiedBy'];
+        return ['a.email', 'a.name', 'a.schoolName', 'a.comment', 'a.verifiedBy', 'a.city'];
     }
 
 }
