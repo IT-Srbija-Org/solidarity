@@ -11,6 +11,7 @@ use League\Plates\Engine;
 use MailerSend\Helpers\Builder\Attachment;
 use MailerSend\Helpers\Builder\Recipient;
 use MailerSend\MailerSend;
+use Monolog\LogRecord;
 use Psr\Log\LoggerInterface as Logger;
 
 class Mailer extends \Skeletor\Core\Mailer\Service\Mailer
@@ -119,6 +120,28 @@ class Mailer extends \Skeletor\Core\Mailer\Service\Mailer
     public function handle(\Monolog\LogRecord $record): bool
     {
         return $this->handleApplicationError($record);
+    }
+
+    public function handleApplicationError(LogRecord $record)
+    {
+        $body = $record->message . PHP_EOL .
+            $record->channel . PHP_EOL .
+            $record->datetime->format('y/m/d H:i:s') . PHP_EOL .
+            $record->level->getName() . PHP_EOL;
+        $recipients = [];
+        foreach ($this->config->mailer->recipients->errorNotice as $targetMail) {
+            $recipients[] = new Recipient($targetMail, $targetMail);
+        }
+        $emailParams = (new \MailerSend\Helpers\Builder\EmailParams())
+            ->setFrom('info+no-reply@mrezasolidarnosti.org')
+            ->setFromName('Mreža solidarnosti')
+            ->setRecipients($recipients)
+            ->setSubject(sprintf('%s application error !', $this->config->offsetGet('appName')))
+            ->setHtml($body)
+            ->setReplyToName('Mreža solidarnosti');
+        $this->send($emailParams);
+
+        return true;
     }
 
 }
