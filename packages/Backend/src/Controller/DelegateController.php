@@ -59,9 +59,22 @@ class DelegateController extends AjaxCrudController
         return $this->getResponse()->withHeader('Content-Type', 'application/json');
     }
 
-    public function sendRoundStartMailToDelegate()
+    /**
+     * Sends round start info mail to ALL VERIFIED delegates. Does not know if any mails have been sent already.
+     *
+     * @return \Psr\Http\Message\ResponseInterface|void
+     */
+    public function sendRoundStartMailToDelegates()
     {
-        $this->mailer->sendRoundStartMailToDelegate();
+        ini_set('max_input_time', 600);
+        ini_set('display_errors', '1');
+        error_reporting(E_ALL);
+        $verifiedDelegates = $this->service->getEntities(['status' => \Solidarity\Delegate\Entity\Delegate::STATUS_VERIFIED]);
+        /* @var \Solidarity\Delegate\Entity\Delegate $delegate */
+        foreach ($verifiedDelegates as $delegate) {
+            $this->mailer->sendRoundStartMailToDelegate($delegate->email);
+        }
+        return $this->redirect('/delegate/view/');
     }
 
     public function import()

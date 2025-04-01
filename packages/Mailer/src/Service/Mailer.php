@@ -8,6 +8,7 @@ use Laminas\Mime\Message as MimeMessage;
 use Laminas\Mime\Mime;
 use Laminas\Mime\Part;
 use League\Plates\Engine;
+use MailerSend\Helpers\Builder\Attachment;
 use MailerSend\Helpers\Builder\Recipient;
 use MailerSend\MailerSend;
 use Psr\Log\LoggerInterface as Logger;
@@ -25,6 +26,7 @@ class Mailer extends \Skeletor\Core\Mailer\Service\Mailer
         $recipients = [
             new Recipient($email, $email),
         ];
+        $uputstvoPath = DATA_PATH .'/Uputstvo-prijava-2.-deo-februar.pdf';
         $emailParams = (new \MailerSend\Helpers\Builder\EmailParams())
             ->setFrom('delegati@mrezasolidarnosti.org')
             ->setFromName('Mreža solidarnosti')
@@ -32,7 +34,8 @@ class Mailer extends \Skeletor\Core\Mailer\Service\Mailer
             ->setSubject('Prijava oštećenih, 2. deo februar')
             ->setHtml($body)
             ->setReplyTo('delegati@mrezasolidarnosti.org')
-            ->setReplyToName('Mreža solidarnosti');
+            ->setReplyToName('Mreža solidarnosti')
+            ->setAttachments([new Attachment(file_get_contents($uputstvoPath), 'Uputstvo prijava 2. deo februar.pdf')]);
 
         $this->send($emailParams);
     }
