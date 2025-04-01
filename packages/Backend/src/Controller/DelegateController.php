@@ -1,12 +1,14 @@
 <?php
 namespace Solidarity\Backend\Controller;
 
+use Skeletor\User\Entity\User;
 use Solidarity\Delegate\Service\Delegate;
 use Skeletor\Core\Controller\AjaxCrudController;
 use GuzzleHttp\Psr7\Response;
 use Laminas\Config\Config;
 use Laminas\Session\SessionManager as Session;
 use League\Plates\Engine;
+use Solidarity\Mailer\Service\Mailer;
 use Tamtamchik\SimpleFlash\Flash;
 
 class DelegateController extends AjaxCrudController
@@ -27,10 +29,13 @@ class DelegateController extends AjaxCrudController
      * @param Engine $template
      */
     public function __construct(
-        Delegate $service, Session $session, Config $config, Flash $flash, Engine $template
+        Delegate $service, Session $session, Config $config, Flash $flash, Engine $template, private Mailer $mailer
     ) {
         parent::__construct($service, $session, $config, $flash, $template);
-        $this->tableViewConfig['createButton'] = false;
+        if ($this->getSession()->getStorage()->offsetGet('loggedInRole') !== User::ROLE_ADMIN) {
+            $this->tableViewConfig['createButton'] = false;
+        }
+
     }
 
     public function form(): Response
@@ -54,40 +59,50 @@ class DelegateController extends AjaxCrudController
         return $this->getResponse()->withHeader('Content-Type', 'application/json');
     }
 
+    public function sendRoundStartMailToDelegate()
+    {
+        $this->mailer->sendRoundStartMailToDelegate();
+    }
+
     public function import()
     {
         ini_set('max_input_time', 600);
         $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
         $reader->setReadDataOnly(true);
-        $excel = $reader->load(APP_PATH . '/delegati-sredjeno.xlsx');
+        $excel = $reader->load(APP_PATH . '/delegati.xlsx');
 
-        $cleanList = [];
         foreach ($excel->getSheet($excel->getFirstSheetIndex())->toArray() as $key => $trxInfo) {
             if ($key === 0) {
                 continue;
             }
-            $status = 1;
-            switch ($trxInfo[0]) {
-                case 'Novo':
-                    $status = 1;
-                    break;
-                case 'Problematično':
-                    $status = 3;
-                    break;
-                case 'Verified':
-                    $status = 2;
-                    break;
+            if ($trxInfo[3] === null || !strlen($trxInfo[3])) {
+                continue;
             }
 
-            $dt = new \DateTime($trxInfo[2]);
+            $status = 1;
+            switch ($trxInfo[0]) {
+                case 'Verifikovano':
+                    $status = 2;
+                    break;
+                case 'Novo':
+//                    $status = 1;
+//                    break;
+                case 'Problematično':
+//                    $status = 3;
+//                    break;
+                case 'Duplikat':
+                    continue(2);
+            }
+            $unixTimestamp = ($trxInfo[2] - 25569) * 86400;
+            $dateTime = gmdate("Y-m-d H:i:s", $unixTimestamp);
+            $dt = new \DateTime($dateTime);
 
-            //timestamp 3
             $delegateData = [
                 'phone' => '',
                 'email' => $trxInfo[3],
                 'name' => $trxInfo[4],
                 'schoolType' => $trxInfo[5],
-                'schoolName' => $trxInfo[6],
+                'schoolName' => str_replace(['"', "'"], '', $trxInfo[6]),
                 'city' => $trxInfo[7],
                 'count' => $trxInfo[8],
                 'countBlocking' => $trxInfo[9],
@@ -98,8 +113,14 @@ class DelegateController extends AjaxCrudController
                 'createdAt' => $dt,
                 'updatedAt' => $dt,
             ];
-            var_dump($trxInfo[2]);
-            $this->service->create($delegateData);
+//            var_dump($trxInfo[3]);
+            try {
+                $this->service->create($delegateData);
+            } catch (\Exception $e) {
+                var_dump($this->service->parseErrors());
+                die();
+            }
+
         }
         die('done');
     }
