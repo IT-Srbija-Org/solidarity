@@ -29,6 +29,9 @@ class Delegate extends TableView
         $entity = parent::create($data);
         if ($entity->status === DelegateEntity::STATUS_VERIFIED) {
             $this->mailer->sendRoundStartMailToDelegate($entity->email);
+            $data['id'] = $entity->id;
+            $data['formLinkSent'] = 1;
+            $entity = parent::update($data);
         }
 
         return $entity;
@@ -38,6 +41,9 @@ class Delegate extends TableView
     {
         $sendMail = $data['sendRoundStartMail'] ?? 0;
         unset($data['sendRoundStartMail']);
+        if ($sendMail) {
+            $data['formLinkSent'] = 1;
+        }
         $entity = parent::update($data);
         if ($sendMail) {
             $this->mailer->sendRoundStartMailToDelegate($entity->email);
