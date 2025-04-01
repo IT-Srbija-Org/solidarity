@@ -52,7 +52,11 @@ class Delegate implements ValidatorInterface
         }
 
         if (!isset($data['id'])) {
-            $existingDelegates = $this->delegateRepository->fetchAll(['schoolName' => $data['schoolName']]);
+            $existingDelegates = $this->delegateRepository->fetchAll([
+                'schoolName' => $data['schoolName'],
+                'schoolType' => $data['schoolType'],
+                'city' => $data['city'],
+            ]);
             if (count($existingDelegates) > 0) {
                 if ($existingDelegates[0]->email !== $data['email']) {
                     $this->messages['general'][] = 'Mesto delegata za vašu školu je zauzeto.';
