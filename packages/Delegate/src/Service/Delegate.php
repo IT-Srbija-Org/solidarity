@@ -36,8 +36,10 @@ class Delegate extends TableView
 
     public function update(array $data)
     {
+        $sendMail = $data['sendRoundStartMail'];
+        unset($data['sendRoundStartMail']);
         $entity = parent::update($data);
-        if ($data['sendRoundStartMail']) {
+        if ($sendMail) {
             $this->mailer->sendRoundStartMailToDelegate($entity->email);
         }
 
