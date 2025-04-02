@@ -201,7 +201,11 @@ img {
 	.it-school-name {
 		display: none;
 
-		&[data-city*="Ada"] {
+		&[data-city*="Ada"]:not([data-default-city]) {
+			display: block;
+		}
+
+		&:has([data-city][data-default-city][data-city=data-default-city]) {
 			display: block;
 		}
 	}

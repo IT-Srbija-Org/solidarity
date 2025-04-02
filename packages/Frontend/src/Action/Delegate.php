@@ -29,9 +29,9 @@ class Delegate extends BaseAction
                 return $this->redirect('/hvalaDelegatu');
             } catch (\Exception $e) {
                 // handle
-                echo $e->getMessage();
-                die();
-                return $this->redirect('/obrazacDelegati');
+	            $errors = [ $e->getMessage() ];
+
+	            return $this->respond('delegate/signup', ['errors' => $errors, 'data' => $data]);
             }
         }
 
