@@ -29,6 +29,7 @@ class Delegate extends TableView
         $entity = parent::create($data);
         if ($entity->status === DelegateEntity::STATUS_VERIFIED) {
             $this->mailer->sendRoundStartMailToDelegate($entity->email);
+            //@todo add checkbox for sendRoundStartMail
             $data['id'] = $entity->id;
             $data['formLinkSent'] = 1;
             $entity = parent::update($data);

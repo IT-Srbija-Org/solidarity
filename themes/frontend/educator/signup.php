@@ -8,17 +8,23 @@
 		<p>Molimo vas da podatke unosite pažljivo i tačno – to je ključ za pravičnu, efikasnu i transparentnu raspodelu pomoći. Posebnu pažnju obratite na tačnost broja računa i iznosa, jer greške mogu usporiti isplatu.</p>
 		<p>📌 Za dodatnu proveru ispravnosti unetog računa možete koristiti ovaj alat pre nego što podatke unesete u formu: <a href="https://www.cekos.rs/kontrolni-broj-modul-97" target="_blank">Proveri broj računa</a></p>
 
-		<?php if ( isset( $data['errors'] ) ) { ?>
-			<div class="it-form-error">
-				<?php
-				foreach ( $data['errors'] as $key => $error ) {
-					echo '<p>' . $error . '</p>';
-				}
-				?>
-			</div>
-		<?php }	?>
-
+        <?php if ( isset( $data['errors'] ) ) { ?>
+            <div class="it-form-error">
+                <?php
+                foreach ( $data['errors'] as $key => $error ) {
+                    if (is_array($error)) {
+                        foreach ($error as $err) {
+                            echo '<p>' . $err . '</p>';
+                        }
+                    } else {
+                        echo '<p>' . $error . '</p>';
+                    }
+                }
+                ?>
+            </div>
+        <?php }	?>
 		<form method="post" action="/obrazacOsteceni" id="it-osteceni-form" class="it-form" aria-label="Osteceni forma" data-type="osteceni">
+            <div class="it-form-response" aria-hidden="true" style="color:red"></div>
 			<?=$this->formToken(); ?>
 			<div class="it-form-field">
 				<label for="full-name">Ime i Prezime *</label>
@@ -2635,7 +2641,6 @@
 			<button type="submit" class="it-form-button it-button it-size--normal it-layout--filled it-m">
 				<span class="it-m-text">Pošalji</span>
 			</button>
-			<div class="it-form-response" aria-hidden="true"></div>
 		</form>
 	</div>
 	<br /><br />

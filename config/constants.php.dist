@@ -6,3 +6,5 @@ define('DATA_PATH', APP_PATH . '/data');
 define('IMAGES_PATH', APP_PATH . '/../frontend/public/images');
 define('ADMIN_ASSET_PATH', PUBLIC_PATH . '/assets/backend');
 define('ADMIN_ASSET_URL', strstr(ADMIN_ASSET_PATH,'/assets'));
+define('DEBUG_BACKEND', false);
+define('DEBUG_FRONTEND', false);

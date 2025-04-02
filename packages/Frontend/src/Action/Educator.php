@@ -34,7 +34,6 @@ class Educator extends BaseAction
                     unset($data[$key]);
                     $errors[] = $error['message'];
                 }
-//                return $this->redirect('/obrazacOsteceni');
                 return $this->respond('educator/signup', ['errors' => $errors, 'data' => $data]);
             }
         }

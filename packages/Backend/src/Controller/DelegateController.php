@@ -49,16 +49,6 @@ class DelegateController extends AjaxCrudController
 //        die('disabled');
 //    }
 
-    public function getEntityData()
-    {
-        $this->getResponse()->getBody()->write(json_encode($this->service->getEntityData(
-            (int) $this->getRequest()->getAttribute('id'), $this->getRequest()->getQueryParams()['currency']
-        )));
-        $this->getResponse()->getBody()->rewind();
-
-        return $this->getResponse()->withHeader('Content-Type', 'application/json');
-    }
-
     /**
      * Sends round start info mail to ALL VERIFIED delegates. Does not know if any mails have been sent already.
      *

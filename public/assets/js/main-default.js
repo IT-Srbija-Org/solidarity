@@ -90,7 +90,7 @@
 						var school       = itInitForms.escapeHTML( $thisForm.find( '#school-name' ).val() );
 						var bank_account = itInitForms.escapeHTML( $thisForm.find( '#bank-account' ).val() );
 						var amount       = itInitForms.escapeNumber( $thisForm.find( '#amount' ).val() );
-
+console.log(school);
 						// Validate if mandatory fields are filled.
 						if ( ! full_name || ! city || ! school || ! bank_account || ! amount ) {
 							$response.empty().html( 'Molimo popunite sva obavezna polja.' );
