@@ -2382,7 +2382,7 @@ $schools_map = array(
 	<?php
 	if ( empty( $user ) || ! isset( $user['email'] ) ) {
 		?>
-		<h2>Delegat sa tim podacima nije nađen.</h2>
+		<h2>Delegat sa tim podacima nije pronađen.</h2>
 		<?php
 	} else {
 		// Get form data, email is Unique ID.
@@ -2409,7 +2409,7 @@ $schools_map = array(
 			</div>
 		<?php }	?>
 
-		<form method="post" action="profileDelegat" id="it-delegat-form" class="it-form" aria-label="Delegat forma" data-type="delegat">
+		<form method="post" action="profileDelegat" id="it-delegati-form" class="it-form" aria-label="Delegati forma" data-type="delegati">
 			<?=$this->formToken(); ?>
 			<div class="it-row-section it-col-num--2 it-responsive--predefined">
 				<div class="it-row">
