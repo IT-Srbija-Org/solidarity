@@ -41,7 +41,7 @@ return array(
     ],
     'mailer' => [
         'server' => [
-            'mailersend' => 'fake-key-for-local-env',
+            'mailersend' => '123',
         ]
     ]
 
