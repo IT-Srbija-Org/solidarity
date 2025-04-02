@@ -44,10 +44,10 @@ class DelegateController extends AjaxCrudController
         return parent::form();
     }
 
-    public function create(): Response
-    {
-        die('disabled');
-    }
+//    public function create(): Response
+//    {
+//        die('disabled');
+//    }
 
     public function getEntityData()
     {
