@@ -29,7 +29,7 @@ class Delegate extends BaseAction
                 return $this->redirect('/hvalaDelegatu');
             } catch (\Exception $e) {
                 // handle
-	            $errors = [ $e->getMessage() ];
+	            $errors = $this->delegate->parseErrors();
 
 	            return $this->respond('delegate/signup', ['errors' => $errors, 'data' => $data]);
             }

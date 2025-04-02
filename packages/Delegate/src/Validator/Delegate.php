@@ -59,16 +59,16 @@ class Delegate implements ValidatorInterface
             ]);
             if (count($existingDelegates) > 0) {
                 if ($existingDelegates[0]->email !== $data['email']) {
-                    $this->messages['general'][] = 'Mesto delegata za vašu školu je zauzeto.';
+                    $this->messages['email'][] = 'Mesto delegata za vašu školu je zauzeto.';
                 } else {
-                    $this->messages['general'][] = 'Već ste prijavljeni na mrežu solidarnosti.';
+                    $this->messages['email'][] = 'Već ste prijavljeni na mrežu solidarnosti.';
                 }
                 $valid = false;
             }
         }
 
         if (!$this->csrf->validate($data)) {
-            $this->messages['general'][] = 'Stranice je istekla, probajte ponovo.';
+            $this->messages['general'][] = 'Stranica je istekla, probajte ponovo.';
             $valid = false;
         }
 

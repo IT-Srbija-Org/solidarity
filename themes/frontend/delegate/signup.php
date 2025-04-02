@@ -7,7 +7,13 @@
 		<div class="it-form-error">
 			<?php
 			foreach ( $data['errors'] as $key => $error ) {
-				echo '<p>' . $error . '</p>';
+                if (is_array($error)) {
+                    foreach ($error as $err) {
+                        echo '<p>' . $err . '</p>';
+                    }
+                } else {
+                    echo '<p>' . $error . '</p>';
+                }
 			}
 			?>
 		</div>
