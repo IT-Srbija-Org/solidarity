@@ -2,74 +2,102 @@
 
 Mreža solidarnosti je jednostavna web aplikacija koja omogućava korisnicima da se prijavljuju na istu putem formi ili da upravljaju podacima unutar dash-a.
 
-## Table of Contents
-- [Instalacija](#instalacija)
-- [Podešavanje baze](#podešavanje-baze-manuelna-instalacija)
-- [Upotreba](#upotreba)
+## Sadržaj
+- [IT Srbija - Mreža solidarnosti](#it-srbija---mreža-solidarnosti)
+  - [Sadržaj](#sadržaj)
+  - [Instalacija](#instalacija)
+    - [Docker instalacija (Preporučeno)](#docker-instalacija-preporučeno)
+    - [Vagrant instalacija](#vagrant-instalacija)
+  - [Podešavanje baze (manuelna instalacija)](#podešavanje-baze-manuelna-instalacija)
+  - [Upotreba](#upotreba)
+  - [Korisnički kredencijali](#korisnički-kredencijali)
+  - [Komande za bazu podataka](#komande-za-bazu-podataka)
+
 ## Instalacija
 
-Da biste instalirali APP na lokalu, pratite sledeće korake:
+### Docker instalacija (Preporučeno)
 
-1. Install vagrant - https://developer.hashicorp.com/vagrant/downloads
-2. Install virtualbox - https://www.virtualbox.org/wiki/Downloads
-3. From app root/config clone config-local.php-dist and constants.php.dist and remove .dist from file name
-4. Add entries to etc/hosts
+Za instalaciju pomoću Docker-a, pogledajte [README.docker.md](README.docker.md).
+
+### Vagrant instalacija
+
+Preduslovi:
+- Vagrant - https://developer.hashicorp.com/vagrant/downloads
+- VirtualBox - https://www.virtualbox.org/wiki/Downloads (nije potreban na Linux-u ako imate instaliran libvirt)
+
+Koraci:
+1. Iz app root/config klonirajte config-local.php-dist i constants.php.dist i uklonite .dist iz imena fajla
+2. Dodajte sledeće unose u etc/hosts fajl:
     ```bash
     192.168.25.43	solidarity.local
     192.168.25.43	solidforms.local
     ```
-5. From app root run (if stuck here try restarting guest system, usually windows)
+3. Iz korena aplikacije pokrenite (ako zapne, pokušajte restartovati guest sistem, obično Windows):
     ```bash
     vagrant up
     ```
-6. From app root run (manuelna instalacija)
+4. Iz korena aplikacije instalirajte zavisnosti:
     ```bash
     composer install
+    # ili ako composer nije instaliran globalno
     php composer.phar install
     ```
-   or update libraries
+   Za ažuriranje biblioteka:
     ```bash
     composer update
     php composer.phar update
     ```
 
+SSH pristup:
+- Komanda: `vagrant ssh`
+- Lozinka: `vagrant`
+
 ## Podešavanje baze (manuelna instalacija)
 
-Da biste podesili bazu za APP na lokalu, pratite sledeće korake:
+Da biste podesili bazu za aplikaciju na lokalu, pratite sledeće korake:
 
-1. Install MariaDB for example - https://mariadb.org/download/
-2. All details about the local database can be found here - app root/config/config-local.php
-3. Create APP database, open terminal and run
+1. Instalirajte MariaDB, na primer sa - https://mariadb.org/download/
+2. Svi detalji o lokalnoj bazi podataka mogu se naći u - app root/config/config-local.php
+3. Kreirajte bazu podataka, otvorite terminal i pokrenite:
     ```bash
     mysql -u root -p
     CREATE DATABASE solid;
-    ```
-4. To migrate database, run
-   ```bash
-    php bin/doctrine orm:schema-tool:update --complete --force --dump-sql
-    ```
-5. To validate database schema, run
-    ```bash
-    php bin/doctrine orm:validate-schema
-    ```
-6. To clear orm cache, run
-    ```bash
-    php bin/doctrine orm:clear-cache:metadata
-    php bin/doctrine orm:clear-cache:query
-    php bin/doctrine orm:clear-cache:result
     ```
 
 ## Upotreba
 
 Projekat sa formama će biti dostupan na `http://solidforms.local` a dash sistem na `http://solidarity.local`.
 
-1. To ssh into machine, from app root run (ssh password is vagrant)
+1. Za SSH pristup mašini, iz korena aplikacije pokrenite (SSH lozinka je vagrant):
     ```bash
     vagrant ssh
     ```
-2. To style and validate forms, navigate to app root/public/assets and run (node is required - https://nodejs.org/en/download)
+2. Za stilizovanje i validaciju formi, navigirajte do app root/public/assets i pokrenite (potreban je node - https://nodejs.org/en/download):
     ```bash
     npm install
     npm run build
     ```
-   Inside assets folder you will find scss files and js/main-default.js
+   Unutar assets foldera naći ćete scss fajlove i js/main-default.js
+
+## Korisnički kredencijali
+
+- Email: test@example.com
+- Lozinka: testtest
+
+## Komande za bazu podataka
+
+Za migraciju baze podataka:
+```bash
+php bin/doctrine orm:schema-tool:update --complete --force --dump-sql
+```
+
+Za validaciju šeme baze podataka:
+```bash
+php bin/doctrine orm:validate-schema
+```
+
+Za čišćenje ORM keša:
+```bash
+php bin/doctrine orm:clear-cache:metadata
+php bin/doctrine orm:clear-cache:query
+php bin/doctrine orm:clear-cache:result

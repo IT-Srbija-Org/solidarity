@@ -1,0 +1,90 @@
+version: "3.4"
+x-logging: &default-logging
+  driver: "json-file"
+  options:
+    max-file: "5"
+    max-size: "20m"
+
+services:
+  mariadb:
+    container_name: solidarity-mariadb
+    image: mariadb:10.11
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - ./db/data:/var/lib/mysql
+    ports:
+      - "127.0.0.1:3306:3306"
+    logging: *default-logging
+
+  redis:
+    container_name: solidarity-redis
+    image: redis:7-alpine
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:6379:6379"
+    logging: *default-logging
+
+  php:
+    container_name: solidarity-php
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - .:/var/www/html
+    depends_on:
+      - mariadb
+      - redis
+    logging: *default-logging
+
+  nginx:
+    container_name: solidarity-nginx
+    image: nginx:alpine
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    volumes:
+      - .:/var/www/html
+      - ./docker/nginx/conf.d:/etc/nginx/conf.d:ro
+    depends_on:
+      - php
+    logging: *default-logging
+
+  setup-project:
+    container_name: solidarity-setup-project
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - mariadb
+      - php
+    restart: "no"
+    env_file:
+      - .env
+    volumes:
+      - .:/var/www/html
+      - ./docker/scripts/docker-setup.sh:/docker-setup.sh
+    entrypoint: ["bash", "-c", "git config --global --add safe.directory /var/www/html && /docker-setup.sh"]
+    logging: *default-logging
+
+  mailhog:
+    container_name: solidarity-mailhog
+    image: mailhog/mailhog
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8025:8025"
+    logging: *default-logging
+
+  adminer:
+    container_name: solidarity-adminer
+    image: adminer
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8080:8080"
+    depends_on:
+      - mariadb
+    logging: *default-logging

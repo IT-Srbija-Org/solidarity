@@ -6,7 +6,7 @@ use Skeletor\Core\App\WebSkeletor;
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-include("../config/constants.php");
+include(__DIR__ . "/../config/constants.php");
 include(APP_PATH . "/vendor/autoload.php");
 $path = getenv('APPLICATION');
 if (getenv('APPLICATION_ENV') !== 'production') {
