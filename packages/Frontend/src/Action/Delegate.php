@@ -22,6 +22,7 @@ class Delegate extends BaseAction
     ) {
         $this->setGlobalVariable('title', 'Forma za delegate');
         $data = $request->getParsedBody();
+
         if (!empty($data)) {
             try {
                 $this->delegate->create($data);
@@ -31,7 +32,8 @@ class Delegate extends BaseAction
                 // handle
 	            $errors = $this->delegate->parseErrors();
 
-	            return $this->respond('delegate/signup', ['errors' => $errors, 'data' => $data]);
+	            return $this->respond('delegate/signup',
+                    ['errors' => $errors, 'data' => $data, 'param1' => $this->getConfig()->offsetGet('param1')]);
             }
         }
 

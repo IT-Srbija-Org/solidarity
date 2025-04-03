@@ -17,13 +17,13 @@ class Donor
     const STATUS_PROBLEM = 3;
 
     #[ORM\Column(type: Types::INTEGER)]
-    public string $amount;
+    public int $amount;
     #[ORM\Column(type: Types::STRING, length: 255, unique: true)]
     public string $email;
     #[ORM\Column(type: Types::SMALLINT)]
-    public string $status;
+    public int $status;
     #[ORM\Column(type: Types::SMALLINT)]
-    public string $monthly;
+    public int $monthly;
     #[ORM\Column(type: Types::STRING, length: 1024, nullable: true)]
     public ?string $comment;
 

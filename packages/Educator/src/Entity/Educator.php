@@ -18,7 +18,7 @@ class Educator
     const STATUS_SENT = 3;
 
     #[ORM\Column(type: Types::INTEGER)]
-    public string $amount;
+    public int $amount;
     #[ORM\Column(type: Types::STRING, length: 255)]
     public string $name;
     #[ORM\Column(type: Types::STRING)]

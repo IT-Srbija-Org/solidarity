@@ -26,6 +26,9 @@ return [
     [['GET', 'POST'], '/delegate/{action}[/{id}]', \Solidarity\Backend\Controller\DelegateController::class],
     [['GET', 'POST'], '/educator/{action}[/{id}]', \Solidarity\Backend\Controller\EducatorController::class],
     [['GET', 'POST'], '/transaction/{action}[/{id}]', \Solidarity\Backend\Controller\TransactionController::class],
+    [['GET', 'POST'], '/school/{action}[/{id}]', \Solidarity\Backend\Controller\SchoolController::class],
+    [['GET', 'POST'], '/schoolType/{action}[/{id}]', \Solidarity\Backend\Controller\SchoolTypeController::class],
+    [['GET', 'POST'], '/city/{action}[/{id}]', \Solidarity\Backend\Controller\CityController::class],
 
 
 ];

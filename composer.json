@@ -35,6 +35,9 @@
       "Solidarity\\Donor\\": "packages/Donor/src",
       "Solidarity\\Transaction\\": "packages/Transaction/src",
       "Solidarity\\Educator\\": "packages/Educator/src",
+      "Solidarity\\School\\": "packages/School/src",
+      "Solidarity\\SchoolType\\": "packages/SchoolType/src",
+      "Solidarity\\City\\": "packages/City/src",
       "Solidarity\\Delegate\\": "packages/Delegate/src"
     }
   },

@@ -29,6 +29,10 @@ $level2 = [
     '/transaction/view/*',
     '/transaction/tableHandler/*',
     '/transaction/form/*',
+    '/school/*',
+    '/schoolType/*',
+    '/city/*',
+
 
     '/user/update/*',
     '/login/logout/',
