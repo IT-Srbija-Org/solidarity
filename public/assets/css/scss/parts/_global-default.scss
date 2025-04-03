@@ -169,8 +169,20 @@ img {
 	margin-top: 20px;
 
 	p {
+		display: flex;
+		column-gap: 10px;
 		margin: 0;
-		color: red;
+		padding: 15px 20px;
+		color: #d8000c;
+		background-color: #fce4e4;
+		border: 1px solid #fcc2c3;
+
+		svg {
+			flex-shrink: 0;
+			width: 24px;
+			height: auto;
+			stroke: currentColor;
+		}
 	}
 
 	+ .it-form {
