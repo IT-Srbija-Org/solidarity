@@ -17,7 +17,8 @@
     "phpoffice/phpspreadsheet": "*",
     "mailersend/mailersend": "^0.30.0",
     "turanjanin/serbian-transliterator": "*",
-    "beberlei/doctrineextensions": "^1.5"
+    "beberlei/doctrineextensions": "^1.5",
+    "doctrine/orm": "^3.3.2"
   },
   "require-dev": {
     "phpunit/phpunit": "^10.0",

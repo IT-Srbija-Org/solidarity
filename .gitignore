@@ -41,9 +41,8 @@ Thumbs.db
 *.mov
 *.wmv
 
-/.idea/
+composer.lock
 /.vagrant/
-*.log
 /vendor/
 /config/config-local.php
 /backend/public/images*
