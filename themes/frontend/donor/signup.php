@@ -21,21 +21,7 @@
 	<p>Takođe, možete se detaljnije informisati putem naših društvenih mreža.</p>
 	<p><a href="https://itsrbija.org/">IT Srbija</a> – Neformalna grupa IT Stručnjaka</p>
 
-	<?php if ( isset( $data['errors'] ) ) { ?>
-		<div class="it-form-error">
-			<?php
-			foreach ( $data['errors'] as $key => $error ) {
-				if ( is_array( $error ) ) {
-					foreach ( $error as $err ) {
-						echo '<p>' . $err . '</p>';
-					}
-				} else {
-					echo '<p>' . $error . '</p>';
-				}
-			}
-			?>
-		</div>
-	<?php }	?>
+	<?=$this->printError( $data['errors'] ?? array(), 'form' ); ?>
 
     <form method="post" action="obrazacDonatori" class="it-form" id="it-donatori-form" aria-label="Donatori forma" data-type="donatori">
         <?=$this->formToken(); ?>

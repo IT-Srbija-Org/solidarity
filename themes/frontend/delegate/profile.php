@@ -2399,15 +2399,7 @@ $schools_map = array(
 		<h2>Korisnički panel <?php echo ! empty( $user_full_name ) ? '- ' . $user_full_name : ''; ?></h2>
 		<p>Dobrodošli na Vaš korisnički panel, ovde možete videti i izmeniti sve Vaše podatke.</p>
 
-		<?php if ( isset( $data['errors'] ) ) { ?>
-			<div class="it-form-error">
-				<?php
-				foreach ( $data['errors'] as $key => $error ) {
-					echo '<p>' . $error . '</p>';
-				}
-				?>
-			</div>
-		<?php }	?>
+		<?=$this->printError( $data['errors'] ?? array(), 'profile' ); ?>
 
 		<form method="post" action="profileDelegat" id="it-delegati-form" class="it-form" aria-label="Delegati forma" data-type="delegati">
 			<?=$this->formToken(); ?>
