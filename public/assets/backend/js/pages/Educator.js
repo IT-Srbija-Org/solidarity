@@ -17,4 +17,19 @@ export default class Educator extends CrudPage {
         }
         return action;
     }
+
+    tdStyler = (td, columnName, columnValue, entity) => {
+        if (columnName === 'delegateVerified') {
+            switch (columnValue) {
+                case 'Yes':
+                    this.makeTDValueToBadge(td, columnValue, CrudPage.BADGE_TYPES.GREEN);
+                    break;
+                case 'No':
+                    this.makeTDValueToBadge(td, columnValue, CrudPage.BADGE_TYPES.RED);
+                    break;
+            }
+        }
+        return td;
+    }
+
 }

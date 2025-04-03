@@ -17,4 +17,18 @@ export default class Delegate extends CrudPage {
         }
         return action;
     }
+
+    tdStyler = (td, columnName, columnValue, entity) => {
+        if (columnName === 'status') {
+            switch (columnValue) {
+                case 'Verified':
+                    this.makeTDValueToBadge(td, columnValue, CrudPage.BADGE_TYPES.GREEN);
+                    break;
+                case 'Problem':
+                    this.makeTDValueToBadge(td, columnValue, CrudPage.BADGE_TYPES.RED);
+                    break;
+            }
+        }
+        return td;
+    }
 }

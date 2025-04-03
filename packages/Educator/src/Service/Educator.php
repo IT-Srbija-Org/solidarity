@@ -1,6 +1,7 @@
 <?php
 namespace Solidarity\Educator\Service;
 
+use Solidarity\Delegate\Service\Delegate;
 use Solidarity\Educator\Repository\EducatorRepository;
 use Skeletor\Core\TableView\Service\TableView;
 use Psr\Log\LoggerInterface as Logger;
@@ -20,7 +21,7 @@ class Educator extends TableView
      */
     public function __construct(
         EducatorRepository $repo, Session $user, Logger $logger, EducatorFilter $filter, private \DateTime $dt,
-        private Round $round, private RoundRepository $roundRepository
+        private Round $round, private RoundRepository $roundRepository, private Delegate $delegate
     ) {
         parent::__construct($repo, $user, $logger, $filter);
     }
@@ -72,11 +73,22 @@ class Educator extends TableView
         return $this->repo->fetchForMapping();
     }
 
+    public function getEntityData($id)
+    {
+        $data = parent::getEntityData($id);
+        $delegate = $this->delegate->getEntities(['schoolName' => $data['schoolName'], 'city' => $data['city']])[0];
+        $data['delegateVerified'] = ($delegate->status === \Solidarity\Delegate\Entity\Delegate::STATUS_VERIFIED) ? 1:0;
+
+        return $data;
+    }
+
     public function prepareEntities($entities)
     {
         $items = [];
         /* @var \Solidarity\Educator\Entity\Educator $educator */
         foreach ($entities as $educator) {
+            // @TODO make sure all educators have delegate
+            $delegate = $this->delegate->getEntities(['schoolName' => $educator->schoolName, 'city' => $educator->city])[0];
             $itemData = [
                 'id' => $educator->getId(),
                 'name' =>  [
@@ -86,6 +98,8 @@ class Educator extends TableView
                 'amount' => number_format($educator->amount, 0, '.', ','),
                 'status' => \Solidarity\Educator\Entity\Educator::getHrStatus($educator->status),
                 'schoolName' => $educator->schoolName,
+                'city' => $educator->city,
+                'delegateVerified' => ($delegate->status === \Solidarity\Delegate\Entity\Delegate::STATUS_VERIFIED) ? 'Yes':'No',
 //                'slipLink' => $educator->slipLink,
                 'accountNumber' => $educator->accountNumber,
                 'createdAt' => $educator->getCreatedAt()->format('d.m.Y'),
@@ -103,9 +117,11 @@ class Educator extends TableView
 
         $columnDefinitions = [
             ['name' => 'name', 'label' => 'Name'],
+            ['name' => 'delegateVerified', 'label' => 'Delegate verified'],
             ['name' => 'schoolName', 'label' => 'School name'],
             ['name' => 'amount', 'label' => 'Amount', 'rangeFilter' => ['type' => 'number']],
             ['name' => 'accountNumber', 'label' => 'Account Number'],
+            ['name' => 'city', 'label' => 'City'],
             ['name' => 'status', 'label' => 'Status', 'filterData' => \Solidarity\Educator\Entity\Educator::getHrStatuses()],
 //            ['name' => 'slipLink', 'label' => 'slipLink'],
             ['name' => 'createdAt', 'label' => 'Created at'],

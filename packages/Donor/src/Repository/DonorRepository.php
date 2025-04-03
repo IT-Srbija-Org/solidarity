@@ -36,4 +36,9 @@ amount - (SELECT IFNULL(SUM(amount), 0) FROM `transaction` WHERE email = d.email
 
         return $result->fetchAllAssociative();
     }
+
+    public function getColumnsToCount(): array
+    {
+        return ['amount'];
+    }
 }

@@ -44,4 +44,8 @@ class EducatorRepository extends TableViewRepository
         return ['a.name', 'a.amount', 'a.status', 'a.schoolName', 'a.accountNumber'];
     }
 
+    public function getColumnsToCount(): array
+    {
+        return ['amount'];
+    }
 }

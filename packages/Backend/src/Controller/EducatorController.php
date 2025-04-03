@@ -44,16 +44,6 @@ class EducatorController extends AjaxCrudController
         die('disabled');
     }
 
-    public function getEntityData()
-    {
-        $this->getResponse()->getBody()->write(json_encode($this->service->getEntityData(
-            (int) $this->getRequest()->getAttribute('id'), $this->getRequest()->getQueryParams()['currency']
-        )));
-        $this->getResponse()->getBody()->rewind();
-
-        return $this->getResponse()->withHeader('Content-Type', 'application/json');
-    }
-
     public function import()
     {
         ini_set('max_input_time', 600);
