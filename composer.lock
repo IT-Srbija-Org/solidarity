@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "973cb1466660f7c2ff6989608b5f07c8",
+    "content-hash": "944e8d5a10916c24d592a797d2b03591",
     "packages": [
         {
             "name": "beberlei/assert",
@@ -697,7 +697,7 @@
             "source": {
                 "type": "git",
                 "url": "https://bitbucket.org/dj_avolak/skeletor",
-                "reference": "d69b6aa22bc15fdf0a09ae46aa86d5023b123ee5"
+                "reference": "80450af06023ce2ebfd3f3f21f4bea655b24244a"
             },
             "require": {
                 "doctrine/dbal": "^4.0.3",
@@ -752,7 +752,7 @@
             "license": [
                 "MIT"
             ],
-            "time": "2025-04-03T00:14:52+00:00"
+            "time": "2025-04-03T22:40:51+00:00"
         },
         {
             "name": "doctrine/collections",
@@ -2010,16 +2010,16 @@
         },
         {
             "name": "illuminate/collections",
-            "version": "v12.6.0",
+            "version": "v12.7.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/collections.git",
-                "reference": "1ba7a2b910a8da95fefb407fd57a93656753e44c"
+                "reference": "f1d8ae882c014673b1f7bedab6435989553776e3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/collections/zipball/1ba7a2b910a8da95fefb407fd57a93656753e44c",
-                "reference": "1ba7a2b910a8da95fefb407fd57a93656753e44c",
+                "url": "https://api.github.com/repos/illuminate/collections/zipball/f1d8ae882c014673b1f7bedab6435989553776e3",
+                "reference": "f1d8ae882c014673b1f7bedab6435989553776e3",
                 "shasum": ""
             },
             "require": {
@@ -2062,11 +2062,11 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2025-03-19T20:10:05+00:00"
+            "time": "2025-04-03T17:58:47+00:00"
         },
         {
             "name": "illuminate/conditionable",
-            "version": "v12.6.0",
+            "version": "v12.7.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/conditionable.git",
@@ -2112,7 +2112,7 @@
         },
         {
             "name": "illuminate/contracts",
-            "version": "v12.6.0",
+            "version": "v12.7.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/contracts.git",
@@ -2160,7 +2160,7 @@
         },
         {
             "name": "illuminate/macroable",
-            "version": "v12.6.0",
+            "version": "v12.7.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/macroable.git",
@@ -8617,12 +8617,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "0b51a6c830ba6dd6c63715ceded239a62bf2274f"
+                "reference": "7d7e09f5c5ae97767252450bdae6bc4ec6b8f53a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/0b51a6c830ba6dd6c63715ceded239a62bf2274f",
-                "reference": "0b51a6c830ba6dd6c63715ceded239a62bf2274f",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/7d7e09f5c5ae97767252450bdae6bc4ec6b8f53a",
+                "reference": "7d7e09f5c5ae97767252450bdae6bc4ec6b8f53a",
                 "shasum": ""
             },
             "conflict": {
@@ -8651,7 +8651,7 @@
                 "andrewhaine/silverstripe-form-capture": ">=0.2,<=0.2.3|>=1,<1.0.2|>=2,<2.2.5",
                 "apache-solr-for-typo3/solr": "<2.8.3",
                 "apereo/phpcas": "<1.6",
-                "api-platform/core": ">=2.2,<2.2.10|>=2.3,<2.3.6|>=2.6,<2.7.10|>=3,<3.0.12|>=3.1,<3.1.3|>=3.3.8,<3.3.15",
+                "api-platform/core": ">=2.2,<2.2.10|>=2.3,<2.3.6|>=2.6,<2.7.10|>=3,<3.0.12|>=3.1,<3.1.3|>=3.2,<3.2.5|>=3.3.8,<3.3.15",
                 "appwrite/server-ce": "<=1.2.1",
                 "arc/web": "<3",
                 "area17/twill": "<1.2.5|>=2,<2.5.3",
@@ -8783,6 +8783,7 @@
                 "drupal/matomo": "<1.24",
                 "drupal/oauth2_client": "<4.1.3",
                 "drupal/oauth2_server": "<2.1",
+                "drupal/obfuscate": "<2.0.1",
                 "drupal/rapidoc_elements_field_formatter": "<1.0.1",
                 "drupal/spamspan": "<3.2.1",
                 "drupal/tfa": "<1.10",
@@ -9504,7 +9505,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-04-02T18:06:24+00:00"
+            "time": "2025-04-03T13:11:39+00:00"
         },
         {
             "name": "rregeer/phpunit-coverage-check",
@@ -10610,5 +10611,5 @@
     "prefer-lowest": false,
     "platform": [],
     "platform-dev": [],
-    "plugin-api-version": "2.6.0"
+    "plugin-api-version": "2.3.0"
 }
