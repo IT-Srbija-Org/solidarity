@@ -23,6 +23,8 @@ class BaseAction extends Html
     ) {
         parent::__construct($logger, $config, $template);
         $this->setGlobalVariable('url', $this->getConfig()->offsetGet('baseUrl'));
+        $this->setGlobalVariable('schoolTypes', $this->getConfig()->offsetGet('schoolTypes')->toArray());
+        $this->setGlobalVariable('schoolsMap', $this->getConfig()->offsetGet('schoolsMap')->toArray());
 
         if (Flash::hasMessages('error')) { // print only errors
             $this->setGlobalVariable('messages', Flash::display());
