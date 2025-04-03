@@ -1,6 +1,6 @@
 <?php
 
-if ( isset( $error ) ) {
+if ( isset( $error ) && is_array( $error ) ) {
 	?>
 	<div class="it-form-error">
 		<?php
