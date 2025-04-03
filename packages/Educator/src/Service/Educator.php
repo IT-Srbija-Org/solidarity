@@ -88,7 +88,11 @@ class Educator extends TableView
         /* @var \Solidarity\Educator\Entity\Educator $educator */
         foreach ($entities as $educator) {
             // @TODO make sure all educators have delegate
-            $delegate = $this->delegate->getEntities(['schoolName' => $educator->schoolName, 'city' => $educator->city])[0];
+            $delegate = $this->delegate->getEntities(['schoolName' => $educator->schoolName, 'city' => $educator->city]);
+            $delegateVerified = 'No';
+            if (count($delegate) && ($delegate[0]->status === \Solidarity\Delegate\Entity\Delegate::STATUS_VERIFIED)) {
+                $delegateVerified = 'Yes';
+            }
             $itemData = [
                 'id' => $educator->getId(),
                 'name' =>  [
@@ -99,7 +103,7 @@ class Educator extends TableView
                 'status' => \Solidarity\Educator\Entity\Educator::getHrStatus($educator->status),
                 'schoolName' => $educator->schoolName,
                 'city' => $educator->city,
-                'delegateVerified' => ($delegate->status === \Solidarity\Delegate\Entity\Delegate::STATUS_VERIFIED) ? 'Yes':'No',
+                'delegateVerified' => $delegateVerified,
 //                'slipLink' => $educator->slipLink,
                 'accountNumber' => $educator->accountNumber,
                 'createdAt' => $educator->getCreatedAt()->format('d.m.Y'),
