@@ -41,6 +41,7 @@ Thumbs.db
 *.mov
 *.wmv
 
+# Project files
 composer.lock
 /.vagrant/
 /vendor/
