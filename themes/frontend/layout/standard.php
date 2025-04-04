@@ -45,7 +45,7 @@
 <!--	<link rel="icon" href="/assets/img/favicon.ico" sizes="any">-->
 <!--	<link rel="apple-touch-icon" href="/assets/img/favicon.png">-->
 
-    <link rel="stylesheet" href="/assets/dist/css/main.css">
+    <link rel="stylesheet" href="/assets/dist/css/main.css?v=1">
 </head>
 <body class="bg-[#EFEFEF]">
 <div id="mainContainer">
@@ -84,7 +84,7 @@
 
 <!--  Include project scripts -->
 <!--<script src="assets/dist/js/main.js"></script>-->
-<script src="assets/dist/js/main.js"></script>
+<script src="assets/dist/js/main.js?v=1"></script>
 <?php if (isset($jsPath) && $jsPath != ""): ?>
     <script src="<?=$jsPath?>" type="module"></script>
 <?php endif; ?>
