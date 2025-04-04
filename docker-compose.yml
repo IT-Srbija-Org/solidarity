@@ -1,0 +1,57 @@
+services:
+  app:
+    build: .
+    volumes:
+      - .:/var/www/html
+      - ./logs/app:/var/www/html/data/logs
+    ports:
+      - "8080:8080"
+    environment:
+      APPLICATION: backend
+      APPLICATION_ENV: development
+    depends_on:
+      - mysql
+      - redis
+    networks:
+      - appnet
+    working_dir: /var/www/html
+
+  fe:
+    build: .
+    volumes:
+      - .:/var/www/html
+      - ./logs/app:/var/www/html/data/logs
+    ports:
+      - "8585:8080"
+    environment:
+      APPLICATION: frontend
+      APPLICATION_ENV: development
+    depends_on:
+      - mysql
+      - redis
+      - app
+    networks:
+      - appnet
+    working_dir: /var/www/html
+
+  mysql:
+    image: mysql:8
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: solid
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./mysql/init:/docker-entrypoint-initdb.d
+    networks:
+      - appnet
+
+  redis:
+    image: redis:7-alpine
+    networks:
+      - appnet
+
+networks:
+  appnet:
+    driver: bridge
