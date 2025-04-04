@@ -4,9 +4,8 @@ Mreža solidarnosti je jednostavna web aplikacija koja omogućava korisnicima da
 
 ## Table of Contents
 - [Instalacija](#instalacija)
-- [Podešavanje baze](#podesavanje-baze)
+- [Podešavanje baze](#podešavanje-baze-manuelna-instalacija)
 - [Upotreba](#upotreba)
-
 ## Instalacija
 
 Da biste instalirali APP na lokalu, pratite sledeće korake:
@@ -23,18 +22,18 @@ Da biste instalirali APP na lokalu, pratite sledeće korake:
     ```bash
     vagrant up
     ```
-6. From app root run (manuelno)
+6. From app root run (manuelna instalacija)
     ```bash
     composer install
     php composer.phar install
     ```
-7. From app root run to update libraries (manuelno)
+   or update libraries
     ```bash
     composer update
     php composer.phar update
     ```
 
-## Podešavanje baze (manuelno)
+## Podešavanje baze (manuelna instalacija)
 
 Da biste podesili bazu za APP na lokalu, pratite sledeće korake:
 
