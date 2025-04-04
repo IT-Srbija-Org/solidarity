@@ -1,4 +1,3 @@
-version: "3.4"
 x-logging: &default-logging
   driver: "json-file"
   options:
@@ -71,14 +70,6 @@ services:
     entrypoint: ["bash", "-c", "git config --global --add safe.directory /var/www/html && /docker-setup.sh"]
     logging: *default-logging
 
-  mailhog:
-    container_name: solidarity-mailhog
-    image: mailhog/mailhog
-    restart: unless-stopped
-    ports:
-      - "127.0.0.1:8025:8025"
-    logging: *default-logging
-
   adminer:
     container_name: solidarity-adminer
     image: adminer
@@ -87,4 +78,14 @@ services:
       - "127.0.0.1:8080:8080"
     depends_on:
       - mariadb
+    logging: *default-logging
+
+  redis-insight:
+    container_name: solidarity-redis-insight
+    image: redis/redisinsight:2.68
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:5540:5540"
+    depends_on:
+      - redis
     logging: *default-logging
