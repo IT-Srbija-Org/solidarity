@@ -8,9 +8,8 @@
 	<!--  Include project styles -->
 	<link rel="stylesheet" href="./css/main.css">
 
-	<link rel="icon" href="/favicon.ico" sizes="any">
-	<link rel="icon" href="/icon.svg" type="image/svg+xml">
-	<link rel="apple-touch-icon" href="icon.png">
+	<link rel="icon" href="./img/favicon.ico" sizes="any">
+	<link rel="apple-touch-icon" href="./img/favicon.png">
 </head>
 <body>
 	<main class="it-grid">
@@ -47,8 +46,8 @@
 							<label for="monthly-support">Mesečna podrška *</label>
 							<small id="monthly-support-desc">Klikom na Da prihvatate mesečno izdvajanje dogovorenog iznosa, a klikom na Ne odbijate tu obavezu</small>
 							<select name="monthly" id="monthly-support" aria-describedby="monthly-support-desc" aria-required="true" required>
-								<option value="NE">NE</option>
-								<option value="DA">DA</option>
+								<option value="0">NE</option>
+								<option value="1">DA</option>
 							</select>
 						</div>
 					</div>
@@ -56,7 +55,7 @@
 						<div class="it-form-field">
 							<label for="amount">Iznos *</label>
 							<small id="amount-desc">Iznos sa kojim sam spreman/a da pomognem u dinarima (RSD). Minimalni iznos je 500</small>
-							<input type="number" name="amount" id="amount" min="500" max="50000" aria-required="true" aria-describedby="amount-desc" value="500" required />
+							<input type="number" name="amount" id="amount" min="500" max="50000" aria-required="true" aria-describedby="amount-desc" value="" placeholder="500" required />
 						</div>
 					</div>
 				</div>
@@ -104,9 +103,9 @@
 						<div class="it-form-field">
 							<label for="school-type">Tip obrazovne ustanove *</label>
 							<select name="schoolType" id="school-type" aria-required="true" required>
-								<option value="OŠ">Osnovna škola</option>
-								<option value="SŠ">Srednja stručna škola</option>
-								<option value="G">Gimnazija</option>
+								<option value="Osnovna škola">Osnovna škola</option>
+								<option value="Srednja stručna škola">Srednja stručna škola</option>
+								<option value="Gimnazija">Gimnazija</option>
 							</select>
 						</div>
 					</div>
@@ -2724,14 +2723,14 @@
 						<div class="it-form-field">
 							<label for="suspended-number">Broj u obustavi *</label>
 							<small id="suspended-number-desc">Broj nastavnog i nenastavnog osoblja Vaše škole, koji su u obustavi</small>
-							<input type="number" name="countBlocking" id="suspended-number" min="0" max="200" aria-required="true" aria-describedby="suspended-number-desc" value="0" required />
+							<input type="number" name="countBlocking" id="suspended-number" min="0" max="200" aria-required="true" aria-describedby="suspended-number-desc" value="" placeholder="0" required />
 						</div>
 					</div>
 					<div class="it-column">
 						<div class="it-form-field">
 							<label for="total-number">Ukupan broj *</label>
 							<small id="total-number-desc">Ukupan broj nastavnog i nenastavnog osoblja u Vašoj školi (dovoljano je uneti približan broj)</small>
-							<input type="number" name="count" id="total-number" min="1" max="200" aria-required="true" aria-describedby="total-number-desc" value="1" required />
+							<input type="number" name="count" id="total-number" min="1" max="200" aria-required="true" aria-describedby="total-number-desc" value="" placeholder="1" required />
 						</div>
 					</div>
 				</div>

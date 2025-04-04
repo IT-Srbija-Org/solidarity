@@ -7,6 +7,7 @@
 
 	<form method="post" action="obrazacDelegati" id="it-delegati-form" class="it-form" aria-label="Delegati forma" data-type="delegati">
         <?=$this->formToken(); ?>
+		<div class="it-form-response" aria-hidden="true"></div>
 		<div class="it-row-section it-col-num--2 it-responsive--predefined">
 			<div class="it-row">
 				<div class="it-column">
@@ -121,6 +122,5 @@
 		<button type="submit" class="it-form-button it-button it-size--normal it-layout--filled it-m">
 			<span class="it-m-text">Pošalji</span>
 		</button>
-		<div class="it-form-response" aria-hidden="true"></div>
     </form>
 </main>

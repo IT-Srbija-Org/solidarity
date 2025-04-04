@@ -10,8 +10,8 @@
 
 		<?=$this->printError( $data['errors'] ?? array(), 'form' ); ?>
 		<form method="post" action="/obrazacOsteceni" id="it-osteceni-form" class="it-form" aria-label="Osteceni forma" data-type="osteceni">
-            <div class="it-form-response" aria-hidden="true" style="color:red"></div>
 			<?=$this->formToken(); ?>
+			<div class="it-form-response" aria-hidden="true"></div>
 			<div class="it-form-field">
 				<label for="full-name">Ime i Prezime *</label>
 				<input type="text" name="name" id="full-name" aria-required="true" value="<?php if (isset($data['data']['name'])) { echo $data['data']['name']; } ?>" required />

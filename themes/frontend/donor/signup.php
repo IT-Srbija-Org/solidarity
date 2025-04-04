@@ -25,6 +25,7 @@
 
     <form method="post" action="obrazacDonatori" class="it-form" id="it-donatori-form" aria-label="Donatori forma" data-type="donatori">
         <?=$this->formToken(); ?>
+	    <div class="it-form-response" aria-hidden="true"></div>
 	    <div class="it-form-field">
 		    <label for="email">Email *</label>
 		    <input type="email" name="email" id="email" size="40" maxlength="200" autocomplete="email" aria-required="true" aria-invalid="false" value="" required />
@@ -58,6 +59,5 @@
 	    <button type="submit" class="it-form-button it-button it-size--normal it-layout--filled it-m">
 		    <span class="it-m-text">Pošalji</span>
 	    </button>
-	    <div class="it-form-response" aria-hidden="true"></div>
     </form>
 </main>

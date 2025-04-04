@@ -36,10 +36,12 @@ module.exports = merge(
 			),
 			new HtmlWebpackPlugin( {
 				template: './index.html',
+				minify: false,
 			} ),
 			new CopyPlugin({
 				patterns: [
-					{ from: 'img', to: 'img' },
+					{ from: 'img/favicon.ico', to: 'img/favicon.ico' },
+					{ from: 'img/favicon.png', to: 'img/favicon.png' },
 					{ from: 'js/plugins', to: 'js/plugins' },
 				],
 			}),

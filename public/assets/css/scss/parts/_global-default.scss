@@ -221,4 +221,14 @@ img {
 			display: block;
 		}
 	}
+
+	.it-form-response {
+
+		&:not(:empty) {
+			padding: 15px 20px;
+			color: #d8000c;
+			background-color: #fce4e4;
+			border: 1px solid #fcc2c3;
+		}
+	}
 }

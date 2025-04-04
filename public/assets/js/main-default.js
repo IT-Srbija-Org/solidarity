@@ -34,7 +34,6 @@
 					var form_data = {};
 
 					// Get data with sanitization.
-
 					if ( 'donatori' === $thisForm.attr( 'data-type' ) ) {
 						var email          = itInitForms.escapeEmail( $thisForm.find( '#email' ).val() );
 						var monthlySupport = itInitForms.escapeYesNo( $thisForm.find( '#monthly-support' ).val() );
@@ -59,7 +58,7 @@
 						var email            = itInitForms.escapeEmail( $thisForm.find( '#email' ).val() );
 						var phone            = itInitForms.escapeHTML( $thisForm.find( '#phone' ).val() );
 						var full_name        = itInitForms.escapeHTML( $thisForm.find( '#full-name' ).val() );
-						var school_type      = itInitForms.escapeSchoolType( $thisForm.find( '#school-type' ).val() );
+						var school_type      = itInitForms.escapeHTML( $thisForm.find( '#school-type' ).val() );
 						var city             = itInitForms.escapeHTML( $thisForm.find( '#city' ).val() );
 						var school           = itInitForms.escapeHTML( $thisForm.find( '#school-name' ).val() );
 						var suspended_number = itInitForms.escapeNumber( $thisForm.find( '#suspended-number' ).val() );
@@ -76,6 +75,7 @@
 						form_data = {
 							type: $thisForm.attr( 'data-type' ),
 							email: email,
+							phone: phone,
 							full_name: full_name,
 							school_type: school_type,
 							city: city,
@@ -138,10 +138,7 @@
 			return 0;
 		},
 		escapeYesNo: function ( value ) {
-			return ['DA', 'NE'].includes( value ) ? value : 'NE';
-		},
-		escapeSchoolType: function ( value ) {
-			return ['OŠ', 'SŠ', 'G'].includes( value ) ? value : '';
+			return ['0', '1'].includes( value ) ? value : '0';
 		},
 		escapeHTML: function ( text ) {
 			var element = document.createElement( 'div' );
