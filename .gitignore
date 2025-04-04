@@ -53,3 +53,9 @@ composer.lock
 /data/pdf
 /data/phinx/phinx-local.php
 /public/assets/package-lock.json
+
+# Docker
+/db/data/
+.env
+*.env
+docker-compose.override.yml

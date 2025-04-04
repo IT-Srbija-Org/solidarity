@@ -12,12 +12,18 @@ Vagrant.configure(2) do |config|
   # boxes at https://atlas.hashicorp.com/search.
 
   config.vm.box = "bento/ubuntu-20.04"
+
+  # Override for libvirt provider (works with Linux machines without VirtualBox)
+  config.vm.provider :libvirt do |libvirt, override|
+    override.vm.box = "generic/ubuntu2004"
+  end
+
   config.vm.synced_folder "./", "/vagrant", :owner => "vagrant", :group => "www-data"
   config.vm.network "private_network", ip: "192.168.25.43"
 #   config.vm.boot_timeout = 120
 
   config.vm.provision :shell, path: "bootstrap.sh"
-  
+
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
   # Example for VirtualBox:
