@@ -22,27 +22,35 @@ Za instalaciju pomoću Docker-a, pogledajte [README.docker.md](README.docker.md)
 ### Vagrant instalacija
 
 Preduslovi:
-- Vagrant - https://developer.hashicorp.com/vagrant/downloads
-- VirtualBox - https://www.virtualbox.org/wiki/Downloads (nije potreban na Linux-u ako imate instaliran libvirt)
+- **Vagrant** - [Vagrant Download](https://developer.hashicorp.com/vagrant/downloads)
+- **VirtualBox** - [VirtualBox Download](https://www.virtualbox.org/wiki/Downloads) (nije potreban na Linux-u ako imate instaliran libvirt)
+- **MariaDB** - [MariaDB Download](https://mariadb.org/download/) (nije potrebno ako već imate neku bazu)
 
 Koraci:
-1. Iz app root/config klonirajte config-local.php-dist i constants.php.dist i uklonite .dist iz imena fajla
-2. Dodajte sledeće unose u etc/hosts fajl:
+1. Dodajte sledeće unose u etc/hosts fajl:
     ```bash
     192.168.25.43	solidarity.local
     192.168.25.43	solidforms.local
     ```
-3. Iz korena aplikacije pokrenite (ako zapne, pokušajte restartovati guest sistem, obično Windows):
+2. Iz korena aplikacije pokrenite (ako zapne, pokušajte restartovati guest sistem, obično Windows):
     ```bash
     vagrant up
+   # Pokreće Vagrant mašinu
     ```
-4. Iz korena aplikacije instalirajte zavisnosti:
-    ```bash
+   ili ako želite da pokrenete mašinu sa izvršavanjem svih skripti/komandi
+   ```bash
+    vagrant up --provision
+   # Pokreće Vagrant mašinu i izvršava provisioning skripte
+    ```
+3. Manuelna instalacija
+   1. Iz config foldera klonirajte config-local.php-dist i constants.php.dist i uklonite .dist iz imena fajla
+   2. Instaliranje **Composer**
+   ```bash
     composer install
     # ili ako composer nije instaliran globalno
     php composer.phar install
-    ```
-   Za ažuriranje biblioteka:
+   ```
+   3. Za ažuriranje biblioteka:
     ```bash
     composer update
     php composer.phar update
@@ -56,7 +64,7 @@ SSH pristup:
 
 Da biste podesili bazu za aplikaciju na lokalu, pratite sledeće korake:
 
-1. Instalirajte MariaDB, na primer sa - https://mariadb.org/download/
+1. Instalirajte **MariaDB** - [MariaDB Download](https://mariadb.org/download/)
 2. Svi detalji o lokalnoj bazi podataka mogu se naći u - app root/config/config-local.php
 3. Kreirajte bazu podataka, otvorite terminal i pokrenite:
     ```bash
