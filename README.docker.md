@@ -1,90 +1,90 @@
-# Docker Setup Instructions
+# Uputstva za Docker instalaciju
 
-## Prerequisites
+## Preduslovi
 
 - Docker
 - Docker Compose
 - Git
 
-## Setup Steps
+## Koraci za podešavanje
 
-1. Copy `.env.example` to `.env` and update the values:
+1. Kopirajte `.env.example` u `.env` i ažurirajte vrednosti:
 ```bash
 cp .env.example .env
-# Edit .env with your desired values
+# Izmenite .env sa željenim vrednostima
 ```
 
-2. Add these entries to your `/etc/hosts` file:
+2. Dodajte ove unose u vaš `/etc/hosts` fajl:
 ```
 127.0.0.1 solidarity.local
 127.0.0.1 solidforms.local
 ```
 
-2. Build and start the Docker containers:
+3. Izgradite i pokrenite Docker kontejnere:
 ```bash
 docker compose up -d
 ```
 
-The setup script will automatically:
-- Create the database
-- Install composer dependencies
-- Set up configuration files
-- Run database migrations
-- Create a test user
+Skripta za podešavanje će automatski:
+- Kreirati bazu podataka
+- Instalirati composer zavisnosti
+- Podesiti konfiguracione fajlove
+- Pokrenuti migracije baze podataka
+- Kreirati test korisnika
 
-## Services
+## Servisi
 
 - Backend: http://solidarity.local
 - Frontend: http://solidforms.local
-- Adminer (Database Management): http://localhost:8080
-  - System: MySQL
+- Adminer (Upravljanje bazom podataka): http://localhost:8080
+  - Sistem: MySQL
   - Server: mariadb
-  - Username: root
-  - Password: rootpass
-  - Database: solid
-- MailHog (Email Testing): http://localhost:8025
+  - Korisničko ime: root
+  - Lozinka: rootpass
+  - Baza podataka: solid
 - Redis: localhost:6379
+- Redis Insight (Redis upravljački interfejs): http://localhost:5540
 
-## Common Commands
+## Uobičajene komande
 
 ```bash
-# Start containers
+# Pokretanje kontejnera
 docker compose up -d
 
-# Stop containers
+# Zaustavljanje kontejnera
 docker compose down
 
-# View logs
+# Pregled logova
 docker compose logs -f
 
-# Rebuild containers
+# Ponovno građenje kontejnera
 docker compose up -d --build
 
-# Access PHP container
+# Pristup PHP kontejneru
 docker compose exec php bash
 
-# Run composer commands
+# Pokretanje composer komandi
 docker compose exec php composer install
 
-# Run database migrations
+# Pokretanje migracija baze podataka
 docker compose exec php php bin/doctrine orm:schema-tool:update --force
 
-# Clear Redis cache
+# Čišćenje Redis keša
 docker compose exec redis redis-cli FLUSHALL
 ```
 
-## Configuration
+## Konfiguracija
 
-The project configuration is managed through environment variables in the `.env` file:
+Konfiguracija projekta se upravlja kroz promenljive okruženja u `.env` fajlu:
 
-- `MYSQL_ROOT_PASSWORD`: Database root password
-- `MYSQL_DATABASE`: Database name
-- `MYSQL_USER`: Database user
-- `MYSQL_PASSWORD`: Database password
+- `MYSQL_ROOT_PASSWORD`: Root lozinka za bazu podataka
+- `MYSQL_DATABASE`: Ime baze podataka
+- `MYSQL_USER`: Korisnik baze podataka
+- `MYSQL_PASSWORD`: Lozinka za bazu podataka
 
-## Directory Structure
+## Struktura direktorijuma
 
-- `docker/` - Docker-related configuration files
-  - `nginx/conf.d/` - Nginx virtual host configurations
-  - `php/` - PHP configuration
-  - `scripts/` - Setup and utility scripts
+- `docker/` - Konfiguracioni fajlovi vezani za Docker
+  - `nginx/conf.d/` - Nginx konfiguracije virtualnih hostova
+  - `php/` - PHP konfiguracija
+  - `scripts/` - Skripte za podešavanje i uslužne skripte
