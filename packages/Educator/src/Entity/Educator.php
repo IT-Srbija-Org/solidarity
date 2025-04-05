@@ -16,6 +16,7 @@ class Educator
     const STATUS_NEW = 1;
     const STATUS_FOR_SENDING = 2;
     const STATUS_SENT = 3;
+    const STATUS_GAVE_UP = 4;
 
     #[ORM\Column(type: Types::INTEGER)]
     public int $amount;
@@ -44,6 +45,7 @@ class Educator
             self::STATUS_NEW => 'New',
             self::STATUS_FOR_SENDING => 'For sending',
             self::STATUS_SENT => 'Sent',
+            self::STATUS_GAVE_UP => 'Gave up',
         );
     }
 
