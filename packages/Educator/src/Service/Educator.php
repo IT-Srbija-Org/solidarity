@@ -75,7 +75,7 @@ class Educator extends TableView
 
     public function getEntityData($id)
     {
-        $educator = $this->getEntities(['id' => $id])[0];
+        $educator = $this->getById($id);
         $delegate = $this->delegate->getEntities(['schoolName' =>$educator->schoolName, 'city' => $educator->city])[0];
         $data = parent::getEntityData($id);
         $data['delegateVerified'] = ($delegate->status === \Solidarity\Delegate\Entity\Delegate::STATUS_VERIFIED) ? 1:0;
