@@ -32,16 +32,16 @@ export default class Educator extends CrudPage {
         if (columnName === 'status') {
             switch (columnValue) {
                 case 'New':
-                    this.makeTDValueToBadge(td, columnValue, CrudPage.BADGE_TYPES.GRAY);
+                    this.makeTDValueToBadge(td, columnValue, CrudPage.BADGE_TYPES.BLUE);
                     break;
                 case 'For sending':
                     this.makeTDValueToBadge(td, columnValue, CrudPage.BADGE_TYPES.GREEN);
                     break;
                 case 'Sent':
-                    this.makeTDValueToBadge(td, columnValue, CrudPage.BADGE_TYPES.BLUE);
+                    this.makeTDValueToBadge(td, columnValue, CrudPage.BADGE_TYPES.GRAY);
                     break;
                 case 'Gave up':
-                    this.makeTDValueToBadge(td, columnValue, CrudPage.BADGE_TYPES.BLUE);
+                    this.makeTDValueToBadge(td, columnValue, CrudPage.BADGE_TYPES.GRAY);
                     break;
             }
         }

@@ -36,6 +36,8 @@ class Educator implements FilterInterface
             'accountNumber' => $this->normalizeAccountNumber($postData['accountNumber']),
             'comment' => (isset($postData['comment'])) ? $postData['comment'] : '',
             'status' => (isset($postData['status'])) ? $postData['status'] : 1,
+            'school' => $postData['school'],
+            'createdAt' => $postData['createdAt'],
             CSRF::TOKEN_NAME => $postData[CSRF::TOKEN_NAME],
         ];
         if (!$this->validator->isValid($data)) {

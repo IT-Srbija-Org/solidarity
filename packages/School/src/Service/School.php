@@ -57,4 +57,8 @@ class School extends TableView
         return $columnDefinitions;
     }
 
+    public function getByNameAndCity($schoolName, $cityName)
+    {
+        return $this->repo->getByNameAndCity($schoolName, $cityName);
+    }
 }

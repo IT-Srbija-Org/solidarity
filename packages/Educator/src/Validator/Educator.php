@@ -48,7 +48,7 @@ class Educator implements ValidatorInterface
         }
 
         if (!$this->csrf->validate($data)) {
-            $this->messages['general'][] = 'Stranice je istekla, probajte ponovo.';
+            $this->messages['general'][] = 'Stranica je istekla, probajte ponovo.';
             $valid = false;
         }
 
@@ -72,9 +72,10 @@ class Educator implements ValidatorInterface
      */
     private function validateAccountNumber(string $accountNumber) : bool
     {
-        $controlNumber = $this->mod97(substr($accountNumber, 0, -2));
+        $validatedNumber = $this->mod97_2($accountNumber);
+        $controlNumber = $this->mod97(substr($validatedNumber, 0,-2));
 
-        return str_pad($controlNumber, 2, '0', STR_PAD_LEFT) === substr($accountNumber, -2);
+        return $controlNumber == substr($accountNumber, -2);
     }
 
     /**
@@ -86,7 +87,6 @@ class Educator implements ValidatorInterface
     private function mod97(string $accountNumber, int $base = 100) : int
     {
         $controlNumber = 0;
-
         for ($x = strlen($accountNumber)-1; !($x < 0); $x--) {
             $num = (int)$accountNumber[$x];
             $controlNumber = ($controlNumber + ($base * $num)) % 97;
@@ -94,5 +94,27 @@ class Educator implements ValidatorInterface
         }
 
         return 98 - $controlNumber;
+    }
+
+    function mod97_2($accountNumber) {
+        $form_input = $accountNumber;
+        $snum = "";
+        $sstr = strtoupper($form_input);
+
+        for ($x = 0; $x < strlen($sstr); $x++) {
+            $c = ord($sstr[$x]); // Get the ASCII value of the character
+
+            if ($c >= 65 && $c <= 90) { // A-Z
+                $snum .= ($c - 55);
+            } elseif ($c >= 48 && $c <= 57) { // 0-9
+                $snum .= ($c - 48);
+            } elseif ($c != 45 && $c != 32) { // Not '-' or 'space'
+                return 0;
+//                echo "Pogresan karakter " . $sstr[$x] . " na poziciji " . ($x + 1);
+            }
+        }
+
+//        return substr($snum, -2);
+        return $snum;
     }
 }

@@ -6,6 +6,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Skeletor\Core\Entity\Timestampable;
+use Solidarity\School\Entity\School;
 
 #[ORM\Entity]
 #[ORM\Table(name: 'educator')]
@@ -17,6 +18,7 @@ class Educator
     const STATUS_FOR_SENDING = 2;
     const STATUS_SENT = 3;
     const STATUS_GAVE_UP = 4;
+    const STATUS_RECEIVED = 5;
 
     #[ORM\Column(type: Types::INTEGER)]
     public int $amount;
@@ -35,9 +37,15 @@ class Educator
     public string $accountNumber;
     #[ORM\Column(type: Types::STRING, length: 1024, nullable: true)]
     public ?string $comment;
+    #[ORM\ManyToOne(targetEntity: School::class, inversedBy: 'educators')]
+    #[ORM\JoinColumn(name: 'schoolId', referencedColumnName: 'id', unique: false, nullable: true)]
+    public ?School $school;
 
 //    #[ORM\OneToMany(targetEntity: Round::class, mappedBy: 'educator')]
 //    public Collection $rounds;
+
+//    #[ORM\Column(type: 'datetime', insertable: true, updatable: true, options: ['default' => "CURRENT_TIMESTAMP"])]
+//    public \DateTime $createdAt;
 
     public static function getHrStatuses(): array
     {
@@ -46,6 +54,7 @@ class Educator
             self::STATUS_FOR_SENDING => 'For sending',
             self::STATUS_SENT => 'Sent',
             self::STATUS_GAVE_UP => 'Gave up',
+            self::STATUS_RECEIVED => 'Received',
         );
     }
 
