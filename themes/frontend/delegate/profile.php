@@ -1,12 +1,13 @@
 <?php $this->layout('layout::standard') ?>
 <?php
-$user = isset( $data['user'] ) ? $data['user'] : array();
+$user = isset( $data['user'] ) ? (array) $data['user'] : array();
 ?>
 <main class="it-grid">
 	<?php
 	if ( empty( $user ) || ! isset( $user['email'] ) ) {
 		?>
 		<h2>Delegat sa tim podacima nije pronađen.</h2>
+		<?=$this->printError( $data['errors'] ?? array(), 'profile' ); ?>
 		<?php
 	} else {
 		// Get form data, email is Unique ID.
@@ -27,12 +28,13 @@ $user = isset( $data['user'] ) ? $data['user'] : array();
 
 		<form method="post" action="profileDelegat" id="it-delegati-form" class="it-form" aria-label="Delegati forma" data-type="delegati">
 			<?=$this->formToken(); ?>
+			<div class="it-form-response" aria-hidden="true"></div>
 			<div class="it-row-section it-col-num--2 it-responsive--predefined">
 				<div class="it-row">
 					<div class="it-column">
 						<div class="it-form-field">
 							<label for="email">Email *</label>
-							<input type="email" name="email" id="email" size="40" maxlength="60" autocomplete="email" aria-required="true" aria-invalid="false" value="<?php echo filter_var( $user_email, FILTER_SANITIZE_EMAIL ); ?>" required />
+							<input type="email" name="email" id="email" size="40" maxlength="60" autocomplete="email" aria-required="true" aria-invalid="false" value="<?php echo filter_var( $user_email, FILTER_SANITIZE_EMAIL ); ?>" required readonly />
 						</div>
 					</div>
 					<div class="it-column">
@@ -141,7 +143,6 @@ $user = isset( $data['user'] ) ? $data['user'] : array();
 			<button type="submit" class="it-form-button it-button it-size--normal it-layout--filled it-m">
 				<span class="it-m-text">Izmeni</span>
 			</button>
-			<div class="it-form-response" aria-hidden="true"></div>
 		</form>
 	<?php
 	}

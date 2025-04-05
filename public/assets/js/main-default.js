@@ -175,6 +175,10 @@
 						$schoolName.val( $( this ).val() );
 					}
 				);
+
+				if ( typeof $form.find( '.it-school-name[data-default-city]' ) !== 'undefined' ) {
+					$form.find( '.it-school-name[data-city="' + $school.attr( 'data-default-city' ) + '"]' ).show();
+				}
 			}
 		},
 	};

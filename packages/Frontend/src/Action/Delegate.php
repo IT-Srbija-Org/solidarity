@@ -33,7 +33,7 @@ class Delegate extends BaseAction
 	            $errors = $this->delegate->parseErrors();
 
 	            return $this->respond('delegate/signup',
-                    ['errors' => $errors, 'data' => $data, 'param1' => $this->getConfig()->offsetGet('param1')]);
+                    ['errors' => $errors, 'data' => $data]);
             }
         }
 
