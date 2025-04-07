@@ -22,9 +22,7 @@ class BaseAction extends Html
         Logger $logger, Config $config, Engine $template
     ) {
         parent::__construct($logger, $config, $template);
-        $this->setGlobalVariable('url', $this->getConfig()->offsetGet('baseUrl'));
-        $this->setGlobalVariable('schoolTypes', $this->getConfig()->offsetGet('schoolTypes')->toArray());
-        $this->setGlobalVariable('schoolsMap', $this->getConfig()->offsetGet('schoolsMap')->toArray());
+	    $this->setGlobalVariable( 'url', $this->getConfig()->offsetGet( 'baseUrl' ) );
 
         if (Flash::hasMessages('error')) { // print only errors
             $this->setGlobalVariable('messages', Flash::display());

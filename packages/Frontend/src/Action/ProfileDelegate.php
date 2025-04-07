@@ -18,26 +18,36 @@ class ProfileDelegate extends BaseAction {
 		\Psr\Http\Message\ServerRequestInterface $request,
 		\Psr\Http\Message\ResponseInterface $response
 	) {
+		$delegateRepo = $this->delegate->getRepository();
+
+		$schoolTypes = ! empty( $delegateRepo->getAllSchoolTypes() ) ? $delegateRepo->getAllSchoolTypes() : $this->getConfig()->offsetGet( 'schoolTypes' )->toArray();
+		$schoolsMap  = ! empty( $delegateRepo->getAllSchools() ) ? $delegateRepo->getAllSchools() : $this->getConfig()->offsetGet( 'schoolsMap' )->toArray();
+
+		$this->setGlobalVariable( 'schoolTypes', $schoolTypes );
+		$this->setGlobalVariable( 'schoolsMap', $schoolsMap );
 		$this->setGlobalVariable( 'title', 'Profile za delegata' );
-		$data = $request->getParsedBody();
-		$user = $this->delegate->getById( 1 );
+
+		// TODO - create login functionality for delegate and use corresponding delegate ID to get data, for development mode just remove 2 comments bellow
+		$data         = $request->getParsedBody();
+		$default_data = array();
+		// $default_data = $this->delegate->getById( 1 );
 
 		if ( ! empty( $data ) ) {
 			try {
 				$data['id'] = 1;
 
-				$this->delegate->update( $data );
+				// $this->delegate->update( $data );
 
-				return $this->respond( 'delegate/profile', [ 'user' => $user ] );
+				return $this->respond( 'delegate/profile', [ 'user' => $data ] );
 			} catch ( \Exception $e ) {
 				// handle
 				$errors = $this->delegate->parseErrors();
 
 				return $this->respond( 'delegate/profile',
-					[ 'errors' => $errors, 'data' => $data ] );
+					[ 'errors' => $errors, 'user' => $data ] );
 			}
 		}
 
-		return $this->respond( 'delegate/profile', [ 'user' => $user ] );
+		return $this->respond( 'delegate/profile', [ 'user' => $default_data ] );
 	}
 }

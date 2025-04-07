@@ -13,14 +13,21 @@ class Delegate extends BaseAction
         Logger $logger, Config $config, Engine $template, private \Solidarity\Delegate\Service\Delegate $delegate
     ) {
         parent::__construct($logger, $config, $template);
-
     }
 
     public function __invoke(
         \Psr\Http\Message\ServerRequestInterface $request,
         \Psr\Http\Message\ResponseInterface $response
     ) {
+	    $delegateRepo = $this->delegate->getRepository();
+
+	    $schoolTypes = ! empty( $delegateRepo->getAllSchoolTypes() ) ? $delegateRepo->getAllSchoolTypes() : $this->getConfig()->offsetGet( 'schoolTypes' )->toArray();
+	    $schoolsMap  = ! empty( $delegateRepo->getAllSchools() ) ? $delegateRepo->getAllSchools() : $this->getConfig()->offsetGet( 'schoolsMap' )->toArray();
+
+	    $this->setGlobalVariable( 'schoolTypes', $schoolTypes );
+	    $this->setGlobalVariable( 'schoolsMap', $schoolsMap );
         $this->setGlobalVariable('title', 'Forma za delegate');
+
         $data = $request->getParsedBody();
 
         if (!empty($data)) {

@@ -5,6 +5,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Solidarity\Educator\Entity\Educator;
 use Solidarity\Educator\Factory\EducatorFactory;
 use Skeletor\Core\TableView\Repository\TableViewRepository;
+use Solidarity\School\Entity\School;
 
 class EducatorRepository extends TableViewRepository
 {
@@ -48,4 +49,27 @@ class EducatorRepository extends TableViewRepository
     {
         return ['amount'];
     }
+
+	public function getAllSchools(): array {
+		$schools = $this->entityManager
+			->getRepository( School::class )
+			->findBy( [], [ 'city' => 'ASC' ] );
+
+		$results = array();
+
+		if ( ! empty( $schools ) ) {
+			foreach ( $schools as $school ) {
+				$cityName   = $school->city->name;
+				$schoolName = $school->name;
+
+				if ( ! isset( $results[ $cityName ] ) ) {
+					$results[ $cityName ] = [];
+				}
+
+				$results[ $cityName ][] = $schoolName;
+			}
+		}
+
+		return $results;
+	}
 }

@@ -41,7 +41,6 @@ Thumbs.db
 *.wmv
 
 # Project files
-composer.lock
 /.vagrant/
 /vendor/
 /config/constants.php
