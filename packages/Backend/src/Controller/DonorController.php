@@ -100,6 +100,10 @@ class DonorController extends AjaxCrudController
                 $failedData[] = $data;
                 continue;
             }
+            $donor = $this->service->getEntities(['email' => $email]);
+            if (count($donor)) {
+                continue;
+            }
 //            var_dump($data);
 //            die();
             $unixTimestamp = ($data[0] - 25569) * 86400;

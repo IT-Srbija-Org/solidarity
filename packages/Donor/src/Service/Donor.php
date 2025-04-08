@@ -38,7 +38,7 @@ class Donor extends TableView
         } else {
             $entity = parent::create($data);
         }
-        $this->mailer->sendDonorRegisteredMail($entity->email);
+//        $this->mailer->sendDonorRegisteredMail($entity->email);
         return $entity;
     }
 
