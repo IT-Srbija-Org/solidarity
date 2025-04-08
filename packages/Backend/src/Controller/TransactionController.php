@@ -144,8 +144,8 @@ class TransactionController extends AjaxCrudController
         ini_set('memory_limit', '512M');
         $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
         $reader->setReadDataOnly(true);
-        $excel = $reader->load(APP_PATH . '/lista-svih-uplata-runda1-15.xlsx');
-//        $excel = $reader->load(APP_PATH . '/trx-pt1.xlsx');
+//        $excel = $reader->load(APP_PATH . '/lista-svih-uplata-runda1-15.xlsx');
+        $excel = $reader->load(APP_PATH . '/failed-educators-trx.xlsx');
         $failedData = [];
         $failedDonorsTrx = [];
         $failedEducatorsTrx = [];
@@ -159,7 +159,7 @@ class TransactionController extends AjaxCrudController
             $name = Transliterator::toLatin($data[1]);
             $accountNumber = $this->normalizeAccountNumber($data[3]);
 //            $educator = $this->educator->getEntities(['name' => $name, 'accountNumber' => $accountNumber]);
-            $educator = $this->educator->getEntities(['name' => $name, 'accountNumber' => $accountNumber]);
+            $educator = $this->educator->getEntities(['name' => $name]);
             if (!$educator) {
 //                var_dump($data);
                 $failedEducatorsTrx[] = $data;
@@ -218,7 +218,7 @@ class TransactionController extends AjaxCrudController
             $sheet->getCell('C' . $row)->setValue($item[2]);
             $sheet->getCell('D' . $row)->setValue($item[3] . ' ');
         }
-        $filePath = APP_PATH . '/failed-donors-trx.xlsx';
+        $filePath = APP_PATH . '/failed-donors-edu-trx.xlsx';
         $writer->save($filePath);
 
         // failed trx cause educators
@@ -243,7 +243,7 @@ class TransactionController extends AjaxCrudController
             $sheet->getCell('C' . $row)->setValue($item[2]);
             $sheet->getCell('D' . $row)->setValue($item[3] . ' ');
         }
-        $filePath = APP_PATH . '/failed-educators-trx.xlsx';
+        $filePath = APP_PATH . '/failed-educators-edu-trx.xlsx';
         $writer->save($filePath);
 
         var_dump($failedData);
