@@ -7,8 +7,8 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Skeletor\Core\Entity\Timestampable;
 
-//#[ORM\Entity]
-//#[ORM\Table(name: 'educator_round')]
+#[ORM\Entity]
+#[ORM\Table(name: 'educator_round')]
 class Round
 {
     use Timestampable;
@@ -20,6 +20,7 @@ class Round
     #[ORM\JoinColumn(name: 'educatorId', referencedColumnName: 'id', unique: false)]
     public Educator $educator;
 
-    #[ORM\OneToOne(targetEntity: \Solidarity\Transaction\Entity\Round::class)]
+    #[ORM\ManyToOne(targetEntity: \Solidarity\Transaction\Entity\Round::class, inversedBy: 'rounds')]
+    #[ORM\JoinColumn(name: 'roundId', referencedColumnName: 'id', unique: false)]
     public \Solidarity\Transaction\Entity\Round $round;
 }

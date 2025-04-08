@@ -41,16 +41,16 @@ class Educator implements ValidatorInterface
     public function isValid(array $data): bool
     {
         $valid = true;
-
+        $this->messages = [];
         if (!$this->validateAccountNumber($data['accountNumber'])) {
             $this->messages['accountNumber'][] = 'Uneti broj žiro računa nije ispravan.';
             $valid = false;
         }
 
-        if (!$this->csrf->validate($data)) {
-            $this->messages['general'][] = 'Stranica je istekla, probajte ponovo.';
-            $valid = false;
-        }
+//        if (!$this->csrf->validate($data)) {
+//            $this->messages['general'][] = 'Stranica je istekla, probajte ponovo.';
+//            $valid = false;
+//        }
 
         return $valid;
     }

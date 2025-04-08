@@ -7,6 +7,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Skeletor\Core\Entity\Timestampable;
 use Solidarity\School\Entity\School;
+use Solidarity\Transaction\Entity\Transaction;
 
 #[ORM\Entity]
 #[ORM\Table(name: 'educator')]
@@ -41,8 +42,11 @@ class Educator
     #[ORM\JoinColumn(name: 'schoolId', referencedColumnName: 'id', unique: false, nullable: true)]
     public ?School $school;
 
-//    #[ORM\OneToMany(targetEntity: Round::class, mappedBy: 'educator')]
-//    public Collection $rounds;
+    #[ORM\OneToMany(targetEntity: Round::class, mappedBy: 'educator')]
+    public Collection $rounds;
+
+    #[ORM\OneToMany(targetEntity: Transaction::class, mappedBy: 'transactions')]
+    public Collection $transactions;
 
 //    #[ORM\Column(type: 'datetime', insertable: true, updatable: true, options: ['default' => "CURRENT_TIMESTAMP"])]
 //    public \DateTime $createdAt;

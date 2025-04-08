@@ -9,6 +9,7 @@ use Laminas\Config\Config;
 use Laminas\Session\SessionManager as Session;
 use League\Plates\Engine;
 use Solidarity\Mailer\Service\Mailer;
+use Solidarity\School\Service\School;
 use Tamtamchik\SimpleFlash\Flash;
 
 class DelegateController extends AjaxCrudController
@@ -29,7 +30,8 @@ class DelegateController extends AjaxCrudController
      * @param Engine $template
      */
     public function __construct(
-        Delegate $service, Session $session, Config $config, Flash $flash, Engine $template, private Mailer $mailer
+        Delegate $service, Session $session, Config $config, Flash $flash, Engine $template, private Mailer $mailer,
+        private School $school
     ) {
         parent::__construct($service, $session, $config, $flash, $template);
         if ($this->getSession()->getStorage()->offsetGet('loggedInRole') !== User::ROLE_ADMIN) {
@@ -65,63 +67,19 @@ class DelegateController extends AjaxCrudController
         return $this->redirect('/delegate/view/');
     }
 
-    public function import()
+    public function addSchoolRelation()
     {
-        ini_set('max_input_time', 600);
-        $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
-        $reader->setReadDataOnly(true);
-        $excel = $reader->load(APP_PATH . '/delegati.xlsx');
+        foreach ($this->service->getEntities() as $entity) {
+            $school = $this->school->getByNameAndCity(trim($entity->schoolName), trim($entity->city));
+            if (!$school) {
+                var_dump($entity->schoolName);
+                var_dump($entity->city);
 
-        foreach ($excel->getSheet($excel->getFirstSheetIndex())->toArray() as $key => $trxInfo) {
-            if ($key === 0) {
+                die('school not found');
+                $failedData[] = $educatorData;
                 continue;
             }
-            if ($trxInfo[3] === null || !strlen($trxInfo[3])) {
-                continue;
-            }
-
-            $status = 1;
-            switch ($trxInfo[0]) {
-                case 'Verifikovano':
-                    $status = 2;
-                    break;
-                case 'Novo':
-//                    $status = 1;
-//                    break;
-                case 'Problematično':
-//                    $status = 3;
-//                    break;
-                case 'Duplikat':
-                    continue(2);
-            }
-            $unixTimestamp = ($trxInfo[2] - 25569) * 86400;
-            $dateTime = gmdate("Y-m-d H:i:s", $unixTimestamp);
-            $dt = new \DateTime($dateTime);
-
-            $delegateData = [
-                'phone' => '',
-                'email' => $trxInfo[3],
-                'name' => $trxInfo[4],
-                'schoolType' => $trxInfo[5],
-                'schoolName' => str_replace(['"', "'"], '', $trxInfo[6]),
-                'city' => $trxInfo[7],
-                'count' => $trxInfo[8],
-                'countBlocking' => $trxInfo[9],
-                'comment' => $trxInfo[10],
-                'verifiedBy' => $trxInfo[12],
-                'formLinkSent' => ($trxInfo[1] === "FALSE") ? 0:1,
-                'status' => $status,
-                'createdAt' => $dt,
-                'updatedAt' => $dt,
-            ];
-//            var_dump($trxInfo[3]);
-            try {
-                $this->service->create($delegateData);
-            } catch (\Exception $e) {
-                var_dump($this->service->parseErrors());
-                die();
-            }
-
+            $this->service->updateField('school', $school->id, $entity->id);
         }
         die('done');
     }

@@ -49,4 +49,9 @@ class TransactionRepository extends TableViewRepository
         return ['a.amount', 'a.name', 'a.accountNumber', 'a.email'];
     }
 
+    public function getColumnsToCount(): array
+    {
+        return ['amount'];
+    }
+
 }

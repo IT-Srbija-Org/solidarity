@@ -43,15 +43,16 @@ class Donor implements ValidatorInterface
     {
         $valid = true;
         $emailValidator = new EmailAddress();
+        $this->messages = [];
         if (!$emailValidator->isValid($data['email'])) {
-            $this->messages['general'][] = 'Uneta email adresa nije ispravna.';
+            $this->messages['email'][] = 'Uneta email adresa nije ispravna. ' . $data['email'];
             $valid = false;
         }
 
-        if (!$this->csrf->validate($data)) {
-            $this->messages['general'][] = 'Stranice je istekla, probajte ponovo.';
-            $valid = false;
-        }
+//        if (!$this->csrf->validate($data)) {
+//            $this->messages['general'][] = 'Stranice je istekla, probajte ponovo.';
+//            $valid = false;
+//        }
 
         return $valid;
     }

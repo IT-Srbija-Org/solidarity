@@ -2,9 +2,11 @@
 
 namespace Solidarity\Donor\Entity;
 
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Skeletor\Core\Entity\Timestampable;
+use Solidarity\Transaction\Entity\Transaction;
 
 #[ORM\Entity]
 #[ORM\Table(name: 'donor')]
@@ -24,8 +26,11 @@ class Donor
     public int $status;
     #[ORM\Column(type: Types::SMALLINT)]
     public int $monthly;
-    #[ORM\Column(type: Types::STRING, length: 1024, nullable: true)]
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
     public ?string $comment;
+
+    #[ORM\OneToMany(targetEntity: Transaction::class, mappedBy: 'transactions')]
+    public Collection $transactions;
 
     public static function getHrStatuses(): array
     {

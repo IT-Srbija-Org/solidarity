@@ -29,7 +29,7 @@ Vagrant.configure(2) do |config|
   # Example for VirtualBox:
   #
   config.vm.provider "virtualbox" do |v|
-     v.memory = 1024
+     v.memory = 2048
      v.cpus = 1
      v.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/v-root", "1"]
 #      v.customize ["modifyvm", :id, "--cableconnected1", "on"]

@@ -65,6 +65,7 @@ $container->set(\Skeletor\User\Repository\UserRepositoryInterface::class, functi
 });
 
 $container->set(Engine::class, function() use ($container) {
+    $path = 'admin';
     if (getenv('APPLICATION') === 'backend') {
         $path = 'admin';
     }

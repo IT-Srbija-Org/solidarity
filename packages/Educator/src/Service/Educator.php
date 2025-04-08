@@ -63,6 +63,11 @@ class Educator extends TableView
         return $entity;
     }
 
+    public function setRoundAmount($educator, $round)
+    {
+        $this->repo->setRoundAmount($educator, $round);
+    }
+
     public function startNewRound()
     {
         return $this->repo->startNewRound();

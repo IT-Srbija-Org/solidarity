@@ -5,6 +5,7 @@ date_default_timezone_set('Europe/Belgrade');
 return array(
     'baseUrl' => 'https://solid.djavolak.info',
     'siteName' => 'Solidarity tools',
+    'appName' => 'solidarity',
     'appType' => '',
     'redirectUri' => '/donor/view/',
     'timezone' => 'Europe/Belgrade',
@@ -27,6 +28,12 @@ return array(
     ],
     'captcha' => [
         'siteKey' => '',
+    ],
+    'cliMap' =>  [
+        'test' => \Solidarity\Backend\Action\Index::class,
+        'donor' => \Solidarity\Backend\Controller\DonorController::class,
+        'educator' => \Solidarity\Backend\Controller\EducatorController::class,
+        'transaction' => \Solidarity\Backend\Controller\TransactionController::class
     ],
     'schoolTypes' => array(
 	    'Osnovna škola',

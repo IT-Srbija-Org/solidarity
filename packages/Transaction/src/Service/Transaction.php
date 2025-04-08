@@ -41,7 +41,7 @@ class Transaction extends TableView
 //                    'value' => $delegate->email,
 //                    'editColumn' => true,
 //                ],
-                'status' => ($transaction->status) ? 'Yes ': 'No',
+                'status' => \Solidarity\Transaction\Entity\Transaction::getHrStatuses()[$transaction->status],
                 'amount' => $transaction->amount,
                 'email' => $transaction->email,
                 'name' => $transaction->name,

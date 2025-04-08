@@ -5,6 +5,7 @@ namespace Solidarity\Delegate\Entity;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Skeletor\Core\Entity\Timestampable;
+use Solidarity\School\Entity\School;
 
 #[ORM\Entity]
 #[ORM\Table(name: 'delegate')]
@@ -40,13 +41,10 @@ class Delegate
     public ?string $countBlocking;
     #[ORM\Column(type: Types::STRING, length: 128)]
     public string $verifiedBy;
+    #[ORM\ManyToOne(targetEntity: School::class, inversedBy: 'delegates')]
+    #[ORM\JoinColumn(name: 'schoolId', referencedColumnName: 'id', unique: false, nullable: true)]
+    public ?School $school;
 
-//    #[ORM\Column(type: 'datetime', insertable: true, updatable: true, options: ['default' => "CURRENT_TIMESTAMP"])]
-//    public \DateTime $createdAt;
-//
-//    #[ORM\Column(type: 'datetime', insertable: true, updatable: true, columnDefinition: "DATETIME DEFAULT CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP")]
-//    public \DateTime $updatedAt;
-//
     public static function getHrStatuses(): array
     {
         return array(

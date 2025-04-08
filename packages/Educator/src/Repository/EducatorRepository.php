@@ -3,6 +3,7 @@ namespace Solidarity\Educator\Repository;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Solidarity\Educator\Entity\Educator;
+use Solidarity\Educator\Entity\Round;
 use Solidarity\Educator\Factory\EducatorFactory;
 use Skeletor\Core\TableView\Repository\TableViewRepository;
 
@@ -15,6 +16,19 @@ class EducatorRepository extends TableViewRepository
         protected EntityManagerInterface $entityManager
     ) {
         parent::__construct($entityManager);
+    }
+
+    public function setRoundAmount($educator, $round)
+    {
+        if (count($this->entityManager->getRepository(Round::class)->findBy(['educator' => $educator->id, 'round' => $round]))) {
+            return;
+        }
+        $educatorRound = new Round();
+        $educatorRound->round = $round;
+        $educatorRound->educator = $educator;
+        $educatorRound->amount = $educator->amount;
+        $this->entityManager->persist($educatorRound);
+        $this->entityManager->flush();
     }
 
     public function startNewRound()

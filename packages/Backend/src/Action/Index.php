@@ -49,12 +49,16 @@ class Index extends Html
         \Psr\Http\Message\ServerRequestInterface $request,
         \Psr\Http\Message\ResponseInterface $response
     ) {
-        $url = $this->getConfig()->offsetGet('adminUrl') . '/login/loginForm/';
-        if ($this->session->getStorage()->offsetGet('loggedIn')) {
-            $url = $this->getConfig()->offsetGet('adminUrl') . '/educator/view/';
-        }
 
-        return $response->withStatus(302)->withHeader('Location', $url);
+        echo 'cao';
+        die();
+
+//        $url = $this->getConfig()->offsetGet('adminUrl') . '/login/loginForm/';
+//        if ($this->session->getStorage()->offsetGet('loggedIn')) {
+//            $url = $this->getConfig()->offsetGet('adminUrl') . '/educator/view/';
+//        }
+//
+//        return $response->withStatus(302)->withHeader('Location', $url);
     }
 
 }

@@ -38,7 +38,7 @@ class Educator implements FilterInterface
             'status' => (isset($postData['status'])) ? $postData['status'] : 1,
             'school' => $postData['school'],
             'createdAt' => $postData['createdAt'],
-            CSRF::TOKEN_NAME => $postData[CSRF::TOKEN_NAME],
+//            CSRF::TOKEN_NAME => $postData[CSRF::TOKEN_NAME],
         ];
         if (!$this->validator->isValid($data)) {
             throw new ValidatorException();

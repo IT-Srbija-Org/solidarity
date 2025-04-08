@@ -9,6 +9,7 @@ use Laminas\Config\Config;
 use Laminas\Session\SessionManager as Session;
 use League\Plates\Engine;
 use Solidarity\School\Service\School;
+use Solidarity\Transaction\Service\Round;
 use Tamtamchik\SimpleFlash\Flash;
 
 class EducatorController extends AjaxCrudController
@@ -30,7 +31,7 @@ class EducatorController extends AjaxCrudController
      */
     public function __construct(
         Educator $service, Session $session, Config $config, Flash $flash, Engine $template, private School $school,
-        private \Redis $redis
+        private \Redis $redis, private Round $round
     ) {
         parent::__construct($service, $session, $config, $flash, $template);
         $this->tableViewConfig['createButton'] = false;
@@ -47,22 +48,27 @@ class EducatorController extends AjaxCrudController
         die('disabled');
     }
 
+    public function prepRound()
+    {
+        $round = $this->round->getActiveRound();
+        foreach ($this->service->getEntities() as $educator) {
+            // @todo check for existing
+            $this->service->setRoundAmount($educator, $round);
+        }
+        die('done');
+    }
+
     public function import()
     {
+        ini_set('display_errors', 1);
+        error_reporting(E_ALL);
         ini_set('max_execution_time', 3600);
         $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
         $reader->setReadDataOnly(true);
         $excel = $reader->load(APP_PATH . '/Osteceni.xlsx');
         $failedData = [];
-//        $data = $this->redis->get('data');
-        $data = false;
-        if ($data === false) {
-            $data = $excel->getSheet($excel->getFirstSheetIndex())->toArray();
-//            $this->redis->set(serialize($data), 1200);
-        } else {
-            $data = unserialize($data);
-        }
-
+        $round = $this->round->getActiveRound();
+        $data = $excel->getSheet($excel->getFirstSheetIndex())->toArray();
         foreach ($data as $key => $educatorData) {
             if ($key === 0) {
                 continue;
@@ -111,10 +117,19 @@ class EducatorController extends AjaxCrudController
             }
 
             $unixTimestamp = ($educatorData[0] - 25569) * 86400;
-            $dateTime = gmdate("Y-m-d H:i:s", $unixTimestamp);
+            $dateTime = @gmdate("Y-m-d H:i:s", $unixTimestamp);
             $dt = new \DateTime($dateTime);
             $accNumber = str_replace([' ', '-'], '', $educatorData[3]);
             $accNumber = str_replace('O', '0', $accNumber);
+
+            // if found, save amount for round 1
+            $educator = $this->service->getEntities(['accountNumber' => $this->normalizeAccountNumber($accNumber)]);
+            if (count($educator)) {
+                $educator = $educator[0];
+                $educator->amount = intval($educatorData[4]);
+                $this->service->setRoundAmount($educator, $round);
+                continue;
+            }
 
             $data = [
                 'amount' => $educatorData[4],
@@ -129,7 +144,9 @@ class EducatorController extends AjaxCrudController
             ];
 
             try {
-                $this->service->create($data);
+
+                $educator = $this->service->create($data);
+                $this->service->setRoundAmount($educator, $round);
             } catch (\Exception $e) {
                 var_dump($e->getMessage());
                 var_dump($this->service->parseErrors());
@@ -175,5 +192,31 @@ class EducatorController extends AjaxCrudController
 
         var_dump($failedData);
         die('done');
+    }
+
+    private function normalizeAccountNumber(string $accountNumber) : string
+    {
+        $numbersOnly = preg_replace('/[^0-9]/', '', $accountNumber);
+
+        if (strlen($numbersOnly) === 18) {
+            return $numbersOnly;
+        }
+
+        $parts = [
+            substr($numbersOnly, 0, 3),
+            substr($numbersOnly, 3, -2),
+            substr($numbersOnly, -2),
+        ];
+
+        if (strlen($parts[1]) < 13) {
+            $parts[1] = str_pad(
+                $parts[1],
+                13,
+                '0',
+                STR_PAD_LEFT
+            );
+        }
+
+        return join('', $parts);
     }
 }

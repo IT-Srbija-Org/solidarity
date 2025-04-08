@@ -2,6 +2,7 @@
 
 define('APP_PATH', __DIR__ . '/..');
 define('DATA_PATH', __DIR__ . '/../data');
+define('IMAGES_PATH', APP_PATH . '/../frontend/public/images');
 
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
@@ -15,7 +16,7 @@ try {
     }
     /* @var \DI\Container $container */
     $container = require APP_PATH . '/config/bootstrap.php';
-    $app = new \Skeletor\App\CliSkeletor($container, $container->get(\Psr\Log\LoggerInterface::class));
+    $app = new \Skeletor\Core\App\CliSkeletor($container, $container->get(\Psr\Log\LoggerInterface::class));
 } catch (\Exception $e) {
     var_dump('could not start application. ' . $e->getMessage());
     exit();
