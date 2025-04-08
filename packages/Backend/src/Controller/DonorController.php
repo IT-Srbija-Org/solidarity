@@ -106,7 +106,7 @@ class DonorController extends AjaxCrudController
             }
 //            var_dump($data);
 //            die();
-            $unixTimestamp = ($data[0] - 25569) * 86400;
+            $unixTimestamp = (intval($data[0]) - 25569) * 86400;
             $dateTime = @gmdate("Y-m-d H:i:s", $unixTimestamp);
             $dt = new \DateTime($dateTime);
             $monthly = (isset($data[3]) && $data[3]) ? $data[3] : '';
