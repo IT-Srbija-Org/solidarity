@@ -183,6 +183,7 @@ class TransactionController extends AjaxCrudController
                 'educator' => $educator[0]->id,
                 'donor' => $donor[0]->id,
                 'comment' => '',
+                'round' => 1,
             ];
 
             try {
