@@ -76,7 +76,7 @@ class DonorController extends AjaxCrudController
         ini_set('max_execution_time', 0);
         $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
         $reader->setReadDataOnly(true);
-        $excel = $reader->load(APP_PATH . '/donatori-zero.xlsx');
+        $excel = $reader->load(APP_PATH . '/donatori.xlsx');
         $failedData = [];
 
         foreach ($excel->getSheet($excel->getFirstSheetIndex())->toArray() as $key => $data) {
@@ -157,7 +157,7 @@ class DonorController extends AjaxCrudController
             $sheet->getCell('F' . $row)->setValue($item[5]);
             $sheet->getCell('G' . $row)->setValue($item[6]);
         }
-        $filePath = APP_PATH . '/failed-donors-zero.xlsx';
+        $filePath = APP_PATH . '/failed-donors.xlsx';
         $writer->save($filePath);
 
 //        var_dump($failedData);
