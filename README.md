@@ -79,7 +79,17 @@ Projekat sa formama će biti dostupan na `http://solidforms.local` a dash sistem
 1. Za SSH pristup mašini, iz korena aplikacije pokrenite (SSH lozinka je vagrant):
     ```bash
     vagrant ssh
+   cd /vagrant
     ```
+    instaliranje **Composer** unutar vagranta
+   ```bash
+    composer install
+    # ili ako composer nije instaliran
+    curl -sS https://getcomposer.org/installer | php
+    sudo mv composer.phar /usr/local/bin/composer
+   ```
+   posle toga koristite [komande](#komande-za-bazu-podataka) za bazu podataka
+
 2. Za stilizovanje i validaciju formi, navigirajte do app root/public/assets i pokrenite (potreban je node - https://nodejs.org/en/download):
     ```bash
     npm install

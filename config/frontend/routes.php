@@ -24,6 +24,7 @@ return [
     [['GET'], '/hvalaZaOstecenog', \Solidarity\Frontend\Action\ThankYouEducator::class],
     [['GET', 'POST'], '/obrazacDonatori', \Solidarity\Frontend\Action\Donor::class],
     [['GET', 'POST'], '/obrazacDelegati', \Solidarity\Frontend\Action\Delegate::class],
+    [['GET', 'POST'], '/profileDelegat', \Solidarity\Frontend\Action\ProfileDelegate::class],
     [['GET', 'POST'], '/obrazacOsteceni', \Solidarity\Frontend\Action\Educator::class],
 
 

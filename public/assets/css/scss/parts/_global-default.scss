@@ -216,10 +216,6 @@ img {
 		&[data-city*="Ada"]:not([data-default-city]) {
 			display: block;
 		}
-
-		&:has([data-city][data-default-city][data-city=data-default-city]) {
-			display: block;
-		}
 	}
 
 	.it-form-response {

@@ -1,37 +1,35 @@
 <?php
 
 return array(
-    'baseUrl' => 'http://solidforms.local',
-    'adminUrl' => 'http://solidarity.local',
-    'db' => [
-        'write' => [
-            'host' => 'localhost',
-            'name' => 'solid',
-            'user' => 'root',
-            'pass' => 'rootpass'
-        ],
-        'read' => [
-            [
-                'host' => 'localhost',
-                'name' => 'solid',
-                'user' => 'root',
-                'pass' => 'rootpass'
-            ]
-        ],
-    ],
-    'redis' => [
-        'hosts' => [
-            '127.0.0.1' => 6379
-        ]
-    ],
-    'mailer' => [
-            'server' => [
-                'mailersend' => '123'
-            ]
-        ],
-    'captcha' => [
-        'siteKey' => ''
-    ],
-
+	'baseUrl'  => 'http://solidforms.local',
+	'adminUrl' => 'http://solidarity.local',
+	'db'       => [
+		'write' => [
+			'host' => 'localhost',
+			'name' => 'solid',
+			'user' => 'root',
+			'pass' => 'rootpass'
+		],
+		'read'  => [
+			[
+				'host' => 'localhost',
+				'name' => 'solid',
+				'user' => 'root',
+				'pass' => 'rootpass'
+			]
+		],
+	],
+	'redis'    => [
+		'hosts' => [
+			'127.0.0.1' => 6379
+		]
+	],
+	'mailer'   => [
+		'server' => [
+			'mailersend' => '123'
+		]
+	],
+	'captcha'  => [
+		'siteKey' => ''
+	],
 );
-

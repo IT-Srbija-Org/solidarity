@@ -21,7 +21,13 @@ class Educator extends BaseAction
         \Psr\Http\Message\ServerRequestInterface $request,
         \Psr\Http\Message\ResponseInterface $response
     ) {
+	    $educatorRepo = $this->educator->getRepository();
+
+	    $schoolsMap = ! empty( $educatorRepo->getAllSchools() ) ? $educatorRepo->getAllSchools() : $this->getConfig()->offsetGet( 'schoolsMap' )->toArray();
+
+	    $this->setGlobalVariable( 'schoolsMap', $schoolsMap );
         $this->setGlobalVariable('title', 'Forma za edukatore');
+
         $data = $request->getParsedBody();
         if (!empty($data)) {
             try {
