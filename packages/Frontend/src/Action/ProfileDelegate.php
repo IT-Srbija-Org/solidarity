@@ -18,7 +18,9 @@ class ProfileDelegate extends BaseAction {
 		\Psr\Http\Message\ServerRequestInterface $request,
 		\Psr\Http\Message\ResponseInterface $response
 	) {
-		$delegateRepo = $this->delegate->getRepository();
+		// TODO - create login functionality for delegate and use corresponding delegate ID to get data
+		$is_development = 'development' === $this->getConfig()->offsetGet( 'appEnv' );
+		$delegateRepo   = $this->delegate->getRepository();
 
 		$schoolTypes = ! empty( $delegateRepo->getAllSchoolTypes() ) ? $delegateRepo->getAllSchoolTypes() : $this->getConfig()->offsetGet( 'schoolTypes' )->toArray();
 		$schoolsMap  = ! empty( $delegateRepo->getAllSchools() ) ? $delegateRepo->getAllSchools() : $this->getConfig()->offsetGet( 'schoolsMap' )->toArray();
@@ -27,16 +29,21 @@ class ProfileDelegate extends BaseAction {
 		$this->setGlobalVariable( 'schoolsMap', $schoolsMap );
 		$this->setGlobalVariable( 'title', 'Profile za delegata' );
 
-		// TODO - create login functionality for delegate and use corresponding delegate ID to get data, for development mode just remove 2 comments bellow
 		$data         = $request->getParsedBody();
 		$default_data = array();
-		// $default_data = $this->delegate->getById( 1 );
+
+		if ( $is_development ) {
+			$default_data = $this->delegate->getById( 1 );
+		}
 
 		if ( ! empty( $data ) ) {
 			try {
-				$data['id'] = 1;
 
-				// $this->delegate->update( $data );
+				if ( $is_development ) {
+					$data['id'] = 1;
+
+					$this->delegate->update( $data );
+				}
 
 				return $this->respond( 'delegate/profile', [ 'user' => $data ] );
 			} catch ( \Exception $e ) {
