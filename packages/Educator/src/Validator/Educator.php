@@ -47,10 +47,10 @@ class Educator implements ValidatorInterface
             $valid = false;
         }
 
-//        if (!$this->csrf->validate($data)) {
-//            $this->messages['general'][] = 'Stranica je istekla, probajte ponovo.';
-//            $valid = false;
-//        }
+        if (!$this->csrf->validate($data)) {
+            $this->messages['general'][] = 'Stranica je istekla, probajte ponovo.';
+            $valid = false;
+        }
 
         return $valid;
     }

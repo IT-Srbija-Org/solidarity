@@ -141,10 +141,11 @@ class TransactionController extends AjaxCrudController
     public function import()
     {
         ini_set('max_execution_time', 3600);
+        ini_set('memory_limit', '512M');
         $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
         $reader->setReadDataOnly(true);
-//        $excel = $reader->load(APP_PATH . '/lista-svih-uplata-runda1-15.xlsx');
-        $excel = $reader->load(APP_PATH . '/trx-pt1.xlsx');
+        $excel = $reader->load(APP_PATH . '/lista-svih-uplata-runda1-15.xlsx');
+//        $excel = $reader->load(APP_PATH . '/trx-pt1.xlsx');
         $failedData = [];
         $failedDonorsTrx = [];
         $failedEducatorsTrx = [];
