@@ -60,6 +60,9 @@ class EducatorController extends AjaxCrudController
     public function addSchoolRelation()
     {
         foreach ($this->service->getEntities() as $educator) {
+            if ($educator->school) {
+                continue;
+            }
             $school = $this->school->getByNameAndCity(trim($educator->schoolName), trim($educator->city));
             if (!$school) {
                 var_dump($educator->schoolName);
