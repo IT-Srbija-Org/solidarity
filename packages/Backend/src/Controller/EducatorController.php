@@ -52,8 +52,24 @@ class EducatorController extends AjaxCrudController
     {
         $round = $this->round->getActiveRound();
         foreach ($this->service->getEntities() as $educator) {
-            // @todo check for existing
             $this->service->setRoundAmount($educator, $round);
+        }
+        die('done');
+    }
+
+    public function addSchoolRelation()
+    {
+        foreach ($this->service->getEntities() as $educator) {
+            $school = $this->school->getByNameAndCity(trim($educator->schoolName), trim($educator->city));
+            if (!$school) {
+                var_dump($educator->schoolName);
+                var_dump($educator->city);
+
+                die('school not found');
+                $failedData[] = $educatorData;
+                continue;
+            }
+            $this->service->updateField('school', $school->id, $educator->id);
         }
         die('done');
     }
