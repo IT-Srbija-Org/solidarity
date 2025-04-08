@@ -74,6 +74,7 @@ class DonorController extends AjaxCrudController
     public function import()
     {
         ini_set('max_execution_time', 0);
+        ini_set('memory_limit', '512M');
         $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
         $reader->setReadDataOnly(true);
         $excel = $reader->load(APP_PATH . '/donatori.xlsx');
