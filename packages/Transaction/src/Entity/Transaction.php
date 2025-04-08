@@ -48,12 +48,6 @@ class Transaction
     #[ORM\JoinColumn(name: 'donorId', referencedColumnName: 'id', unique: false)]
     public Donor $donor;
 
-//    #[ORM\Column(type: 'datetime', insertable: false, updatable: true, options: ['default' => "CURRENT_TIMESTAMP"])]
-//    public \DateTime $createdAt;
-//
-//    #[ORM\Column(type: 'datetime', insertable: false, updatable: true, columnDefinition: "DATETIME DEFAULT CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP")]
-//    public \DateTime $updatedAt;
-
     public static function getHrStatuses(): array
     {
         return array(
