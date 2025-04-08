@@ -19,7 +19,7 @@ class ProfileDelegate extends BaseAction {
 		\Psr\Http\Message\ResponseInterface $response
 	) {
 		// TODO - create login functionality for delegate and use corresponding delegate ID to get data
-		$is_development = 'development' === $this->getConfig()->offsetGet( 'appEnv' );
+		$is_development = 'development' === getenv( 'APPLICATION_ENV' );
 		$delegateRepo   = $this->delegate->getRepository();
 
 		$schoolTypes = ! empty( $delegateRepo->getAllSchoolTypes() ) ? $delegateRepo->getAllSchoolTypes() : $this->getConfig()->offsetGet( 'schoolTypes' )->toArray();
