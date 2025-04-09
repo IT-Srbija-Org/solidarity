@@ -22,6 +22,20 @@ class DelegateRepository extends TableViewRepository
         parent::__construct($entityManager);
     }
 
+    public function getAffectedDelegates()
+    {
+        $sql = "SELECT * FROM delegate d where 
+(SELECT count(*) FROM transaction where educatorId IN (
+SELECT id FROM educator e WHERE e.schoolid = d.schoolid
+) ) > 0";
+
+        $stmt = $this->entityManager->getConnection()->prepare($sql);
+        /* @var \Doctrine\DBAL\Result $result */
+        $result = $stmt->executeQuery();
+
+        return $result->fetchAllAssociative();
+    }
+
     public function getSearchableColumns(): array
     {
         return ['a.email', 'a.name', 'a.schoolName', 'a.comment', 'a.verifiedBy', 'a.city'];

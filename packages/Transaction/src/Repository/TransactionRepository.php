@@ -2,6 +2,7 @@
 namespace Solidarity\Transaction\Repository;
 
 use Doctrine\ORM\EntityManagerInterface;
+use Solidarity\Educator\Entity\Educator;
 use Solidarity\Transaction\Entity\Transaction;
 use Solidarity\Transaction\Factory\TransactionFactory;
 use Skeletor\Core\TableView\Repository\TableViewRepository;
@@ -15,6 +16,18 @@ class TransactionRepository extends TableViewRepository
         protected EntityManagerInterface $entityManager
     ) {
         parent::__construct($entityManager);
+    }
+
+    public function getTransactionsBySchool($schoolId)
+    {
+        $qb = $this->entityManager->createQueryBuilder();
+        $qb->select('t')
+            ->from(static::ENTITY, 't')
+            ->join(Educator::class, 'e', 'WITH', 't.educator = e')
+            ->where('e.school = :school');
+        $qb->setParameter('school', $schoolId);
+
+        return $qb->getQuery()->getResult();
     }
 
     public function startNewRound()

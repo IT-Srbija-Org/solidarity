@@ -2,6 +2,7 @@
 namespace Solidarity\Backend\Controller;
 
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use Solidarity\Delegate\Service\Delegate;
 use Solidarity\Donor\Service\Donor;
 use Solidarity\Educator\Service\Educator;
 use Solidarity\Mailer\Service\Mailer;
@@ -38,17 +39,23 @@ class TransactionController extends AjaxCrudController
     public function __construct(
         Transaction $service, Session $session, Config $config, Flash $flash, Engine $template,
         private Donor $donor, private Educator $educator, private Transaction $transaction, private Round $round,
-        private Mailer $mailer, private \Solidarity\Educator\Filter\Educator $educatorFilter
+        private Mailer $mailer, private \Solidarity\Educator\Filter\Educator $educatorFilter, private Delegate $delegate
     ) {
         parent::__construct($service, $session, $config, $flash, $template);
         $this->tableViewConfig['createButton'] = false;
     }
 
-    public function test ()
+    public function sendTransactionListToAffectedDelegates()
     {
-        $this->mailer->sendDonorRegisteredMail('djavolak@mail.ru');
+        foreach ($this->delegate->getAffectedDelegates() as $delegateData) {
+            var_dump($delegateData['email']);
+            $fileName = $this->service->compileXlsxTransactionList(
+                $this->service->getTransactionsBySchool($delegateData['schoolId']), $delegateData['schoolName']
+            );
+        }
+//        $this->mailer->sendDonorRegisteredMail('djavolak@mail.ru');
 
-        die('sent');
+        die('done');
     }
 
     public function mapPayments()

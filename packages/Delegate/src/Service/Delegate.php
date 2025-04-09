@@ -24,6 +24,11 @@ class Delegate extends TableView
         parent::__construct($repo, $user, $logger, $filter);
     }
 
+    public function getAffectedDelegates()
+    {
+        return $this->repo->getAffectedDelegates();
+    }
+
     public function create(array $data)
     {
         $entity = parent::create($data);
