@@ -47,7 +47,7 @@ class Delegate implements ValidatorInterface
         $valid = true;
         $emailValidator = new EmailAddress();
         if (!$emailValidator->isValid($data['email'])) {
-            $this->messages['general'][] = 'Uneta email adresa nije ispravna.';
+            $this->messages['general'][] = 'Uneta email adresa nije ispravna.' . $data['email'];
             $valid = false;
         }
 
@@ -67,10 +67,10 @@ class Delegate implements ValidatorInterface
             }
         }
 
-        if (!$this->csrf->validate($data)) {
-            $this->messages['general'][] = 'Stranica je istekla, probajte ponovo.';
-            $valid = false;
-        }
+//        if (!$this->csrf->validate($data)) {
+//            $this->messages['general'][] = 'Stranica je istekla, probajte ponovo.';
+//            $valid = false;
+//        }
 
         return $valid;
     }

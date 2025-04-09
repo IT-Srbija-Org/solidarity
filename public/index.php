@@ -4,7 +4,7 @@ use Psr\Log\LoggerInterface;
 use Skeletor\Core\App\WebSkeletor;
 
 error_reporting(E_ALL);
-ini_set('display_errors', 1);
+ini_set('display_errors', 0);
 
 include(__DIR__ . "/../config/constants.php");
 include(APP_PATH . "/vendor/autoload.php");

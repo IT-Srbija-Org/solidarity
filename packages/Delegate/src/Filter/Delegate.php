@@ -37,11 +37,12 @@ class Delegate implements FilterInterface
             'count' => $postData['count'],
             'formLinkSent' => (isset($postData['formLinkSent'])) ? $postData['formLinkSent'] : 0,
             'countBlocking' => $postData['countBlocking'],
+            'school' => $postData['school'],
             'schoolType' => Transliterator::toLatin($postData['schoolType']),
             'schoolName' => Transliterator::toLatin($postData['schoolName']),
             'comment' => Transliterator::toLatin($postData['comment'] ?? ''),
             'status' => (isset($postData['status'])) ? $postData['status'] : 1,
-            CSRF::TOKEN_NAME => $postData[CSRF::TOKEN_NAME],
+//            CSRF::TOKEN_NAME => $postData[CSRF::TOKEN_NAME],
         ];
         if (!$this->validator->isValid($data)) {
             throw new ValidatorException();

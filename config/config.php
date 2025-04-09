@@ -32,6 +32,7 @@ return array(
     'cliMap' =>  [
         'test' => \Solidarity\Backend\Action\Index::class,
         'donor' => \Solidarity\Backend\Controller\DonorController::class,
+        'delegate' => \Solidarity\Backend\Controller\DelegateController::class,
         'educator' => \Solidarity\Backend\Controller\EducatorController::class,
         'transaction' => \Solidarity\Backend\Controller\TransactionController::class
     ],
