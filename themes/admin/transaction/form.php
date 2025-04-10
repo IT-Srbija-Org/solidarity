@@ -27,9 +27,13 @@ $amount = (new \Skeletor\Form\InputTypes\Input\Number(name: 'amount', value: $da
     ->required('amount is required');
 $accountNumber = (new \Skeletor\Form\InputTypes\Input\Text(name: 'accountNumber', value: $data['model']?->accountNumber, label:'Account number', readOnly: true));
 $comment = (new \Skeletor\Form\InputTypes\TextArea\TextArea(name:'comment', value:$data['model']?->comment, label:'Comment'));
+$educator = (new Hidden(name: 'educator', value: $data['model']?->educator->id));
+$donor = (new Hidden(name: 'donor', value: $data['model']?->donor->id));
 
 $inputGroup1 = (new InputGroup())
     ->addInput($name)
+    ->addInput($educator)
+    ->addInput($donor)
     ->addInput($comment);
 $inputGroup2 = (new InputGroup())
     ->addInput($accountNumber);
