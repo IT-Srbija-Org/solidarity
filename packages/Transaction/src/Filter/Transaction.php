@@ -38,7 +38,7 @@ class Transaction implements FilterInterface
             'donor' => $postData['donor'],
             'round' => $postData['round'],
             'archived' => $postData['archived'] ?? 0,
-//            CSRF::TOKEN_NAME => $postData[CSRF::TOKEN_NAME],
+            CSRF::TOKEN_NAME => $postData[CSRF::TOKEN_NAME],
         ];
         if (!$this->validator->isValid($data)) {
             throw new ValidatorException();

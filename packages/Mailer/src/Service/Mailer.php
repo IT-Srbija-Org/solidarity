@@ -21,6 +21,25 @@ class Mailer extends \Skeletor\Core\Mailer\Service\Mailer
         parent::__construct($mail, $config, $template);
     }
 
+    public function sendTransactionListToDelegate($email, $listPath)
+    {
+        $body = $this->render('transactionList', []);
+        $recipients = [
+            new Recipient($email, $email),
+        ];
+        $emailParams = (new \MailerSend\Helpers\Builder\EmailParams())
+            ->setFrom('delegati@mrezasolidarnosti.org')
+            ->setFromName('Mreža solidarnosti')
+            ->setRecipients($recipients)
+            ->setSubject('Nerealizovane isplate za 1. deo februara')
+            ->setHtml($body)
+            ->setReplyTo('delegati@mrezasolidarnosti.org')
+            ->setReplyToName('Mreža solidarnosti')
+            ->setAttachments([new Attachment(file_get_contents($listPath), basename($listPath))]);
+
+        $this->send($emailParams);
+    }
+
     public function sendRoundStartMailToDelegate($email)
     {
         $body = $this->render('roundStart', []);
