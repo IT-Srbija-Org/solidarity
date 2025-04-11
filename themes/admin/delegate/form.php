@@ -37,9 +37,11 @@ $email = (new Email('email', $data['model']?->email, 'Email'));
 //    ->emailInvalidMessage('Email is invalid');
 $comment = (new \Skeletor\Form\InputTypes\TextArea\TextArea('comment', $data['model']?->comment, 'Comment'));
 $sendRoundStartMail = (new Checkbox('sendRoundStartMail', false, 'Pošalji email za prijavu oštećenih'));
+$school = (new Hidden(name: 'school', value: $data['model']?->school->id));
 
 $inputGroup1 = (new InputGroup())
     ->addInput($email)
+    ->addInput($school)
     ->addInput($schoolType)
     ->addInput($verifiedBy);
 $inputGroup2 = (new InputGroup())

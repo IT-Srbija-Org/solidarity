@@ -30,6 +30,7 @@ $level2 = [
     '/transaction/tableHandler/*',
     '/transaction/form/*',
     '/school/*',
+    '/school/*',
     '/schoolType/*',
     '/city/*',
 
@@ -45,6 +46,7 @@ $level1 = [
     '/delegate/*',
     '/transaction/*',
     '/educator/*',
+    '/educator/addSchoolRelation*',
     '/template/*',
     '/translator/*',
     '/activity/*',

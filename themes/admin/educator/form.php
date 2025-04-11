@@ -27,10 +27,12 @@ $accountNumber = (new \Skeletor\Form\InputTypes\Input\Number('accountNumber', $d
 $city = (new Text('city', $data['model']?->city, 'City'));
 $comment = (new \Skeletor\Form\InputTypes\TextArea\TextArea('comment', $data['model']?->comment, 'Comment'));
 $schoolName = (new Text('schoolName', $data['model']?->schoolName, 'School name'));
+$school = (new Hidden(name: 'school', value: $data['model']?->school->id));
 
 $form->addTab((new Tab('Basic Info'))
     ->addInputGroup((new InputGroup())
         ->addInput($name)
+        ->addInput($school)
         ->addInput($comment))
     ->addInputGroup((new InputGroup())
         ->addInput($accountNumber)
