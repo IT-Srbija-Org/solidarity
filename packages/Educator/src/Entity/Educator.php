@@ -42,7 +42,7 @@ class Educator
     #[ORM\JoinColumn(name: 'schoolId', referencedColumnName: 'id', unique: false, nullable: true)]
     public ?School $school;
 
-    #[ORM\OneToMany(targetEntity: Round::class, mappedBy: 'educator')]
+    #[ORM\OneToMany(targetEntity: Round::class, mappedBy: 'educator', orphanRemoval: true)]
     public Collection $rounds;
 
     #[ORM\OneToMany(targetEntity: Transaction::class, mappedBy: 'transactions')]
