@@ -52,17 +52,14 @@ class TransactionController extends AjaxCrudController
             $fileName = $this->service->compileXlsxTransactionList(
                 $this->service->getTransactionsBySchool($delegateData['schoolId']), $delegateData['schoolName']
             );
-            $this->mailer->sendTransactionListToDelegate('djavolak@mail.ru', $fileName);
-
-            die();
+            $this->mailer->sendTransactionListToDelegate($delegateData['email'], $fileName);
         }
-
-
         die('done');
     }
 
     public function mapPayments()
     {
+        die();
         $round = $this->round->getActiveRound();
         $donorsList = $this->donor->getForMapping();
         $receiversList = $this->educator->getForMapping();
