@@ -1,6 +1,7 @@
 <?php
 namespace Solidarity\Backend\Controller;
 
+use GuzzleHttp\Psr7\UploadedFile;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use Solidarity\Delegate\Service\Delegate;
 use Solidarity\Donor\Service\Donor;
@@ -45,6 +46,65 @@ class TransactionController extends AjaxCrudController
         $this->tableViewConfig['createButton'] = false;
     }
 
+    public function uploadTransactionListForm()
+    {
+        return $this->respond('uploadTransactionList', []);
+    }
+
+    public function uploadTransactionList()
+    {
+        /* @var UploadedFile $uploadedFile */
+        $uploadedFile = $this->getRequest()->getUploadedFiles()['file'];
+        $uploadedFile->moveTo(DATA_PATH . '/' . $uploadedFile->getClientFilename());
+        $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+        $reader->setReadDataOnly(true);
+        $excel = $reader->load(DATA_PATH . '/' . $uploadedFile->getClientFilename());
+        $failedData = [];
+        foreach ($excel->getSheet($excel->getFirstSheetIndex())->toArray() as $key => $data) {
+            if ($key < 2) {
+                continue;
+            }
+            if (!$data[0]) {
+                $this->getFlash()->error('<p>Missing id</p>');
+                $failedData[] = $data;
+                continue;
+            }
+            $transaction = $this->service->getById($data[0]);
+            if (!$transaction) {
+                $this->getFlash()->error('<p>Transaction not found in database. id:' . $data[0]. '</p>');
+                $failedData[] = $data;
+                continue;
+            }
+            if ($transaction->amount != $data[2]) {
+                $this->getFlash()->error('<p>Transaction amount mismatch. id:' . $data[0] . '</p>');
+                $failedData[] = $data;
+                continue;
+            }
+            switch ($data[4]) {
+                case 'Plaćeno':
+                $status = \Solidarity\Transaction\Entity\Transaction::STATUS_CONFIRMED;
+                    break;
+                case 'Neplaćeno':
+                default:
+                $status = \Solidarity\Transaction\Entity\Transaction::STATUS_CANCELLED;
+                break;
+            }
+            try {
+                $this->service->updateField('status', $status, $data[0]);
+            } catch (\Exception $e) {
+                $this->getFlash()->error($e->getMessage());
+                $failedData[] = $data;
+            }
+        }
+        if (count($failedData)) {
+            foreach ($failedData as $item) {
+//                $this->getFlash()->error('Invalid/changed data found for transaction id:' . $item[0]);
+            }
+        }
+        $this->getFlash()->success('Transactions updated.');
+        return $this->redirect('/transaction/uploadTransactionListForm/');
+    }
+
     public function sendTransactionListToAffectedDelegates()
     {
         foreach ($this->delegate->getAffectedDelegates() as $delegateData) {
@@ -52,7 +112,7 @@ class TransactionController extends AjaxCrudController
             $fileName = $this->service->compileXlsxTransactionList(
                 $this->service->getTransactionsBySchool($delegateData['schoolId']), $delegateData['schoolName']
             );
-            $this->mailer->sendTransactionListToDelegate($delegateData['email'], $fileName);
+//            $this->mailer->sendTransactionListToDelegate($delegateData['email'], $fileName);
         }
         die('done');
     }
