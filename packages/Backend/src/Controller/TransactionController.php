@@ -56,7 +56,12 @@ class TransactionController extends AjaxCrudController
         /* @var UploadedFile $uploadedFile */
         $uploadedFile = $this->getRequest()->getUploadedFiles()['file'];
         $uploadedFile->moveTo(DATA_PATH . '/' . $uploadedFile->getClientFilename());
-        $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+        $parts = explode('.', basename($uploadedFile->getClientFilename()));
+        if ($parts[count($parts)-1] === 'xlsx') {
+            $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+        } else {
+            $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xls();
+        }
         $reader->setReadDataOnly(true);
         $excel = $reader->load(DATA_PATH . '/' . $uploadedFile->getClientFilename());
         $failedData = [];
