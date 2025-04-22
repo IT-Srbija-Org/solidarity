@@ -25,10 +25,11 @@ return [
     [['GET', 'POST'], '/donor/{action}[/{id}]', \Solidarity\Backend\Controller\DonorController::class],
     [['GET', 'POST'], '/delegate/{action}[/{id}]', \Solidarity\Backend\Controller\DelegateController::class],
     [['GET', 'POST'], '/educator/{action}[/{id}]', \Solidarity\Backend\Controller\EducatorController::class],
+    [['GET', 'POST'], '/educatorImport/{action}[/{id}]', \Solidarity\Backend\Controller\EducatorImportController::class],
+    [['GET', 'POST'], '/transactionImport/{action}[/{id}]', \Solidarity\Backend\Controller\TransactionImportController::class],
     [['GET', 'POST'], '/transaction/{action}[/{id}]', \Solidarity\Backend\Controller\TransactionController::class],
     [['GET', 'POST'], '/school/{action}[/{id}]', \Solidarity\Backend\Controller\SchoolController::class],
     [['GET', 'POST'], '/schoolType/{action}[/{id}]', \Solidarity\Backend\Controller\SchoolTypeController::class],
     [['GET', 'POST'], '/city/{action}[/{id}]', \Solidarity\Backend\Controller\CityController::class],
-
 
 ];

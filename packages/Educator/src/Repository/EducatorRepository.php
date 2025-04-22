@@ -19,7 +19,7 @@ class EducatorRepository extends TableViewRepository
         parent::__construct($entityManager);
     }
 
-    public function setRoundAmount($educator, $round)
+    public function setRoundAmount($educator, $round, $amount)
     {
         if (count($this->entityManager->getRepository(Round::class)->findBy(['educator' => $educator->id, 'round' => $round]))) {
             return;
@@ -27,7 +27,7 @@ class EducatorRepository extends TableViewRepository
         $educatorRound = new Round();
         $educatorRound->round = $round;
         $educatorRound->educator = $educator;
-        $educatorRound->amount = $educator->amount;
+        $educatorRound->amount = $amount;
         $this->entityManager->persist($educatorRound);
         $this->entityManager->flush();
     }

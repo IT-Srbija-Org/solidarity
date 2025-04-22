@@ -8,11 +8,12 @@ use GuzzleHttp\Psr7\Response;
 use Laminas\Config\Config;
 use Laminas\Session\SessionManager as Session;
 use League\Plates\Engine;
+use Solidarity\Educator\Service\EducatorImport;
 use Solidarity\School\Service\School;
 use Solidarity\Transaction\Service\Round;
 use Tamtamchik\SimpleFlash\Flash;
 
-class EducatorController extends AjaxCrudController
+class EducatorImportController extends AjaxCrudController
 {
     const TITLE_VIEW = "View educators";
     const TITLE_CREATE = "Create new educator";
@@ -30,7 +31,7 @@ class EducatorController extends AjaxCrudController
      * @param Engine $template
      */
     public function __construct(
-        Educator $service, Session $session, Config $config, Flash $flash, Engine $template, private School $school,
+        EducatorImport $service, Session $session, Config $config, Flash $flash, Engine $template, private School $school,
         private \Redis $redis, private Round $round
     ) {
         parent::__construct($service, $session, $config, $flash, $template);
@@ -48,35 +49,6 @@ class EducatorController extends AjaxCrudController
         die('disabled');
     }
 
-    public function prepRound()
-    {
-        $round = $this->round->getActiveRound();
-        foreach ($this->service->getEntities() as $educator) {
-            $this->service->setRoundAmount($educator, $round);
-        }
-        die('done');
-    }
-
-    public function addSchoolRelation()
-    {
-        foreach ($this->service->getEntities() as $educator) {
-            if ($educator->school) {
-                continue;
-            }
-            $school = $this->school->getByNameAndCity(trim($educator->schoolName), trim($educator->city));
-            if (!$school) {
-                var_dump($educator->schoolName);
-                var_dump($educator->city);
-
-                die('school not found');
-                $failedData[] = $educatorData;
-                continue;
-            }
-            $this->service->updateField('school', $school->id, $educator->id);
-        }
-        die('done');
-    }
-
     public function import()
     {
         ini_set('display_errors', 1);
@@ -84,14 +56,13 @@ class EducatorController extends AjaxCrudController
         ini_set('max_execution_time', 3600);
         $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
         $reader->setReadDataOnly(true);
-        $excel = $reader->load(APP_PATH . '/Osteceni.xlsx');
+//        $excel = $reader->load(APP_PATH . '/Osteceni.xlsx');
+        $excel = $reader->load(APP_PATH . '/failed-acc-no.xlsx');
         $failedData = [];
         $round = $this->round->getActiveRound();
         $data = $excel->getSheet($excel->getFirstSheetIndex())->toArray();
-
         $new = [];
         $existing = [];
-
         foreach ($data as $key => $educatorData) {
             if ($key === 0) {
                 continue;
@@ -100,7 +71,9 @@ class EducatorController extends AjaxCrudController
             $status = 1;
             switch ($educatorData[8]) {
                 case 'Nije verifikovano':
+                    continue(2);
                 case 'Novo':
+                    die('invalid status');
                     $status = \Solidarity\Educator\Entity\Educator::STATUS_NEW;
                     break;
                 case 'Poslato':
@@ -114,7 +87,8 @@ class EducatorController extends AjaxCrudController
                     break;
                 case 'AFK duplikat':
                 case 'Duplikat':
-                    continue(2);
+                    $status = \Solidarity\Educator\Entity\EducatorImport::STATUS_DUPLICATE;
+                    break;
             }
             if (!$educatorData[1]) {
                 continue;
@@ -144,28 +118,26 @@ class EducatorController extends AjaxCrudController
             $dt = new \DateTime($dateTime);
             $accNumber = str_replace([' ', '-'], '', $educatorData[3]);
             $accNumber = str_replace('O', '0', $accNumber);
+            $amount = intval($educatorData[4]);
 
             // if found, save amount for round 1
             $educator = $this->service->getEntities(['accountNumber' => $this->normalizeAccountNumber($accNumber)]);
             if (count($educator)) {
 //                var_dump($educator[0]->name);
                 $educator = $educator[0];
-                $amount = intval($educatorData[4]);
-                if ($educator->amount === $amount) {
-                    $existing[] = $educator;
-                }
-                $this->service->setRoundAmount($educator, $round, $amount);
+//                if ($educator->amount === $amount) {
+//                    $existing[] = $educator;
+//                }
+//                $this->service->setRoundAmount($educator, $round, $amount);
                 continue;
             }
-            $new[] = $educatorData;
-
-//            var_dump($educatorData[2]);
+//            $new[] = $educatorData;
 
             // skip creating for now
-            continue;
+//            continue;
 
             $data = [
-                'amount' => $educatorData[4],
+                'amount' => $amount,
                 'name' => $educatorData[2],
                 'schoolName' => $schoolName,
                 'slipLink' => ($educatorData[6] === '') ? '': $educatorData[6],
@@ -177,21 +149,17 @@ class EducatorController extends AjaxCrudController
             ];
 
             try {
-
                 $educator = $this->service->create($data);
-                $this->service->setRoundAmount($educator, $round);
+                $this->service->setRoundAmount($educator, $round, $amount);
             } catch (\Exception $e) {
                 var_dump($e->getMessage());
                 var_dump($this->service->parseErrors());
                 $failedData[] = $educatorData;
             }
-
         }
-        var_dump(count($new));
-        var_dump(count($existing));
-
-        die('done, not generating list');
-
+//        var_dump(count($new));
+//        var_dump(count($existing));
+//        die('done, not generating list');
 
         $spreadsheet = new Spreadsheet();
         $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spreadsheet);
@@ -215,7 +183,7 @@ class EducatorController extends AjaxCrudController
 //            $sheet->getStyle('A' . $row)
 //                ->getNumberFormat();
 //                ->setFormatCode(\PhpOffice\PhpSpreadsheet\Style\NumberFormat::FORMAT_TEXT);
-                // wtflol !? https://github.com/PHPOffice/PhpSpreadsheet/issues/357
+            // wtflol !? https://github.com/PHPOffice/PhpSpreadsheet/issues/357
 //                ->setFormatCode('#');
             $sheet->getCell('A' . $row)->setValue($item[0]);
             $sheet->getCell('B' . $row)->setValue($item[1]);

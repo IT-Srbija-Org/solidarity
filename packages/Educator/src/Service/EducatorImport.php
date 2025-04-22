@@ -2,25 +2,24 @@
 namespace Solidarity\Educator\Service;
 
 use Solidarity\Delegate\Service\Delegate;
-use Solidarity\Educator\Repository\EducatorRepository;
+use Solidarity\Educator\Repository\EducatorImportRepository;
 use Skeletor\Core\TableView\Service\TableView;
 use Psr\Log\LoggerInterface as Logger;
 use Skeletor\User\Service\Session;
 use Solidarity\Educator\Filter\Educator as EducatorFilter;
 use Solidarity\Educator\Repository\RoundRepository;
 use Solidarity\Transaction\Service\Round;
-use Tamtamchik\SimpleFlash\Flash;
 
-class Educator extends TableView
+class EducatorImport extends TableView
 {
 
     /**
-     * @param EducatorRepository $repo
+     * @param EducatorImportRepository $repo
      * @param Session $user
      * @param Logger $logger
      */
     public function __construct(
-        EducatorRepository $repo, Session $user, Logger $logger, EducatorFilter $filter, private \DateTime $dt,
+        EducatorImportRepository $repo, Session $user, Logger $logger, EducatorFilter $filter, private \DateTime $dt,
         private Round $round, private RoundRepository $roundRepository, private Delegate $delegate
     ) {
         parent::__construct($repo, $user, $logger, $filter);
@@ -36,8 +35,8 @@ class Educator extends TableView
     {
 //        $round = $this->round->getActiveRound();
         $entity = $this->getEntities(['accountNumber' => $data['accountNumber'], 'name' => $data['name']]);
-
         if (count($entity)) {
+            die('not updating');
             $data['id'] = $entity[0]->id;
             $data['status'] = \Solidarity\Educator\Entity\Educator::STATUS_NEW;
             $data['schoolName'] = $entity[0]->schoolName;
@@ -48,14 +47,6 @@ class Educator extends TableView
             $entity = parent::update($data);
         } else {
             $entity = parent::create($data);
-//            $educatorRounds = $this->roundRepository->fetchAll(['round' => $round->id, 'educator' => $entity->id]);
-//            if (count($educatorRounds)) {
-//
-//            }
-//            $data['round']['amount'] = $entity->amount;
-//            $data['round']['educator'] = $entity;
-//            $data['round']['round'] = $round;
-//            $entity = parent::update($data);
         }
 //        var_dump($entity->rounds);
 //        die();
@@ -66,16 +57,6 @@ class Educator extends TableView
     public function setRoundAmount($educator, $round, $amount)
     {
         $this->repo->setRoundAmount($educator, $round, $amount);
-    }
-
-    public function startNewRound()
-    {
-        return $this->repo->startNewRound();
-    }
-
-    public function getForMapping()
-    {
-        return $this->repo->fetchForMapping();
     }
 
     public function getEntityData($id)

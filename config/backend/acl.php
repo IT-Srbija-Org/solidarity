@@ -46,9 +46,11 @@ $level1 = [
     '/delegate/*',
     '/transaction/*',
     '/educator/*',
+    '/educatorImport/*',
     '/educator/addSchoolRelation*',
     '/template/*',
     '/translator/*',
+    '/transactionImport/*',
     '/activity/*',
 ];
 

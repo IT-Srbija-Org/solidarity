@@ -34,6 +34,8 @@ return array(
         'donor' => \Solidarity\Backend\Controller\DonorController::class,
         'delegate' => \Solidarity\Backend\Controller\DelegateController::class,
         'educator' => \Solidarity\Backend\Controller\EducatorController::class,
+        'educatorImport' => \Solidarity\Backend\Controller\EducatorImportController::class,
+        'transactionImport' => \Solidarity\Backend\Controller\TransactionImportController::class,
         'transaction' => \Solidarity\Backend\Controller\TransactionController::class
     ],
     'schoolTypes' => array(
