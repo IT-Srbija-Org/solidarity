@@ -39,7 +39,7 @@ class Delegate
     public ?string $count;
     #[ORM\Column(type: Types::STRING, nullable: true, length: 512)]
     public ?string $countBlocking;
-    #[ORM\Column(type: Types::STRING, length: 128)]
+    #[ORM\Column(type: Types::STRING, length: 512)]
     public string $verifiedBy;
     #[ORM\ManyToOne(targetEntity: School::class, inversedBy: 'delegates')]
     #[ORM\JoinColumn(name: 'schoolId', referencedColumnName: 'id', unique: false, nullable: true)]
