@@ -128,6 +128,7 @@ class TransactionImportController extends AjaxCrudController
                 if (count($trx)) {
                     continue;
                 }
+                $dt = new \DateTime($data[4]);
                 $trxData = [
                     'amount' => $data[2],
                     'name' => $name,
@@ -138,6 +139,7 @@ class TransactionImportController extends AjaxCrudController
                     'donor' => $donor[0]->id,
                     'comment' => '',
                     'round' => 1,
+                    'createdAt' => $dt,
                 ];
 
                 try {

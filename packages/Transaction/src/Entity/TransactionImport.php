@@ -46,6 +46,9 @@ class TransactionImport
     #[ORM\JoinColumn(name: 'donorId', referencedColumnName: 'id', unique: false)]
     public Donor $donor;
 
+    #[ORM\Column(type: 'datetime', insertable: true, updatable: true, options: ['default' => "CURRENT_TIMESTAMP"])]
+    public \DateTime $createdAt;
+
     public static function getHrStatuses(): array
     {
         return array(
