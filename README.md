@@ -1,3 +1,8 @@
+# *** PROJEKAT ARHIVIRAN ***
+Korišćeno od 27.03.2025 do 26.04.2025, Mreža solidarnosti sada koristi novi repository: [solidaritySF](https://github.com/IT-Srbija-Org/solidaritySF)
+
+------
+
 # IT Srbija - Mreža solidarnosti
 
 Mreža solidarnosti je jednostavna web aplikacija koja omogućava korisnicima da se prijavljuju na istu putem formi ili da upravljaju podacima unutar dash-a.
